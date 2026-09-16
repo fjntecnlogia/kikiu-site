@@ -13,6 +13,7 @@ O destino diz o formato, e cada um tem um motivo:
   og        1200x630   previa do link no WhatsApp, Instagram e Google. E a
                        primeira imagem que alguem ve do restaurante, quase
                        sempre antes do site.
+  prato     1000x1250  a foto grande da vitrine da home e do cardapio.
 
 O que ela faz em toda foto, sem excecao:
 
@@ -33,6 +34,11 @@ FORMATOS = {
     'porta':   (900, 1400, 82),
     'galeria': (1200, 1200, 80),
     'og':      (1200, 630, 84),
+    # As fotos de prato antigas sairam a 420x560 — suficiente para a ficha
+    # pequena do cardapio, pequeno demais para a vitrine da home, onde a foto
+    # ocupa meia tela e o objetivo e dar vontade. 4:5 em pe porque prato
+    # fotografado de cima enche melhor o retrato do que o deitado.
+    'prato':   (1000, 1250, 84),
 }
 
 
