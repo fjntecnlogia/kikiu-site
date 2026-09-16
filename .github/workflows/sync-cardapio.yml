@@ -1,0 +1,39 @@
+name: Sincronizar cardápio do Saipos
+
+# A casa muda o preço no PDV; o site precisa acompanhar sozinho.
+on:
+  schedule:
+    - cron: '0 */6 * * *'   # a cada 6 horas
+  workflow_dispatch:         # e sob demanda, pelo botão na aba Actions
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-cardapio
+  cancel-in-progress: false
+
+jobs:
+  sincronizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Puxar o cardápio
+        run: node scripts/sync-cardapio.mjs
+
+      - name: Commitar se algo mudou
+        run: |
+          if git diff --quiet -- assets/data/cardapio-kikiu.json bar/index.html; then
+            echo "Cardápio sem alteração — nada a commitar."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/data/cardapio-kikiu.json bar/index.html
+          git commit -m "Cardápio do Kikiu sincronizado com o Saipos"
+          git push

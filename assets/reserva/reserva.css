@@ -1,0 +1,130 @@
+/* ═══════════════════════════════════════════════════════════════════
+   RESERVA PELO SITE — folha compartilhada pelas três casas
+
+   Nada de cor aqui dentro. Cada casa define os tokens --rsv-* no
+   próprio :root, apontando para as cores que ela já tem, e o formulário
+   sai vestido de Saikō, de Forneatto ou de Kikiu sem uma linha a mais.
+   O dia em que uma casa mudar de paleta, muda no :root dela e pronto.
+
+   Tokens que a casa precisa definir (todos têm queda segura):
+     --rsv-fundo        fundo do cartão
+     --rsv-tinta        texto
+     --rsv-tinta-fraca  rótulos e ajuda
+     --rsv-fio          borda dos campos
+     --rsv-acento       cor do botão e do foco
+     --rsv-acento-tinta texto SOBRE o acento
+     --rsv-campo        fundo dos campos
+     --rsv-raio         arredondamento
+     --rsv-display      fonte dos títulos
+     --rsv-testo        fonte do texto
+   ═══════════════════════════════════════════════════════════════════ */
+
+.rsv {
+  --_fundo:  var(--rsv-fundo, transparent);
+  --_tinta:  var(--rsv-tinta, currentColor);
+  --_fraca:  var(--rsv-tinta-fraca, color-mix(in srgb, var(--_tinta) 62%, transparent));
+  --_fio:    var(--rsv-fio, color-mix(in srgb, var(--_tinta) 24%, transparent));
+  --_acento: var(--rsv-acento, var(--_tinta));
+  --_sobre:  var(--rsv-acento-tinta, var(--_fundo));
+  --_campo:  var(--rsv-campo, transparent);
+  --_raio:   var(--rsv-raio, 10px);
+
+  font-family: var(--rsv-testo, inherit);
+  color: var(--_tinta);
+  background: var(--_fundo);
+  max-width: 720px;
+}
+
+/* Grade que vira uma coluna no celular sem media query: cada campo pede
+   um mínimo e o container decide quantos cabem. */
+/* O `[hidden]` aqui não é enfeite: `display` escrito pelo autor ganha da
+   regra que o navegador aplica a [hidden], e sem esta linha os campos
+   continuavam na tela depois do envio, embaixo do "pedido enviado" — o
+   mesmo tropeço que a pílula de mesa do cardápio deu em 15/09. Vale para
+   toda regra de display desta folha. */
+.rsv__grade[hidden], .rsv__acoes[hidden] { display: none; }
+
+.rsv__grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 18px 16px;
+}
+.rsv__campo { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.rsv__campo--largo { grid-column: 1 / -1; }
+
+.rsv__rotulo {
+  font-family: var(--rsv-display, inherit);
+  font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--_fraca);
+}
+
+.rsv input, .rsv select, .rsv textarea {
+  font: inherit; font-size: 16px;   /* 16px trava o zoom automático do iOS ao focar */
+  color: var(--_tinta); background: var(--_campo);
+  border: 1px solid var(--_fio); border-radius: var(--_raio);
+  padding: 13px 14px; width: 100%; min-width: 0;
+  appearance: none; -webkit-appearance: none;
+  transition: border-color .18s, box-shadow .18s;
+}
+.rsv textarea { resize: vertical; min-height: 88px; }
+.rsv select {
+  /* Seta desenhada aqui porque `appearance:none` apaga a do sistema, e
+     sem ela o campo vira uma caixa de texto que não dá para digitar. */
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+                    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: right 18px top 50%, right 13px top 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 38px;
+}
+.rsv input:focus-visible, .rsv select:focus-visible, .rsv textarea:focus-visible {
+  outline: none; border-color: var(--_acento);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--_acento) 28%, transparent);
+}
+.rsv input:disabled, .rsv select:disabled { opacity: .5; cursor: not-allowed; }
+.rsv ::placeholder { color: var(--_fraca); opacity: 1; }
+
+/* A armadilha. Não é `display:none` nem `hidden`: robô bom pula os dois.
+   Fica fora da tela, sem foco e fora da ordem de tabulação — quem usa
+   leitor de tela também nunca chega nela (aria-hidden no HTML). */
+.rsv__armadilha {
+  position: absolute !important; left: -9999px !important;
+  width: 1px; height: 1px; overflow: hidden;
+}
+
+.rsv__acoes {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+  margin-top: 26px;
+}
+.rsv__enviar {
+  font-family: var(--rsv-display, inherit); font-size: 14px;
+  letter-spacing: .1em; text-transform: uppercase; font-weight: 700;
+  color: var(--_sobre); background: var(--_acento);
+  border: 1px solid var(--_acento); border-radius: var(--_raio);
+  padding: 15px 34px; cursor: pointer;
+  transition: opacity .18s, transform .18s;
+}
+.rsv__enviar:hover { opacity: .88; }
+.rsv__enviar:active { transform: translateY(1px); }
+.rsv__enviar:disabled { opacity: .45; cursor: progress; transform: none; }
+.rsv__ajuda { font-size: 13.5px; color: var(--_fraca); line-height: 1.5; }
+
+/* Recado do envio. `role=status` faz o leitor de tela anunciar sozinho —
+   quem não enxerga o formulário precisa saber que a reserva entrou. */
+.rsv__recado {
+  margin-top: 20px; padding: 16px 18px;
+  border-radius: var(--_raio); border: 1px solid var(--_fio);
+  font-size: 15px; line-height: 1.6;
+}
+.rsv__recado[hidden] { display: none; }
+.rsv__recado--ok   { border-color: var(--_acento); background: color-mix(in srgb, var(--_acento) 12%, transparent); }
+.rsv__recado--erro { border-color: #c0392b; background: color-mix(in srgb, #c0392b 12%, transparent); }
+.rsv__recado b { display: block; font-family: var(--rsv-display, inherit); margin-bottom: 4px; }
+
+/* Enquanto o JS não respondeu, o bloco estático do HTML (o link do
+   WhatsApp) é o que aparece. Some assim que o formulário existe. */
+.rsv-sem-js[hidden] { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rsv input, .rsv select, .rsv textarea, .rsv__enviar { transition: none; }
+}

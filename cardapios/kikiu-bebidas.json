@@ -1,0 +1,543 @@
+{
+  "casa": "Kikiu Gastrobar",
+  "titulo": "Menu de Bebidas",
+  "assinatura": "Casa Pro Coquetéis",
+  "endereco": "Shopping Três Américas · Cuiabá — MT",
+  "fonte": "Transcrito do menu impresso do Kikiu, com os preços corrigidos à mão pela casa. Os 8 itens de letra dúbia foram CONFERIDOS E APROVADOS pela casa em 11/09/2026 — nenhuma pendência. Item novo entra sem marca: quem cadastrar confere antes.",
+  "blocos": [
+    {
+      "id": "casa-pro",
+      "titulo": "Drinks Casa Pro",
+      "texto": "Elevamos a coquetelaria artesanal a um novo padrão. Da curadoria rigorosa dos ingredientes à última gota, criamos misturas exclusivas que despertam os sentidos e celebram a alta coquetelaria.",
+      "precoUnico": 45,
+      "notaPreco": "cada unidade por: R$ 45,00",
+      "grupos": [
+        {
+          "arejado": true,
+          "itens": [
+            {
+              "nome": "Banana Sour",
+              "ingredientes": "Cachaça / Banana / Maracujá / Água de Coco / Limão Taiti / Mascavo",
+              "perfil": "SUAVE – FRUTADO – TROPICAL",
+              "foto": "banana-sour.jpg"
+            },
+            {
+              "nome": "Black Velvet",
+              "ingredientes": "Cachaça / Café / Chocolate / Gengibre / Pimenta / Limão Taiti",
+              "perfil": "ENCORPADO – DOCE – ENVOLVENTE",
+              "foto": "black-velvet.jpg"
+            },
+            {
+              "nome": "Carajillo",
+              "ingredientes": "Premium Tequila / Licor 43 / Licor de Café / Café Espresso",
+              "perfil": "ENCORPADO – DOCE – DIGESTIVO",
+              "foto": "carajillo.jpg"
+            },
+            {
+              "nome": "Espresso Martini",
+              "ingredientes": "Premium Vodka / Licor de Café / Café Espresso",
+              "perfil": "ENCORPADO – DOCE – CLÁSSICO",
+              "foto": "espresso-martini.jpg"
+            },
+            {
+              "nome": "Jungle Bird",
+              "ingredientes": "Premium Rum Envelhecido / Campari / Abacaxi / Limão Taiti",
+              "perfil": "ENCORPADO – AMARGO – TROPICAL",
+              "foto": "jungle-bird.jpg"
+            }
+          ]
+        },
+        {
+          "arejado": true,
+          "quebraAntes": true,
+          "itens": [
+            {
+              "nome": "Midori",
+              "ingredientes": "Premium Vodka / Abacaxi / Yuzu / Manjericão / Kiwi / Limão Taiti",
+              "perfil": "REFRESCANTE – FRUTADO – EXÓTICO",
+              "foto": "midori.jpg"
+            },
+            {
+              "nome": "Moscow Mule",
+              "ingredientes": "Premium Vodka / Limão Taiti / Gengibre",
+              "perfil": "REFRESCANTE – CÍTRICO – CLÁSSICO",
+              "foto": "moscow-mule.jpg"
+            },
+            {
+              "nome": "Negroni",
+              "ingredientes": "Premium Gin / Vermute Doce / Amaro",
+              "perfil": "ENCORPADO – AMARGO – CLÁSSICO",
+              "foto": "negroni.jpg"
+            },
+            {
+              "nome": "Paçoka",
+              "ingredientes": "Premium Vodka / Paçoca / Licor Baileys / Caramelo Salgado / Leite de Aveia",
+              "perfil": "CREMOSO – DOCE – BRASILEIRO",
+              "foto": "pacoka.jpg"
+            },
+            {
+              "nome": "Porn Star Martini",
+              "ingredientes": "Vodka de Baunilha / Maracujá / Abacaxi / Limão Siciliano",
+              "perfil": "SUAVE – FRUTADO – EXÓTICO",
+              "foto": "porn-star-martini.jpg"
+            },
+            {
+              "nome": "Valentina",
+              "ingredientes": "Premium Rum Branco / Melão / Maçã / Maracujá / Limão Siciliano / Baunilha / Laranja / Abacaxi",
+              "perfil": "REFRESCANTE – FRUTADO – EXÓTICO",
+              "foto": "valentina.jpg"
+            }
+          ]
+        },
+        {
+          "arejado": true,
+          "quebraAntes": true,
+          "itens": [
+            {
+              "nome": "Whiskey Business",
+              "ingredientes": "Premium Whiskey / Canela / Limão Siciliano / Pimenta / Angostura Bitters",
+              "perfil": "INTENSO – PICANTE – AROMÁTICO"
+            },
+            {
+              "nome": "Whiskey Sour",
+              "ingredientes": "Premium Bourbon / Limão Siciliano / Xarope Simples / Angostura Bitters",
+              "perfil": "REFRESCANTE – CÍTRICO – CLÁSSICO"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cervejas",
+      "titulo": "Cervejas",
+      "grupos": [
+        {
+          "titulo": "Chopp",
+          "itens": [
+            {
+              "nome": "Brahma Chopp Caldereta",
+              "sub": "caldereta 300ml",
+              "preco": 11
+            },
+            {
+              "nome": "Brahma Chopp Caneca",
+              "sub": "caneca 380ml",
+              "preco": 16
+            },
+            {
+              "nome": "Cosmel Caneca",
+              "preco": 21
+            }
+          ]
+        },
+        {
+          "titulo": "Cerveja 600ml",
+          "itens": [
+            {
+              "nome": "Brahma",
+              "preco": 20
+            },
+            {
+              "nome": "Corona",
+              "preco": 24
+            },
+            {
+              "nome": "Original",
+              "preco": 20
+            },
+            {
+              "nome": "Spaten",
+              "preco": 24
+            },
+            {
+              "nome": "Stella Pure Gold",
+              "preco": 24
+            }
+          ]
+        },
+        {
+          "titulo": "Long Neck",
+          "itens": [
+            {
+              "nome": "Brahma Zero",
+              "preco": 14
+            },
+            {
+              "nome": "Corona",
+              "preco": 16
+            },
+            {
+              "nome": "Corona Cero",
+              "sub": "sem álcool",
+              "preco": 16
+            },
+            {
+              "nome": "Flying Fish",
+              "preco": 14
+            },
+            {
+              "nome": "Michelob",
+              "preco": 14
+            },
+            {
+              "nome": "Spaten",
+              "preco": 16
+            },
+            {
+              "nome": "Stella Artois",
+              "preco": 16
+            },
+            {
+              "nome": "Stella Pure Gold",
+              "preco": 17
+            }
+          ],
+          "quebraAntes": true
+        }
+      ]
+    },
+    {
+      "id": "nao-alcoolicos",
+      "titulo": "Não-Alcoólicos",
+      "grupos": [
+        {
+          "itens": [
+            {
+              "nome": "Água com Gás",
+              "preco": 9
+            },
+            {
+              "nome": "Água sem Gás",
+              "preco": 8
+            },
+            {
+              "nome": "Água de Coco",
+              "sub": "300ml",
+              "preco": 16
+            },
+            {
+              "nome": "Água de Coco",
+              "sub": "1 litro",
+              "preco": 30
+            },
+            {
+              "nome": "Guaraná",
+              "preco": 9
+            },
+            {
+              "nome": "Guaraná Zero",
+              "preco": 9
+            },
+            {
+              "nome": "H2O Limão",
+              "preco": 12
+            },
+            {
+              "nome": "H2O Limoneto",
+              "preco": 12
+            },
+            {
+              "nome": "Pepsi",
+              "preco": 9
+            },
+            {
+              "nome": "Pepsi Black",
+              "preco": 9
+            },
+            {
+              "nome": "Tônica",
+              "preco": 9
+            },
+            {
+              "nome": "Tônica Zero",
+              "preco": 9
+            },
+            {
+              "nome": "Red Bull",
+              "preco": 16
+            },
+            {
+              "nome": "Red Bull Sem Açúcar",
+              "preco": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drinks-kikiu",
+      "titulo": "Drinks Kikiu",
+      "grupos": [
+        {
+          "titulo": "Caipirinhas",
+          "itens": [
+            {
+              "nome": "Caipirinha de Abacaxi com Hortelã",
+              "preco": 34
+            },
+            {
+              "nome": "Caipirinha de Caju",
+              "preco": 24
+            },
+            {
+              "nome": "Caipirinha de Limão",
+              "preco": 34
+            },
+            {
+              "nome": "Caipirinha de Manga com Pimenta",
+              "preco": 36
+            },
+            {
+              "nome": "Caipirinha de Maracujá",
+              "preco": 36
+            }
+          ],
+          "quebraAntes": true
+        },
+        {
+          "titulo": "Caipiroskas",
+          "itens": [
+            {
+              "nome": "Abacaxi com Hortelã",
+              "preco": 34
+            },
+            {
+              "nome": "Caju",
+              "preco": 24
+            },
+            {
+              "nome": "Limão",
+              "preco": 34
+            },
+            {
+              "nome": "Maracujá",
+              "preco": 36
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "destilados",
+      "titulo": "Dose / Destilados",
+      "grupos": [
+        {
+          "titulo": "Cachaças",
+          "itens": [
+            {
+              "nome": "Cachaça branca",
+              "preco": 20
+            },
+            {
+              "nome": "Cachaça envelhecida",
+              "preco": 26
+            },
+            {
+              "nome": "Cachaça premium",
+              "preco": 30
+            }
+          ]
+        },
+        {
+          "titulo": "Whisky",
+          "itens": [
+            {
+              "nome": "Ballantine's 7 anos",
+              "preco": 28,
+              "garrafa": 320
+            },
+            {
+              "nome": "Buchanans 12 anos",
+              "preco": 32,
+              "garrafa": 390
+            },
+            {
+              "nome": "Chivas Regal 12 anos",
+              "preco": 30,
+              "garrafa": 360
+            },
+            {
+              "nome": "Glenfiddich 12 anos",
+              "preco": 32,
+              "garrafa": 560
+            },
+            {
+              "nome": "Glenlivet 12 anos",
+              "preco": 32,
+              "garrafa": 540
+            },
+            {
+              "nome": "Johnnie Walker Gold Label",
+              "preco": 38,
+              "garrafa": 450
+            },
+            {
+              "nome": "Johnnie Walker Red Label 7 anos",
+              "preco": 30,
+              "garrafa": 340
+            },
+            {
+              "nome": "Old Parr 12 anos",
+              "preco": 32,
+              "garrafa": 380
+            }
+          ],
+          "quebraAntes": true
+        },
+        {
+          "titulo": "Vodka",
+          "itens": [
+            {
+              "nome": "Absolut",
+              "preco": 30,
+              "garrafa": 300
+            },
+            {
+              "nome": "Belvedere",
+              "preco": 32,
+              "garrafa": 390
+            },
+            {
+              "nome": "Grey Goose",
+              "preco": 32,
+              "garrafa": 410
+            },
+            {
+              "nome": "Kamai",
+              "preco": 28,
+              "garrafa": 280
+            }
+          ]
+        },
+        {
+          "titulo": "Gin",
+          "itens": [
+            {
+              "nome": "Beefeater",
+              "preco": 24,
+              "garrafa": 330
+            },
+            {
+              "nome": "Kamai",
+              "preco": 28,
+              "garrafa": 260
+            },
+            {
+              "nome": "Tanqueray",
+              "preco": 34,
+              "garrafa": 280
+            }
+          ]
+        },
+        {
+          "titulo": "Tequila",
+          "itens": [
+            {
+              "nome": "José Cuervo",
+              "preco": 26
+            }
+          ],
+          "quebraAntes": true
+        },
+        {
+          "titulo": "Digestivo",
+          "itens": [
+            {
+              "nome": "Balena",
+              "preco": 24
+            },
+            {
+              "nome": "Don Cream",
+              "preco": 24
+            },
+            {
+              "nome": "Campari",
+              "preco": 46
+            },
+            {
+              "nome": "Aperol",
+              "preco": 20
+            },
+            {
+              "nome": "Licor 43",
+              "preco": 32
+            },
+            {
+              "nome": "Licor 43 Chocolate",
+              "preco": 25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sucos",
+      "titulo": "Sucos Naturais",
+      "grupos": [
+        {
+          "titulo": "Copo 300ml",
+          "itens": [
+            {
+              "nome": "Abacaxi",
+              "preco": 14
+            },
+            {
+              "nome": "Abacaxi com hortelã",
+              "preco": 16
+            },
+            {
+              "nome": "Acerola",
+              "preco": 14
+            },
+            {
+              "nome": "Caju",
+              "preco": 14
+            },
+            {
+              "nome": "Laranja",
+              "preco": 14
+            },
+            {
+              "nome": "Limão",
+              "preco": 14
+            },
+            {
+              "nome": "Manga",
+              "preco": 13
+            },
+            {
+              "nome": "Maracujá",
+              "preco": 12
+            }
+          ]
+        },
+        {
+          "titulo": "Sucos especiais",
+          "itens": [
+            {
+              "nome": "Abacaxi, hortelã e gengibre",
+              "preco": 18
+            },
+            {
+              "nome": "Caju com limão",
+              "preco": 16
+            },
+            {
+              "nome": "Frutas vermelhas",
+              "preco": 16
+            },
+            {
+              "nome": "Manga com maracujá",
+              "preco": 18
+            },
+            {
+              "nome": "Maracujá com laranja",
+              "preco": 18
+            }
+          ],
+          "quebraAntes": true
+        }
+      ]
+    }
+  ]
+}

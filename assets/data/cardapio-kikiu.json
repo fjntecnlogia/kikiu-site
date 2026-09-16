@@ -1,0 +1,1628 @@
+{
+  "gerado_em": "2026-09-16T15:53:11.610Z",
+  "fonte": "https://delivery-api.saipos.com/v1/stores/93572/sales/view-data",
+  "loja": {
+    "id_store": 93572,
+    "nome": "Forneato/ Saiko/ Kikiu",
+    "endereco": "Avenida Brasilia, 177, Bloco a Loja 116/117 a- P.America do Sul",
+    "bairro": "Jardim das Américas",
+    "cidade": "Cuiabá",
+    "uf": "MT",
+    "pedido_online_ativo": false
+  },
+  "cardapio": {
+    "cozinha": [
+      {
+        "nome": "PETISCOS & BOTECARIA — PASTÉIS",
+        "ordem": 1,
+        "itens": [
+          {
+            "id": 40920845,
+            "nome": "Pastel de carne à bolonhesa + parmesão",
+            "descricao": "",
+            "ordem": 0,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 55
+              }
+            ]
+          },
+          {
+            "id": 40920842,
+            "nome": "Pastel cremoso de camarão + Catupiry",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 78
+              }
+            ]
+          },
+          {
+            "id": 41245875,
+            "nome": "Pastel de Cupim desfiado com cream cheese",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 63
+              }
+            ]
+          },
+          {
+            "id": 40920847,
+            "nome": "Pastel de calabresa + mussarela",
+            "descricao": "",
+            "ordem": 2,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 58
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "PETISCOS & BOTECARIA — CROQUETES",
+        "ordem": 2,
+        "itens": [
+          {
+            "id": 40920838,
+            "nome": "Bolinho mineiro de milho, bacon + queijo meia cura",
+            "descricao": "",
+            "ordem": 0,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 62
+              }
+            ]
+          },
+          {
+            "id": 40920837,
+            "nome": "Croquete de ossobuco + provolone defumado",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 68
+              }
+            ]
+          },
+          {
+            "id": 40920841,
+            "nome": "Bolinho crocante de pintado + ervas finas",
+            "descricao": "",
+            "ordem": 2,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 64
+              }
+            ]
+          },
+          {
+            "id": 40920840,
+            "nome": "Croquete de carne seca + abóbora cremosa",
+            "descricao": "",
+            "ordem": 3,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 61
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "PETISCOS",
+        "ordem": 3,
+        "itens": [
+          {
+            "id": 40920848,
+            "nome": "Iscas de frango super crocantes + mostarda Dijon",
+            "descricao": "",
+            "ordem": 0,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 66
+              }
+            ]
+          },
+          {
+            "id": 40920835,
+            "nome": "Picanha Angus fatiada + batata frita + molho da casa",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 97
+              }
+            ]
+          },
+          {
+            "id": 40920846,
+            "nome": "Iscas de peixe branco crocante + molho cítrico",
+            "descricao": "",
+            "ordem": 2,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 83
+              }
+            ]
+          },
+          {
+            "id": 40920843,
+            "nome": "Cubos de filé mignon acebolado + Grana Padano",
+            "descricao": "",
+            "ordem": 3,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 108
+              }
+            ]
+          },
+          {
+            "id": 40920844,
+            "nome": "Batata frita especial, azeite trufado, queijo + ervas",
+            "descricao": "",
+            "ordem": 4,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 45
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "ESPECIAIS",
+        "ordem": 4,
+        "itens": [
+          {
+            "id": 40920860,
+            "nome": "Escondidinho de Ragu de Costela",
+            "descricao": "",
+            "ordem": 0,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 81
+              }
+            ]
+          },
+          {
+            "id": 40920859,
+            "nome": "Gratinado de Catupiry + cubos de filé mignon",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 115
+              }
+            ]
+          },
+          {
+            "id": 40920872,
+            "nome": "Moela e coração ao molho roti especial",
+            "descricao": "",
+            "ordem": 2,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 55
+              }
+            ]
+          },
+          {
+            "id": 40920874,
+            "nome": "Carne de onça — especialidade da casa",
+            "descricao": "",
+            "ordem": 4,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 78
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "STEAKS & CHAPAS",
+        "ordem": 5,
+        "itens": [
+          {
+            "id": 41249363,
+            "nome": "Carré de cordeiro",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 162
+              }
+            ]
+          },
+          {
+            "id": 40920876,
+            "nome": "Picanha Angus",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 145
+              }
+            ]
+          },
+          {
+            "id": 40920886,
+            "nome": "Sobrecoxa desossada na mostarda",
+            "descricao": "",
+            "ordem": 2,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 81
+              }
+            ]
+          },
+          {
+            "id": 40920911,
+            "nome": "Linguiça cuiabana gratinada",
+            "descricao": "",
+            "ordem": 4,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 52
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "bar": [
+      {
+        "nome": "Drinks Casa Pro",
+        "ordem": 0,
+        "itens": [
+          {
+            "id": 41377069,
+            "nome": "Aperol Spritz",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 45
+              }
+            ]
+          },
+          {
+            "id": 41240570,
+            "nome": "Black Velvet",
+            "descricao": "Cachaça/ Café/Chocolate/Gengibre/Pimenta/Limão Taiti (Encorpado-Doce- Envolvente)",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 45
+              }
+            ]
+          },
+          {
+            "id": 41240963,
+            "nome": "Carajillo",
+            "descricao": "Premium Tequila/Licor 43/Licor de Café/Café Expresso. (Encorpado- Doce - Digestivo",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 45
+              }
+            ]
+          },
+          {
+            "id": 41241003,
+            "nome": "Espresso Martini",
+            "descricao": "Premium Vodka/Licor de café/ Café Expresso. (Encorpado-Doce_Clássico)",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 45
+              }
+            ]
+          },
+          {
+            "id": 41241091,
+            "nome": "Jungle Bird",
+            "descricao": "Premium Rum Envelhecido/Campari/Abacaxi/Limão-Taiti (Encorpado-Amargo-Tropical.",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 45
+              }
+            ]
+          },
+          {
+            "id": 41241588,
+            "nome": "Midori",
+            "descricao": "Premium Vodka/Abacaxi/Yuzu/Manjericão/Kiwi/Limão-Taiti. (Refrencante-Frutado-Exótico)",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 45
+              }
+            ]
+          },
+          {
+            "id": 41241662,
+            "nome": "MoscoW Mule",
+            "descricao": "Premium vodka/Limão-Taiti/Gengibre (Refrescante-Citrico-Clássico)",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 45
+              }
+            ]
+          },
+          {
+            "id": 41242105,
+            "nome": "Negroni",
+            "descricao": "Premiun Gin /Vermute Doce/ Amaro ( Encorpado -Amargo_Clássico)",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 45
+              }
+            ]
+          },
+          {
+            "id": 41242156,
+            "nome": "Paçoka",
+            "descricao": "Premium Vodka/Paçoca/Licor/Baileys/Caramelo Salgado/Leite de aveia (cremoso-Doce_Brasileiro)",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 45
+              }
+            ]
+          },
+          {
+            "id": 41375603,
+            "nome": "Porn Star Martine",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 45
+              }
+            ]
+          },
+          {
+            "id": 41243337,
+            "nome": "Wiskey Business",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 45
+              }
+            ]
+          },
+          {
+            "id": 41243662,
+            "nome": "Wiskey Sour",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 45
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Caipirinhas",
+        "ordem": 0,
+        "itens": [
+          {
+            "id": 41252666,
+            "nome": "Caipinha de Limão",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 34
+              }
+            ]
+          },
+          {
+            "id": 41252657,
+            "nome": "Caipirinha de Abacaxi com Hortelã",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 34
+              }
+            ]
+          },
+          {
+            "id": 41252636,
+            "nome": "Caipirinha de Manga com pimenta",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 36
+              }
+            ]
+          },
+          {
+            "id": 41252827,
+            "nome": "Caipirinha de Maracujá",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 36
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Caipiroska",
+        "ordem": 0,
+        "itens": [
+          {
+            "id": 41252851,
+            "nome": "Caipiroska de Abacaxi com Hotelã",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 34
+              }
+            ]
+          },
+          {
+            "id": 41252868,
+            "nome": "Caipiroska de Limão",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 34
+              }
+            ]
+          },
+          {
+            "id": 41252887,
+            "nome": "Caipiroska de Manga com Pimenta",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 36
+              }
+            ]
+          },
+          {
+            "id": 41252876,
+            "nome": "Caipiroska de Maracujá",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 36
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Vodkas/Gin",
+        "ordem": 0,
+        "itens": [
+          {
+            "id": 41253186,
+            "nome": "Absolut Dose",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 30
+              }
+            ]
+          },
+          {
+            "id": 41253223,
+            "nome": "Belvedere Dose",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 32
+              }
+            ]
+          },
+          {
+            "id": 41253247,
+            "nome": "Gin Beefeater Dose",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 24
+              }
+            ]
+          },
+          {
+            "id": 41253251,
+            "nome": "Gin Kamai Dose",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 28
+              }
+            ]
+          },
+          {
+            "id": 41253265,
+            "nome": "Gin Tanqueray Dose",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 34
+              }
+            ]
+          },
+          {
+            "id": 41253236,
+            "nome": "Grey Goose Dose",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 32
+              }
+            ]
+          },
+          {
+            "id": 41253242,
+            "nome": "Kamai Dose",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 28
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Digestivos/Doses",
+        "ordem": 0,
+        "itens": [
+          {
+            "id": 41253322,
+            "nome": "Balena chocolate Dose",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 24
+              }
+            ]
+          },
+          {
+            "id": 41253179,
+            "nome": "Ballantine s 7 anos Dose",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 28
+              }
+            ]
+          },
+          {
+            "id": 41252966,
+            "nome": "Buchanans 12 anos ( Dose )",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 32
+              }
+            ]
+          },
+          {
+            "id": 41250836,
+            "nome": "Cachaça Branca Dose/Sagatiba",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 20
+              }
+            ]
+          },
+          {
+            "id": 41250872,
+            "nome": "Cachaça Envelhecida Weber Amburana Dose",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 26
+              }
+            ]
+          },
+          {
+            "id": 41250793,
+            "nome": "Cachaça Premium Dose 7 Madeiras",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 30
+              }
+            ]
+          },
+          {
+            "id": 41252109,
+            "nome": "Campari (Dose)",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 46
+              }
+            ]
+          },
+          {
+            "id": 41251977,
+            "nome": "Cdb",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 8
+              }
+            ]
+          },
+          {
+            "id": 41252923,
+            "nome": "Chivas Regal (12 anos) dose",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 30
+              }
+            ]
+          },
+          {
+            "id": 41253334,
+            "nome": "Don Cream Dose",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 24
+              }
+            ]
+          },
+          {
+            "id": 41253125,
+            "nome": "Glenliddich 12 anos Dose",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 32
+              }
+            ]
+          },
+          {
+            "id": 41253153,
+            "nome": "Glenlivet 12 Anos Dose",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 32
+              }
+            ]
+          },
+          {
+            "id": 41252944,
+            "nome": "Jhonnie Walker Gold Label ( Dose )",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 38
+              }
+            ]
+          },
+          {
+            "id": 41252959,
+            "nome": "Jhonnie Walker Red Label ( Dose )",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 30
+              }
+            ]
+          },
+          {
+            "id": 41253340,
+            "nome": "Licor 43 Dose",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 32
+              }
+            ]
+          },
+          {
+            "id": 41252906,
+            "nome": "Old parr Dose ( 12anos)",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 32
+              }
+            ]
+          },
+          {
+            "id": 41251965,
+            "nome": "Shot de Limão",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Tequila",
+        "ordem": 0,
+        "itens": [
+          {
+            "id": 41253287,
+            "nome": "José Cuervo Dose",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 26
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Combos/Bar",
+        "ordem": 0,
+        "itens": [
+          {
+            "id": 41260541,
+            "nome": "Ballantine`s 7 anos",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 320
+              }
+            ]
+          },
+          {
+            "id": 41260610,
+            "nome": "Buchanans 12 anos",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 390
+              }
+            ]
+          },
+          {
+            "id": 41269491,
+            "nome": "Campari Garrafa",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 220
+              }
+            ]
+          },
+          {
+            "id": 41260727,
+            "nome": "Chivas Regal 12 anos",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 360
+              }
+            ]
+          },
+          {
+            "id": 41494884,
+            "nome": "Combo Grey Groose",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 410
+              }
+            ]
+          },
+          {
+            "id": 41260815,
+            "nome": "Glenfiddich 12 anos",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 560
+              }
+            ]
+          },
+          {
+            "id": 41260859,
+            "nome": "Glenlivet 12 Anos",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 540
+              }
+            ]
+          },
+          {
+            "id": 41260956,
+            "nome": "Jhonnie Walker Gold Label",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 450
+              }
+            ]
+          },
+          {
+            "id": 41260941,
+            "nome": "Johnnie Walker Red Label",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 340
+              }
+            ]
+          },
+          {
+            "id": 41251916,
+            "nome": "Old Parr 12 Anos combo",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 380
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Cerveja 600ml",
+        "ordem": 0,
+        "itens": [
+          {
+            "id": 41250330,
+            "nome": "Brahma 600 ml",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 20
+              }
+            ]
+          },
+          {
+            "id": 41251083,
+            "nome": "Corona 600 ml",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 24
+              }
+            ]
+          },
+          {
+            "id": 41250516,
+            "nome": "Original 600 ml",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 20
+              }
+            ]
+          },
+          {
+            "id": 41237273,
+            "nome": "Spaten 600 ml",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 24
+              }
+            ]
+          },
+          {
+            "id": 41237237,
+            "nome": "Stella Gold 600ml",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 24
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Long Neck",
+        "ordem": 0,
+        "itens": [
+          {
+            "id": 41252436,
+            "nome": "Brahma Zero Long neck",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 14
+              }
+            ]
+          },
+          {
+            "id": 41251050,
+            "nome": "Corona Long Neck",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 16
+              }
+            ]
+          },
+          {
+            "id": 41251062,
+            "nome": "Corona Zero Long Neck",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 14
+              }
+            ]
+          },
+          {
+            "id": 41252420,
+            "nome": "Flying Fish",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 14
+              }
+            ]
+          },
+          {
+            "id": 41252398,
+            "nome": "Michelob Long neck",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 14
+              }
+            ]
+          },
+          {
+            "id": 41252392,
+            "nome": "Spaten Long neck",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 16
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Sucos Especiais",
+        "ordem": 0,
+        "itens": [
+          {
+            "id": 41253411,
+            "nome": "Abacaxi com Hotelã e Gengibre (copo)",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 18
+              }
+            ]
+          },
+          {
+            "id": 41253423,
+            "nome": "Caju com Limão (Copo)",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 16
+              }
+            ]
+          },
+          {
+            "id": 41253432,
+            "nome": "Frutas Vermelhas (Copo)",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 16
+              }
+            ]
+          },
+          {
+            "id": 41253450,
+            "nome": "Manga com Maracujá (copo)",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 18
+              }
+            ]
+          },
+          {
+            "id": 41253459,
+            "nome": "Maracujá com Laranja (Copo)",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 18
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Sucos",
+        "ordem": 0,
+        "itens": [
+          {
+            "id": 41251645,
+            "nome": "Abacaxi",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 14
+              }
+            ]
+          },
+          {
+            "id": 41251660,
+            "nome": "Abacaxi com Hortelã",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 16
+              }
+            ]
+          },
+          {
+            "id": 41251676,
+            "nome": "Acerola",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 14
+              }
+            ]
+          },
+          {
+            "id": 41251683,
+            "nome": "Caju",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 14
+              }
+            ]
+          },
+          {
+            "id": 41251690,
+            "nome": "Laranja",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 14
+              }
+            ]
+          },
+          {
+            "id": 41251721,
+            "nome": "Limão",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 14
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Bebidas",
+        "ordem": 0,
+        "itens": [
+          {
+            "id": 41250987,
+            "nome": "Água com gás",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 9
+              }
+            ]
+          },
+          {
+            "id": 41262434,
+            "nome": "Àgua de coco 1litro",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 30
+              }
+            ]
+          },
+          {
+            "id": 41253063,
+            "nome": "Água de coco 200 ML",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 12
+              }
+            ]
+          },
+          {
+            "id": 41262872,
+            "nome": "Àgua de coco 330ml",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 16
+              }
+            ]
+          },
+          {
+            "id": 41250969,
+            "nome": "Água sem gas",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 8
+              }
+            ]
+          },
+          {
+            "id": 41253079,
+            "nome": "Água Tônica lata",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 9
+              }
+            ]
+          },
+          {
+            "id": 41253082,
+            "nome": "Água Tônica Zero lata",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 9
+              }
+            ]
+          },
+          {
+            "id": 41251942,
+            "nome": "Guaraná Lata",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 9
+              }
+            ]
+          },
+          {
+            "id": 41253057,
+            "nome": "Guaraná Zero lata",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 9
+              }
+            ]
+          },
+          {
+            "id": 41252986,
+            "nome": "H2O Limão",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 12
+              }
+            ]
+          },
+          {
+            "id": 41252995,
+            "nome": "H2O Limoneto",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 12
+              }
+            ]
+          },
+          {
+            "id": 41252983,
+            "nome": "Pepsi Black lata",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 9
+              }
+            ]
+          },
+          {
+            "id": 41252980,
+            "nome": "Pepsi Lata",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 9
+              }
+            ]
+          },
+          {
+            "id": 41252163,
+            "nome": "Red Bull Lata",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 16
+              }
+            ]
+          },
+          {
+            "id": 41253002,
+            "nome": "Red Bull Zero Lata",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 16
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Chopp",
+        "ordem": 0,
+        "itens": [
+          {
+            "id": 41375362,
+            "nome": "Double Chopp Brahma Happy Hour",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 14
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nome": "Couvert artistico",
+        "ordem": 0,
+        "itens": [
+          {
+            "id": 41407675,
+            "nome": "Couvert artistico",
+            "descricao": "",
+            "ordem": 1,
+            "foto": null,
+            "variacoes": [
+              {
+                "nome": "Único",
+                "preco": 15
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "_leia": "Fonte unica dos dominios DESTA casa. Rodar scripts/aplicar-dominios.mjs depois de mudar.",
+  "_regra": "'dominio' e o principal: canonical, Open Graph, JSON-LD, sitemap e Google Meu Negocio. Os de 'alternativos' apenas redirecionam 301 — nunca servem conteudo.",
+  "casa": {
+    "id": "kikiu",
+    "nome": "Kikiu Gastro Bar",
+    "dominio": "kikiu.com.br",
+    "alternativos": [
+      "kikiubar.com.br",
+      "kikiugastrobar.com.br"
+    ],
+    "cardapio": "bebidas",
+    "ga4": "",
+    "searchConsole": "",
+    "mesas": 12,
+    "_nota": "Marca exata e o mais curto dos três. Sem dúvida aqui.",
+    "imagens": "bar"
+  },
+  "_imagens": "A pasta desta casa dentro de assets/img (hero.jpg, og.jpg)."
+}

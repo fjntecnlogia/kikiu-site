@@ -1,0 +1,19 @@
+# O que NAO vai para producao.
+#
+# Tudo que fica na raiz do repositorio e servido no dominio: em 11/09 a
+# proposta comercial da FJN, com precos, estava publica em kikiu.com.br/proposta/
+# — no dominio do proprio cliente. Nao e caso de redirect: e caso de nao subir.
+#
+# ATENCAO: aqui comentario so vale em linha propria. Escrito na MESMA linha do
+# caminho ele vira parte do padrao, a regra nao casa com nada e o arquivo sobe
+# assim mesmo — foi o que aconteceu na primeira versao deste arquivo.
+
+# producao grafica: PDFs, HTML de impressao, CSS de layout
+cardapios/
+
+# geradores
+scripts/
+
+# documentacao do repositorio
+*.md
+casa.json

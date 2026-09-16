@@ -1,0 +1,190 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDÁPIO SAIKŌ — arquivo de impressão
+   Formato: 163 x 333 mm de corte + 3 mm de sangria em cada lado = 169 x 339
+   Mesma estrutura do cardápio do Kikiu (Casa Pro Coquetéis, julho): mesmo
+   formato de papel, mesma cadência de ornamento, mesmo ritmo de lista.
+   Muda a casa: vermelho de pincel e ouro no lugar do laranja, mincho
+   japonesa no lugar da display, enso no lugar do losango.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@page { size: 169mm 339mm; margin: 0; }
+
+:root {
+  --papel:    #f7f3ea;
+  --papel-2:  #efe9dc;
+  --sumi:     #17140f;
+  --cinza:    #6a6156;
+  --shu:      #c8102e;   /* vermelho do enso, do logo */
+  --kin:      #b8901f;   /* ouro do kanji, do logo */
+  --fio:      #d9d0bd;
+
+  --serif: "Shippori Mincho B1", "Times New Roman", serif;
+  --sans:  "Zen Kaku Gothic New", -apple-system, sans-serif;
+
+  --sangria: 3mm;
+  --margem:  14mm;       /* a partir do corte */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--papel);
+  color: var(--sumi);
+  font-family: var(--sans);
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+
+.pagina {
+  width: 169mm; height: 339mm;
+  padding: calc(var(--sangria) + var(--margem));
+  position: relative; overflow: hidden;
+  page-break-after: always;
+  display: flex; flex-direction: column;
+  background: var(--papel);
+}
+.pagina:last-child { page-break-after: auto; }
+
+/* textura sutil do papel, como no cardápio do Kikiu */
+.pagina::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: repeating-linear-gradient(90deg,
+    rgba(23,20,15,.022) 0 1px, transparent 1px 7px);
+}
+.pagina > * { position: relative; }
+
+/* ─── ornamento: o enso no lugar do losango ─────────────────────────── */
+.selo { display: flex; justify-content: center; gap: 7px; align-items: center; }
+.selo i {
+  display: block; width: 7px; height: 7px; border-radius: 50%;
+  border: 1.6px solid var(--shu); font-style: normal;
+}
+.selo i:nth-child(2) { width: 10px; height: 10px; border-color: var(--kin); }
+
+.regua { display: flex; align-items: center; gap: 11px; margin: 7mm 0; }
+.regua::before, .regua::after { content: ""; flex: 1; height: 1px; background: var(--fio); }
+/* o losango do cardapio do Kikiu vira enso aqui: mesma posicao, mesma
+   cadencia, outra casa */
+.regua b {
+  display: block; width: 13px; height: 13px; border-radius: 50%;
+  border: 1.8px solid var(--shu);
+}
+
+/* ─── tipografia ────────────────────────────────────────────────────── */
+.secao {
+  font-family: var(--serif); font-weight: 800;
+  font-size: 30pt; line-height: 1; color: var(--shu);
+  text-align: center; letter-spacing: .02em;
+}
+.subsecao {
+  font-family: var(--serif); font-weight: 700; font-size: 15pt;
+  text-align: center; color: var(--sumi); margin-bottom: 1mm;
+}
+.unidade {
+  font-family: var(--sans); font-size: 7.5pt; font-weight: 700;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--cinza);
+  text-align: center;
+}
+
+/* ─── lista de pratos ───────────────────────────────────────────────── */
+.prato {
+  display: grid; grid-template-columns: 1fr auto; gap: 0 6mm;
+  padding: 2.6mm 0; border-bottom: .4pt solid var(--fio);
+  break-inside: avoid;
+}
+.prato:last-child { border-bottom: 0; }
+.prato__nome {
+  font-family: var(--serif); font-weight: 600; font-size: 13pt;
+  line-height: 1.2;
+}
+.prato__preco {
+  font-family: var(--serif); font-weight: 700; font-size: 12pt;
+  white-space: nowrap; color: var(--shu);
+  font-variant-numeric: tabular-nums;
+}
+.prato__desc {
+  grid-column: 1 / -1; margin-top: 1.1mm;
+  font-size: 8pt; line-height: 1.45; color: var(--cinza);
+  max-width: 118mm;
+}
+/* Prato com foto — mesma ideia do cardapio do Kikiu: imagem a esquerda,
+   nome e descricao a direita. O arco no topo corta comida melhor que o
+   circulo e ecoa o enso sem virar bolinha. */
+.prato--foto { grid-template-columns: 26mm 1fr auto; align-items: start; }
+.prato--foto .prato__nome { grid-column: 2; }
+.prato--foto .prato__preco { grid-column: 3; }
+.prato--foto .prato__desc { grid-column: 2 / -1; }
+.prato__foto {
+  grid-row: 1 / span 3; grid-column: 1;
+  width: 26mm; height: 30mm; object-fit: cover;
+  border-radius: 44% 44% 2mm 2mm / 30% 30% 2mm 2mm;
+  background: var(--papel-2);
+}
+.prato__foto--vazia {
+  display: grid; place-items: center;
+  border: .5pt dashed var(--fio);
+  font-family: var(--sans); font-size: 6pt; letter-spacing: .16em;
+  text-transform: uppercase; color: #b9ae99; text-align: center;
+}
+
+.nota {
+  font-size: 7.5pt; color: var(--cinza); text-align: center;
+  margin-top: 2mm; font-style: italic;
+}
+
+/* flex-shrink 0 e essencial: como item flex, o corpo encolhia em vez de
+   estourar, e a medicao do paginador dava "cabe" com o ornamento cortado */
+.corpo { display: flex; flex-direction: column; flex: 0 0 auto; }
+/* O kanji da secao entra como marca-d'agua atras do titulo. Nao e enfeite
+   solto: e o termo culinario japones do que vem abaixo, e da presenca
+   visual ao impresso sem depender de foto. */
+.bloco { position: relative; }
+.marca-kanji {
+  position: absolute; top: 3.5mm; left: 50%; transform: translateX(-50%);
+  font-family: var(--serif); font-weight: 800; font-size: 60pt;
+  line-height: 1; letter-spacing: .08em; color: var(--shu);
+  opacity: .12; pointer-events: none; user-select: none; white-space: nowrap;
+}
+.bloco > .regua, .bloco > .secao, .bloco > .unidade, .bloco > .prato, .bloco > .nota {
+  position: relative;
+}
+.bloco { margin-bottom: 6mm; }
+.bloco:last-child { margin-bottom: 0; }
+.esticar { flex: 1; }
+
+/* ─── capa ──────────────────────────────────────────────────────────── */
+/* Papel, nao preto: a versao do logo para fundo escuro traz o macron do Ō
+   desenhado em preto — some no escuro e o nome vira "SAIKO". Em papel usamos
+   a versao completa e correta, sem alterar a arte do cliente. */
+.capa { align-items: center; justify-content: space-between; text-align: center; }
+.capa__topo { padding-top: 12mm; }
+.capa__logo {
+  /* 58 mm e o teto: o kanji dourado e um bitmap de 266 px na origem, o que
+     da 300 dpi ate ~59 mm de lockup. Acima disso a impressao sai mole. */
+  width: 58mm; height: auto; margin: 0 auto;
+}
+.capa__lema {
+  font-family: var(--serif); font-size: 13pt; font-style: italic;
+  color: var(--cinza); margin-top: 14mm;
+}
+.capa__pe {
+  font-family: var(--sans); font-size: 7.5pt; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--cinza); padding-bottom: 8mm;
+}
+
+/* ─── contracapa: a essência ────────────────────────────────────────── */
+.essencia { justify-content: center; text-align: center; }
+.essencia h2 {
+  font-family: var(--serif); font-weight: 800; font-size: 24pt;
+  color: var(--shu); margin-bottom: 6mm;
+}
+.essencia p { font-size: 9.5pt; line-height: 1.75; color: var(--cinza); max-width: 108mm; margin: 0 auto 6mm; }
+.valores { list-style: none; display: grid; gap: 3.4mm; max-width: 96mm; margin: 0 auto; }
+.valores li {
+  font-family: var(--serif); font-size: 11.5pt; color: var(--sumi);
+  padding-bottom: 2.6mm; border-bottom: .4pt solid var(--fio);
+}
+.valores li:last-child { border-bottom: 0; }
+.assina {
+  margin-top: 12mm; font-family: var(--sans); font-size: 7.5pt;
+  letter-spacing: .24em; text-transform: uppercase; color: var(--cinza);
+}

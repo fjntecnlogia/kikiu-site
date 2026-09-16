@@ -1,0 +1,214 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   MENU DE BEBIDAS — KIKIU GASTROBAR · CASA PRO COQUETÉIS
+   Formato: 163 x 333 mm de corte + 3 mm de sangria por lado = 169 x 339.
+   Mesmo formato do cardápio do Saikō — os dois saem da mesma gráfica e da
+   mesma copiadora, e o grupo carrega os dois na mesma mão.
+
+   Refeito a partir do impresso que a casa mandou fotografado. As fotos
+   estavam sob a luz vermelha do bar: o papel é CREME, não rosa. O losango
+   é o ornamento da casa (no Saikō ele vira o ensō).
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@page { size: 169mm 339mm; margin: 0; }
+
+:root {
+  --papel:   #fbf7f2;
+  --tinta:   #171412;
+  --cinza:   #6d6560;
+  --coral:   #e0402c;   /* o vermelho-laranja dos títulos e do logo */
+  --fio:     #ddd4cb;
+
+  --display: "Abril Fatface", "Bodoni Moda", Georgia, serif;
+  --sans:    "Poppins", -apple-system, "Segoe UI", sans-serif;
+
+  --sangria: 3mm;
+  --margem:  14mm;      /* a partir do corte */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--sans);
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+
+.pagina {
+  width: 169mm; height: 339mm;
+  padding: calc(var(--sangria) + var(--margem));
+  position: relative; overflow: hidden;
+  page-break-after: always;
+  display: flex; flex-direction: column;
+  background: var(--papel);
+}
+.pagina:last-child { page-break-after: auto; }
+
+/* textura do papel vergê do impresso original */
+.pagina::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: repeating-linear-gradient(90deg,
+    rgba(23,20,18,.020) 0 1px, transparent 1px 7px);
+}
+.pagina > * { position: relative; }
+
+/* flex-shrink 0: sem isso o corpo encolhe e o paginador mede "cabe" com
+   texto já cortado (o mesmo tropeço do cardápio do Saikō) */
+.corpo { display: flex; flex-direction: column; flex: 0 0 auto; }
+.esticar { flex: 1 1 auto; }
+
+/* ─── ornamentos: o losango da casa ─────────────────────────────────── */
+.selo { display: flex; justify-content: center; gap: 6px; align-items: center; }
+.selo i {
+  display: block; width: 7px; height: 7px; font-style: normal;
+  background: var(--coral); transform: rotate(45deg);
+}
+.selo i:nth-child(2) { width: 9px; height: 9px; }
+
+.regua { display: flex; align-items: center; gap: 11px; margin: 6mm 0; }
+.regua::before, .regua::after { content: ""; flex: 1; height: 1px; background: var(--fio); }
+.regua b {
+  display: block; width: 11px; height: 11px;
+  background: var(--tinta); transform: rotate(45deg);
+}
+
+/* ─── tipografia ────────────────────────────────────────────────────── */
+.secao {
+  font-family: var(--display); font-weight: 400;
+  font-size: 30pt; line-height: 1; color: var(--coral);
+  text-align: center; letter-spacing: -.01em;
+}
+.abertura {
+  font-family: var(--sans); font-size: 8.5pt; line-height: 1.55;
+  color: var(--cinza); text-align: center; max-width: 112mm;
+  margin: 5mm auto 0;
+}
+.nota-preco {
+  font-family: var(--sans); font-weight: 700; font-size: 9.5pt;
+  text-align: center; margin-top: 3mm;
+}
+
+.grupo-titulo {
+  font-family: var(--display); font-weight: 400; font-size: 14pt;
+  text-align: center; margin: 0 0 5mm;
+}
+.grupo + .grupo { margin-top: 9mm; }
+
+/* aviso de secao partida entre paginas */
+.continua {
+  font-family: var(--sans); font-size: 7.5pt; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--cinza);
+  text-align: center; margin: 2mm 0 4mm;
+}
+
+/* ─── item ──────────────────────────────────────────────────────────── */
+.item {
+  display: grid; grid-template-columns: 1fr auto;
+  column-gap: 6mm; align-items: baseline;
+  padding: 2.8mm 0;
+}
+
+.item__nome {
+  font-family: var(--display); font-weight: 400; font-size: 12.5pt;
+  line-height: 1.15; letter-spacing: -.005em;
+}
+.item__preco {
+  font-family: var(--sans); font-weight: 700; font-size: 10.5pt;
+  white-space: nowrap;
+}
+.item__sub, .item__ingr, .item__perfil, .item__garrafa {
+  grid-column: 1 / -1;
+}
+.item__sub {
+  font-family: var(--sans); font-size: 7.5pt; color: var(--cinza);
+  margin-top: .6mm;
+}
+.item__ingr {
+  font-family: var(--sans); font-weight: 600; font-size: 7.5pt;
+  line-height: 1.4; margin-top: 1.2mm;
+}
+.item__perfil {
+  font-family: var(--sans); font-size: 6.5pt; color: var(--cinza);
+  letter-spacing: .06em; margin-top: .8mm;
+}
+.item__garrafa {
+  font-family: var(--sans); font-size: 7pt; color: var(--cinza);
+  margin-top: .6mm;
+}
+
+/* paginas dos drinks autorais: 5 ou 6 por pagina, com a miniatura ao lado,
+   como no impresso. */
+.grupo--arejado .item { padding: 3.5mm 0; }
+
+.item--foto {
+  display: flex; align-items: center; gap: 7mm;
+  padding: 3mm 0;
+}
+.item--foto .item__texto { flex: 1 1 auto; min-width: 0; }
+.item--foto .item__cabeca {
+  display: flex; justify-content: space-between;
+  align-items: baseline; gap: 6mm;
+}
+.item--foto .item__sub,
+.item--foto .item__ingr,
+.item--foto .item__perfil,
+.item--foto .item__garrafa { grid-column: auto; }
+
+.item__foto {
+  flex: 0 0 auto;
+  width: 25mm; height: 33mm; object-fit: cover; object-position: center;
+  /* o arco da casa: meio círculo em cima, canto vivo embaixo */
+  border-radius: 50% 50% 1mm 1mm / 34% 34% 1mm 1mm;
+}
+
+/* lista simples (bebida sem ingrediente) fica mais apertada */
+.grupo--lista .item { padding: 2mm 0; }
+.grupo--lista .item__nome { font-size: 12pt; }
+
+/* ─── capa ──────────────────────────────────────────────────────────────
+   A foto sangra: por isso a capa nao usa o padding das paginas de miolo.
+   Cada faixa cuida da propria margem. */
+.capa {
+  padding: 0; background: #161311; color: #fbf7f2;
+  justify-content: flex-start;
+}
+.capa::before { display: none; }
+
+.capa__topo {
+  padding: calc(var(--sangria) + 13mm) 14mm 9mm;
+  text-align: center; flex: 0 0 auto;
+}
+.capa__titulo {
+  font-family: var(--display); font-weight: 400; line-height: .88;
+  margin-top: 7mm;
+}
+.capa__titulo span { display: block; font-size: 25pt; }
+.capa__titulo b { display: block; font-size: 47pt; color: var(--coral); font-weight: 400; }
+
+.capa__foto {
+  flex: 1 1 auto; min-height: 0;
+  background: #161311 url(../assets/img/capas/bebidas-capa-drink.jpg) center/cover no-repeat;
+}
+
+.capa__rodape {
+  flex: 0 0 auto; background: #fff;
+  padding: 8mm 14mm calc(var(--sangria) + 9mm);
+  display: flex; align-items: center; justify-content: center; gap: 13mm;
+}
+.capa__logo { width: 44mm; height: auto; }
+.capa__casa {
+  font-family: var(--display); font-size: 21pt; color: var(--tinta);
+  line-height: 1; text-align: center;
+}
+.capa__casa small {
+  display: block; font-family: var(--sans); font-weight: 600;
+  font-size: 6pt; letter-spacing: .3em; color: #6d6560; margin-top: 1.5mm;
+}
+.capa .selo i { background: var(--coral); }
+
+/* ─── contracapa: so a foto, sangrando ──────────────────────────────── */
+.verso {
+  padding: 0;
+  background: #161311 url(../assets/img/capas/bebidas-contracapa.jpg) center/cover no-repeat;
+}
+.verso::before { display: none; }
