@@ -146,12 +146,19 @@ const vercel = {
   // Os alternativos existem para o boca a boca e o erro de digitacao.
   // 301 para o principal: servir conteudo nos dois seria conteudo
   // duplicado, e as variantes competiriam entre si no Google.
-  redirects: (casa.alternativos ?? []).map(d => ({
-    source: '/:caminho*',
-    has: [{ type: 'host', value: `(www\\.)?${d.replaceAll('.', '\\.')}` }],
-    destination: `${base}/:caminho*`,
-    permanent: true,
-  })),
+  //
+  // DUAS regras por dominio, e nao uma: `/:caminho*` casa com `/opiniao`
+  // e nao casa com `/` — a raiz precisa da sua propria linha. Com so a
+  // primeira, a HOME do alternativo servia a pagina inteira em vez de
+  // redirecionar (visto ao vivo em 16/09: www.saikooriental.com.br
+  // respondia 200 com o site do Saiko dentro).
+  redirects: (casa.alternativos ?? []).flatMap(d => {
+    const has = [{ type: 'host', value: `(www\\.)?${d.replaceAll('.', '\\.')}` }];
+    return [
+      { source: '/',           has, destination: `${base}/`,           permanent: true },
+      { source: '/:caminho*',  has, destination: `${base}/:caminho*`,  permanent: true },
+    ];
+  }),
 
   rewrites: [
     { source: '/reservas-api/:caminho*', destination: `${SISTEMA}/reservas/:caminho*` },
