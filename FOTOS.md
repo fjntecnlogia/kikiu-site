@@ -30,18 +30,34 @@ do bar**, fundo escuro, formato `prato`.
 Um detalhe que muda tudo em foto de drink: **fotografe assim que montar**, com
 o gelo ainda inteiro e a espuma viva. Dois minutos depois já é outro copo.
 
-### 2. O bar em serviço
+### 2. A caneca de chopp gelada — **tem um desenho no lugar dela hoje**
+
+A home ganhou o destaque do **chopp em dobro (segunda e terça)**. Como não
+existe foto de caneca nenhuma, ali está um desenho em traço, no mesmo estilo
+da taça do topo. Funciona, mas desenho não dá sede.
+
+A foto que substitui: **caneca suando**, com a espuma ainda alta e o vidro
+embaçado de gelo. Contraluz do bar, fundo escuro. Formato `prato`.
+
+Duas coisas decidem essa foto:
+
+- **fotografe nos primeiros trinta segundos.** Passou disso, a espuma baixa e
+  o embaçado escorre — vira uma caneca comum.
+- **tire a caneca do freezer na hora.** O branco no vidro é o que comunica
+  "zero grau" sem precisar escrever.
+
+### 3. O bar em serviço
 
 O balcão com o bartender trabalhando, garrafas ao fundo, movimento. É o que
 diferencia um gastrobar de um restaurante que também vende cerveja. Formato
 `galeria`.
 
-### 3. Uma noite com música ao vivo
+### 4. Uma noite com música ao vivo
 
 A home tem seção de agenda e eventos. Uma foto de casa cheia com o show
 acontecendo vende as duas de uma vez. Formato `galeria`.
 
-### 4. A chapa / os steaks
+### 5. A chapa / os steaks
 
 A seção "Steaks & Chapas" existe no cardápio e não tem foto nenhuma. Uma foto
 de carne saindo da chapa, formato `prato`.
