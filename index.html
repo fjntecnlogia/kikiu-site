@@ -295,6 +295,13 @@ p:last-child { margin-bottom: 0; }
 
 :focus-visible { outline: 2px solid var(--pessego); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+  /* O botao flutuante do WhatsApp mora no canto inferior direito e passava
+     POR CIMA do fim do rodape — medido no navegador: o link do rodape ia
+     ate x 1153 e o botao comecava em x 1104. Este espaco e a largura do
+     botao mais a folga dele. */
+  .rodape__fim { padding-right: clamp(0px, 100vw - 640px, 92px); }
+  @media (max-width: 640px) { .rodape__fim { padding-right: 0; padding-bottom: 76px; } }
 </style>
 </head>
 <body>
@@ -1048,15 +1055,17 @@ p:last-child { margin-bottom: 0; }
       <div>
         <span class="rotulo">Nossas casas</span>
         <p class="irmas" style="font-size:14.5px">
-          <a href="https://saiko.com.br" target="_blank" rel="noopener">Saikō</a>
-          <a href="https://forneatto.com.br" target="_blank" rel="noopener">Forneatto</a>
+          <a href="https://saikogastronomia.com.br" target="_blank" rel="noopener">Saikō</a>
+          <a href="https://forneattocucina.com.br" target="_blank" rel="noopener">Forneatto</a>
         </p>
       </div>
     </div>
     <div class="rodape__fim">
       <span>© 2026 Kikiu Gastro Bar · CNPJ 60.690.262/0001-57</span>
       <span>Site por <a href="https://fjntecnologia.com.br" target="_blank" rel="noopener">FJN Tecnologia</a></span>
-    </div>
+    
+        <span><a href="https://painel.kikiu.com.br" style="opacity:.55">Gestão das casas</a></span>
+      </div>
   </div>
 </footer>
 
