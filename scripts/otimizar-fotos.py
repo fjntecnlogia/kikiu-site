@@ -10,6 +10,10 @@ O destino diz o formato, e cada um tem um motivo:
   hero      1920x1080  topo do site. Larga, com veu da marca por cima.
   porta      900x1400  painel da casa na landing do grupo. Retrato.
   galeria   1200x1200  caixa da galeria. Cabe deitada ou em pe.
+  ambiente  1200x1600  as molduras de ambiente da home, que sao 3:4 em pe.
+                       Usar 'galeria' (quadrada) nelas corta duas vezes: uma
+                       aqui para virar quadrado, outra no object-fit para
+                       virar 3:4 — e foto de salao perde o teto nas duas.
   og        1200x630   previa do link no WhatsApp, Instagram e Google. E a
                        primeira imagem que alguem ve do restaurante, quase
                        sempre antes do site.
@@ -29,10 +33,20 @@ import sys
 from pathlib import Path
 from PIL import Image, ImageOps
 
+# iPhone grava HEIC por padrao, e e nesse formato que a foto chega quando se
+# puxa pelo cabo. Sem isto o Pillow nao abre e o erro nao diz o motivo.
+#     pip install pillow-heif
+try:
+    import pillow_heif
+    pillow_heif.register_heif_opener()
+except ImportError:
+    pass
+
 FORMATOS = {
     'hero':    (1920, 1080, 82),
     'porta':   (900, 1400, 82),
     'galeria': (1200, 1200, 80),
+    'ambiente': (1200, 1600, 82),
     'og':      (1200, 630, 84),
     # As fotos de prato antigas sairam a 420x560 — suficiente para a ficha
     # pequena do cardapio, pequeno demais para a vitrine da home, onde a foto

@@ -316,6 +316,7 @@ p:last-child { margin-bottom: 0; }
 /* ── galeria ──────────────────────────────────────────────────── */
 .fotos { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
 .foto {
+  margin: 0;   /* <figure> nasce com margin: 1em 40px e encolhe a foto */
   aspect-ratio: 4/5; border-radius: 14px; overflow: hidden; position: relative;
   background: var(--petrol-lift); border: 1px solid var(--filete-soft);
   display: grid; place-items: center;
@@ -344,7 +345,7 @@ p:last-child { margin-bottom: 0; }
 /* ── fachada ──────────────────────────────────────────────────── */
 /* Retrato: porta de rua e alta, e a fachada deitada corta o letreiro. */
 .fachada {
-  position: relative; aspect-ratio: 3/4; width: 100%; margin: 0 0 24px;
+  position: relative; aspect-ratio: 9/14; width: 100%; margin: 0 0 24px;
   border-radius: 14px; overflow: hidden;
   border: 1px solid var(--filete-soft); background: var(--petrol-lift);
   display: grid; place-items: center;
