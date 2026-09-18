@@ -50,7 +50,7 @@
   "rewrites": [
     {
       "source": "/cardapio",
-      "destination": "/bebidas.html"
+      "destination": "/bebidas"
     },
     {
       "source": "/reservas-api/:caminho*",
