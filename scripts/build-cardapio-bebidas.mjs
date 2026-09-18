@@ -268,6 +268,16 @@ const secoesQR = dados.blocos.map(b => {
 
 await writeFile(join(RAIZ, 'bebidas.html'), paginaCardapio({
   casa: 'Kikiu Gastrobar', titulo: 'Cardápio', endereco: dados.endereco,
+  // Chopp em dobro e SEGUNDA E TERCA, e so. O Double Chopp existe no PDV mas
+  // nao entra como linha fixa do cardapio: item fixo diz "sempre", e nos
+  // outros cinco dias o cliente cobraria na mesa. Aqui a promocao aparece
+  // na capa, nos dois dias em que vale, pelo relogio DA CASA — 1 e segunda,
+  // 2 e terca.
+  promo: {
+    dias: [1, 2],
+    fuso: 'America/Cuiaba',
+    texto: 'Hoje é chopp em dobro — pediu um, vêm dois. A noite inteira.',
+  },
   // a marca abre e fecha a pagina: a mesma taca da fachada e do impresso
   logo: {
     src: '/assets/img/logos/web/kikiu-escuro.png',

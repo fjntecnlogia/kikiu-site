@@ -129,6 +129,13 @@ img{max-width:100%;display:block}
   letter-spacing:.1em;text-transform:uppercase;
   border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:6px 16px}
 .capa__end{font-size:12.5px;opacity:.66;margin-top:14px}
+/* Promoção do dia. Nasce escondida pela mesma razão da pílula da mesa: só o
+   script sabe que dia é hoje NA CASA, e prometer no dia errado é pior que
+   não prometer. */
+.capa__promo[hidden]{display:none}
+.capa__promo{display:block;margin:16px auto 0;max-width:30ch;font-weight:700;
+  font-size:13.5px;line-height:1.5;border-radius:12px;padding:10px 16px;
+  background:rgba(242,168,130,.16);border:1px solid rgba(242,168,130,.45)}
 
 /* ── fichas de seção: grudam no topo e levam direto ────────────────── */
 .fichas{position:sticky;top:0;z-index:9;background:var(--papel);
@@ -192,6 +199,7 @@ main{padding:0 16px;max-width:640px;margin:0 auto}
   <h1 class="soleitor">${esc(d.casa)} — ${esc(d.titulo)}</h1>
   <p class="capa__tit">${esc(d.titulo)}</p>
   <p class="capa__mesa" hidden></p>
+  <p class="capa__promo" hidden></p>
   <p class="capa__end">${esc(d.endereco)}</p>
 </header>
 <script>
@@ -207,6 +215,26 @@ main{padding:0 16px;max-width:640px;margin:0 auto}
   el.hidden = false;
 })();
 <\/script>
+${d.promo ? `
+<script>
+// A promocao do dia. O dia tem que ser o DA CASA, nao o do aparelho: quem
+// abre o cardapio de outro fuso — ou com o relogio errado — veria a
+// promocao na noite errada, e promessa no dia errado e pior que promessa
+// nenhuma. Por isso o dia da semana sai do Intl com o fuso da casa.
+(function () {
+  var DIAS = ${JSON.stringify(d.promo.dias)};
+  var hoje;
+  try {
+    hoje = new Intl.DateTimeFormat('en-US', { timeZone: ${JSON.stringify(d.promo.fuso)}, weekday: 'short' })
+      .format(new Date());
+  } catch (e) { return; }   // fuso desconhecido no aparelho: nao promete nada
+  var n = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[hoje];
+  if (DIAS.indexOf(n) === -1) return;
+  var el = document.querySelector('.capa__promo');
+  el.textContent = ${JSON.stringify(d.promo.texto)};
+  el.hidden = false;
+})();
+<\/script>` : ''}
 
 <nav class="fichas" aria-label="Seções do cardápio">${fichas}</nav>
 
