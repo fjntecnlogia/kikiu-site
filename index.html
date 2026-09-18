@@ -248,9 +248,16 @@ p:last-child { margin-bottom: 0; }
 /* ── galeria ──────────────────────────────────────────────────── */
 .fotos { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
 .foto {
-  aspect-ratio: 4/5; border-radius: 14px; overflow: hidden;
+  aspect-ratio: 4/5; border-radius: 14px; overflow: hidden; position: relative;
   background: var(--petrol-lift); border: 1px solid var(--filete-soft);
   display: grid; place-items: center;
+}
+/* A foto cobre a moldura e esconde a legenda de "falta foto". Se o arquivo
+   nao existir, o onerror tira o <img> do caminho e a legenda volta sozinha —
+   da para publicar a moldura antes da foto chegar, sem icone quebrado. */
+.foto img, .fachada img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block;
 }
 .foto--larga { aspect-ratio: 16/10; grid-column: span 2; }
 @media (max-width: 640px) { .foto--larga { grid-column: span 1; } }
@@ -266,6 +273,15 @@ p:last-child { margin-bottom: 0; }
 .horas span { color: var(--crema-dim); font-variant-numeric: tabular-nums; }
 .mapa { aspect-ratio: 4/3; width: 100%; border-radius: 14px; border: 1px solid var(--filete-soft); background: var(--petrol-lift); display: grid; place-items: center; }
 .mapa span { font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(247,239,231,.42); }
+/* ── fachada ──────────────────────────────────────────────────── */
+/* Retrato: porta de rua e alta, e a fachada deitada corta o letreiro. */
+.fachada {
+  position: relative; aspect-ratio: 3/4; width: 100%; margin: 0 0 24px;
+  border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--filete-soft); background: var(--petrol-lift);
+  display: grid; place-items: center;
+}
+.fachada span { font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(247,239,231,.42); text-align: center; padding: 14px; }
 
 /* ── rodapé ───────────────────────────────────────────────────── */
 .rodape { background: var(--petrol-deep); padding-block: 62px 30px; border-top: 1px solid var(--filete-soft); }
@@ -985,9 +1001,18 @@ p:last-child { margin-bottom: 0; }
     <span class="rotulo">Ambiente</span>
     <h2 style="margin-bottom:44px">deck, bar central e palco</h2>
     <div class="fotos">
-      <div class="foto foto--larga"><span>Foto — deck à noite</span></div>
-      <div class="foto"><span>Foto — bar e bartender</span></div>
-      <div class="foto"><span>Foto — palco</span></div>
+      <figure class="foto foto--larga">
+        <img src="assets/img/bar/deck.jpg" alt="Deck do Kikiu à noite" loading="lazy" onerror="this.remove()">
+        <span>Foto — deck à noite</span>
+      </figure>
+      <figure class="foto">
+        <img src="assets/img/bar/balcao.jpg" alt="Bar central do Kikiu com o bartender" loading="lazy" onerror="this.remove()">
+        <span>Foto — bar e bartender</span>
+      </figure>
+      <figure class="foto">
+        <img src="assets/img/bar/palco.jpg" alt="Palco do Kikiu" loading="lazy" onerror="this.remove()">
+        <span>Foto — palco</span>
+      </figure>
     </div>
   </div>
 </section>
@@ -1029,8 +1054,17 @@ p:last-child { margin-bottom: 0; }
         <a class="btn btn--fio" href="https://maps.google.com/?q=Av.+Bras%C3%ADlia%2C+177+-+Jardim+das+Am%C3%A9ricas%2C+Cuiab%C3%A1+-+MT" target="_blank" rel="noopener">Abrir no Google Maps</a>
       </div>
     </div>
-    <!-- TROCAR pelo <iframe> que o Google Maps gera em Compartilhar → Incorporar -->
-    <div class="mapa"><span>Mapa — Google Maps</span></div>
+    <div>
+      <!-- A fachada vem ANTES do mapa: o mapa diz onde fica, a foto diz o que
+           procurar. Sao tres casas na mesma calcada, e o texto ao lado ja
+           explica "somos a do meio, a fachada escura" — isso e uma foto. -->
+      <figure class="fachada">
+        <img src="assets/img/bar/porta.jpg" alt="Fachada do Kikiu — fachada escura e mesas na calçada" loading="lazy" onerror="this.remove()">
+        <span>Foto — fachada</span>
+      </figure>
+      <!-- TROCAR pelo <iframe> que o Google Maps gera em Compartilhar → Incorporar -->
+      <div class="mapa"><span>Mapa — Google Maps</span></div>
+    </div>
   </div>
 </section>
 
