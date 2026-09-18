@@ -646,6 +646,17 @@ p:last-child { margin-bottom: 0; }
     <div class="linha" style="margin-top:clamp(34px,4vw,54px)">
       <a class="btn" href="/bebidas">Ver a carta completa</a>
     </div>
+
+    <!-- O cardapio saiu da vitrine, mas os marcadores do Saipos continuam
+         aqui, escondidos. O scripts/sync-cardapio.mjs injeta entre eles, e
+         se nao os encontrar ele LANCA — derrubando a sincronizacao inteira
+         desta casa, inclusive as regioes que ainda importam. Container
+         hidden: o sync escreve, ninguem ve, nada quebra. Apagar so junto
+         com a regiao correspondente no ROTEAMENTO do script. -->
+    <div hidden data-saipos="bar">
+      <!-- SAIPOS:BAR:INICIO -->
+      <!-- SAIPOS:BAR:FIM -->
+    </div>
   </div>
 </section>
 
@@ -2342,7 +2353,10 @@ p:last-child { margin-bottom: 0; }
       e.target.classList.add('visivel');
       obs.unobserve(e.target);   // anima uma vez; repetir a cada rolagem cansa
     });
-  }, { threshold: 0.2 });
+    // threshold 0, e nao 0.2: bloco mais alto que a janela nunca alcanca
+    // 20% e ficaria invisivel para sempre. Com 0 basta um pixel. O
+    // rootMargin negativo comeca a entrada um pouco antes de encostar.
+  }, { threshold: 0, rootMargin: '0px 0px -6% 0px' });
   alvos.forEach(function (e) { obs.observe(e); });
 })();
 </script>
