@@ -10,6 +10,8 @@
       "kikiugastrobar.com.br"
     ],
     "cardapio": "bebidas",
+    "_googleAvaliar": "Link de 'Escrever uma avaliacao' do Google desta casa. Google Maps > a casa > Avaliacoes > Escrever uma avaliacao > compartilhar. Vazio = o convite nao aparece na pagina de opiniao.",
+    "googleAvaliar": "",
     "ga4": "",
     "searchConsole": "",
     "mesas": 12,

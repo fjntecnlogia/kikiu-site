@@ -26,6 +26,16 @@ const esc = s => String(s ?? '').replace(/[&<>"]/g, c =>
   ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 /**
+ * O convite para avaliar no Google, se a casa tiver um.
+ *
+ * Mora no `casa.json` porque é dado DESTA casa, como o domínio. Vazio
+ * (que é como nasce) simplesmente não desenha o botão — melhor não ter
+ * convite do que ter um que leva a lugar nenhum.
+ */
+const casaJson = JSON.parse(await readFile(join(RAIZ, 'casa.json'), 'utf8')).casa;
+const GOOGLE = String(casaJson.googleAvaliar ?? '').trim();
+
+/**
  * As cinco notas. Palavra e não estrela: "Ótimo" e "Ruim" são o que a
  * pessoa diria; cinco estrelas exigem traduzir sentimento em número
  * enquanto o garçom espera a maquininha.
@@ -133,6 +143,21 @@ textarea:focus-visible,input:focus-visible{outline:none;border-color:var(--marca
 .fim{text-align:center;padding:26px 0 0}
 .fim[hidden]{display:none}
 .fim h2{font-family:var(--display);font-weight:${t.pesoDisplay};font-size:23px;margin:0 0 8px}
+
+/* O convite do Google aparece para QUEM QUER QUE TENHA respondido, e nao
+   so para quem gostou. Oferecer o Google apenas a quem deu nota alta e
+   "review gating": a politica de conteudo do Google proibe pedir
+   avaliacao de forma seletiva, e a punicao vai de apagar as avaliacoes a
+   derrubar o perfil da casa. Alem disso o volume, que e o que pesa na
+   busca, vem de perguntar a todo mundo.
+   O caminho de tratar a nota baixa e a tela de Feedback do painel, com o
+   WhatsApp do cliente do lado — resolver antes, nao esconder o botao. */
+.google{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  margin-top:22px;padding:14px 22px;border-radius:12px;text-decoration:none;
+  font-family:var(--display);font-weight:${t.pesoDisplay};font-size:15px;letter-spacing:.03em;
+  color:var(--tinta);background:transparent;border:1px solid var(--fio)}
+.google:hover{border-color:var(--marca);color:var(--marca)}
+.ajuda-google{margin:10px 0 0;font-size:12.5px;color:var(--suave);line-height:1.5}
 .formulario[hidden]{display:none}
 .soleitor{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -187,6 +212,11 @@ textarea:focus-visible,input:focus-visible{outline:none;border-color:var(--marca
   <div class="fim" id="fim" hidden>
     <h2 id="fim-titulo"></h2>
     <p class="sub" id="fim-texto"></p>
+${GOOGLE ? `    <a class="google" href="${esc(GOOGLE)}" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 2 2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8L12 2Z"/></svg>
+      Avaliar no Google
+    </a>
+    <p class="ajuda-google">Leva menos de um minuto e ajuda muita gente a nos achar.</p>` : ''}
   </div>
 </main>
 

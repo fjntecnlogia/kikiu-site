@@ -85,6 +85,21 @@ textarea:focus-visible,input:focus-visible{outline:none;border-color:var(--marca
 .fim{text-align:center;padding:26px 0 0}
 .fim[hidden]{display:none}
 .fim h2{font-family:var(--display);font-weight:800;font-size:23px;margin:0 0 8px}
+
+/* O convite do Google aparece para QUEM QUER QUE TENHA respondido, e nao
+   so para quem gostou. Oferecer o Google apenas a quem deu nota alta e
+   "review gating": a politica de conteudo do Google proibe pedir
+   avaliacao de forma seletiva, e a punicao vai de apagar as avaliacoes a
+   derrubar o perfil da casa. Alem disso o volume, que e o que pesa na
+   busca, vem de perguntar a todo mundo.
+   O caminho de tratar a nota baixa e a tela de Feedback do painel, com o
+   WhatsApp do cliente do lado — resolver antes, nao esconder o botao. */
+.google{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  margin-top:22px;padding:14px 22px;border-radius:12px;text-decoration:none;
+  font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.03em;
+  color:var(--tinta);background:transparent;border:1px solid var(--fio)}
+.google:hover{border-color:var(--marca);color:var(--marca)}
+.ajuda-google{margin:10px 0 0;font-size:12.5px;color:var(--suave);line-height:1.5}
 .formulario[hidden]{display:none}
 .soleitor{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -160,6 +175,7 @@ textarea:focus-visible,input:focus-visible{outline:none;border-color:var(--marca
   <div class="fim" id="fim" hidden>
     <h2 id="fim-titulo"></h2>
     <p class="sub" id="fim-texto"></p>
+
   </div>
 </main>
 
