@@ -294,6 +294,43 @@ p:last-child { margin-bottom: 0; }
 .cartao p { font-size: 14.5px; color: var(--crema-dim); line-height: 1.65; }
 
 /* ── galeria ──────────────────────────────────────────────────── */
+/* ── destaques ────────────────────────────────────────────────────
+   A home servia a carta inteira de drinks, 431 linhas, com o /bebidas ao
+   lado servindo a mesma coisa e sempre atualizado. Carta na home e lista
+   para consultar; quem chega no site ainda nao decidiu vir — decide
+   olhando. Ficaram quatro, com foto. */
+.destaques {
+  display: grid; gap: clamp(16px, 2vw, 26px);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 232px), 1fr));
+}
+.destaque { margin: 0; opacity: 0; transform: translateY(20px); }
+.destaque.visivel { opacity: 1; transform: none; transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.3,1); }
+.destaque__foto {
+  position: relative; aspect-ratio: 3/4; overflow: hidden; border-radius: 14px;
+  background: var(--petrol-lift); border: 1px solid var(--filete-soft);
+  display: grid; place-items: center;
+}
+.destaque__foto img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform .9s cubic-bezier(.2,.7,.3,1);
+}
+.destaque:hover .destaque__foto img { transform: scale(1.045); }
+.destaque__foto span {
+  font-size: 9px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(247,239,231,.42); text-align: center; padding: 12px;
+}
+.destaque__nome {
+  font-size: 17px; font-weight: 700; margin: 15px 0 0;
+  display: flex; justify-content: space-between; align-items: baseline; gap: 14px;
+}
+.destaque__preco { font-size: 14px; font-weight: 700; color: #f2a882; white-space: nowrap; }
+.destaque__desc { font-size: 13.5px; color: rgba(247,239,231,.66); line-height: 1.68; margin-top: 7px; }
+@media (prefers-reduced-motion: reduce) {
+  .destaque { opacity: 1; transform: none; }
+  .destaque:hover .destaque__foto img { transform: none; }
+}
+
 .fotos { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
 .foto {
   margin: 0;   /* <figure> nasce com margin: 1em 40px e encolhe a foto */
@@ -358,6 +395,38 @@ p:last-child { margin-bottom: 0; }
 .wa svg { width: 18px; height: 18px; fill: currentColor; flex: none; }
 @media (max-width: 560px) { .wa span { display: none; } .wa { padding: 17px; } }
 
+/* ── o topo respira ───────────────────────────────────────────────
+   A foto do topo se aproxima MUITO devagar — 24s para 4% — e volta. Nao e
+   para ser percebida como animacao; e para a pagina nao parecer uma foto
+   colada. Rapido demais vira banner, e banner ninguem le. */
+.hero__fundo {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: inherit; background-size: cover; background-position: center;
+}
+.hero { background-attachment: scroll; }
+.hero > .wrap { position: relative; z-index: 1; }
+
+/* Uma luz quente passa pelo topo de vez em quando, como o giro de uma
+   luminaria de bar. Fica atras de tudo e nunca disputa com o texto. */
+.hero::after {
+  content: ""; position: absolute; inset: -20% -40%; z-index: 0; pointer-events: none;
+  background: radial-gradient(40% 44% at 50% 50%, rgba(242,168,130,.13), transparent 70%);
+  animation: luz-de-bar 19s ease-in-out infinite;
+}
+@keyframes luz-de-bar {
+  0%, 100% { transform: translate(-18%, 6%); }
+  50%      { transform: translate(18%, -6%); }
+}
+
+/* Os textos entram de baixo, em cascata, uma vez so. */
+.sobe { opacity: 0; transform: translateY(18px); }
+.sobe.visivel { opacity: 1; transform: none; transition: opacity .75s ease, transform .75s cubic-bezier(.2,.7,.3,1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::after { animation: none; }
+  .sobe { opacity: 1; transform: none; }
+}
+
 :focus-visible { outline: 2px solid var(--pessego); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 
@@ -393,20 +462,20 @@ p:last-child { margin-bottom: 0; }
 <section class="hero">
   <div class="wrap hero__grid">
     <div>
-      <span class="rotulo">Gastro bar · Cuiabá</span>
-      <h1>o dia acaba <em>aqui</em>.</h1>
-      <p class="sub">Coquetelaria autoral, chopp a zero grau e cozinha servindo até as onze. Música ao vivo de quinta a sábado, ao lado do Shopping Três Américas.</p>
-      <div class="linha">
+      <span class="rotulo sobe" style="transition-delay:60ms">Gastro bar · Cuiabá</span>
+      <h1 class="sobe" style="transition-delay:160ms">o dia acaba <em>aqui</em>.</h1>
+      <p class="sub sobe" style="transition-delay:280ms">Coquetelaria autoral, chopp a zero grau e cozinha servindo até as onze. Música ao vivo de quinta a sábado, ao lado do Shopping Três Américas.</p>
+      <div class="linha sobe" style="transition-delay:390ms">
         <a class="btn" href="#agenda">ver a agenda da semana</a>
         <a class="btn btn--fio" href="#reservar">Reservar mesa</a>
       </div>
-      <div class="hero__meta">
+      <div class="hero__meta sobe" style="transition-delay:490ms">
         <span>Ter a Sáb · 17h até fechar</span>
         <span>Cozinha até 23h</span>
         <span>Happy hour até 20h</span>
       </div>
     </div>
-    <div class="taca" aria-hidden="true">
+    <div class="taca sobe" aria-hidden="true" style="transition-delay:600ms">
       <svg viewBox="0 0 200 230" fill="none" stroke="#f2a882" stroke-width="5"
            stroke-linecap="round" stroke-linejoin="round" style="width:100%;height:auto">
         <circle cx="100" cy="115" r="96" stroke="rgba(242,168,130,.2)" stroke-width="1.5"/>
@@ -528,445 +597,54 @@ p:last-child { margin-bottom: 0; }
 
 
 <!-- ═══ drinks ═══ -->
+<!-- ═══ drinks ═══
+     Era a carta inteira, 431 linhas. O /bebidas serve a mesma coisa, sai do
+     PDV e fica sempre atualizado — conferido antes de apagar: Negroni,
+     Espresso Martini e a familia Casa Pro estao todos la. Aqui ficaram
+     quatro, com foto. -->
 <section class="block deep" id="drinks">
   <div class="wrap">
     <span class="rotulo">Carta</span>
     <h2 style="margin-bottom:16px">drinks &amp; chopp</h2>
-    <p class="sub" style="margin-bottom:44px">Puxada direto do sistema da casa: o preço aqui é o mesmo do balcão. Última sincronização em <span id="carimbo-cardapio">16 de setembro de 2026</span>.</p>
+    <p class="sub" style="margin-bottom:44px">Coquetelaria autoral, feita no balcão. A carta inteira — chopp, cerveja, destilados e sucos — está em <a href="/bebidas">Ver a carta</a>.</p>
 
-    <div class="colunas">
-      <!-- SAIPOS:BAR:INICIO -->
-      <div>
-        <div class="familia">
-          <div class="familia__head"><h3>Drinks Casa Pro</h3><span>12 opções</span></div>
-          <div class="item">
-            <p class="item__nome">Aperol Spritz</p>
-            <span class="item__preco">R$ 45</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Black Velvet</p>
-            <span class="item__preco">R$ 45</span>
-            <p class="item__desc">Cachaça/ Café/Chocolate/Gengibre/Pimenta/Limão Taiti (Encorpado-Doce- Envolvente)</p>
-          </div>
-          <div class="item">
-            <p class="item__nome">Carajillo</p>
-            <span class="item__preco">R$ 45</span>
-            <p class="item__desc">Premium Tequila/Licor 43/Licor de Café/Café Expresso. (Encorpado- Doce - Digestivo</p>
-          </div>
-          <div class="item">
-            <p class="item__nome">Espresso Martini</p>
-            <span class="item__preco">R$ 45</span>
-            <p class="item__desc">Premium Vodka/Licor de café/ Café Expresso. (Encorpado-Doce_Clássico)</p>
-          </div>
-          <div class="item">
-            <p class="item__nome">Jungle Bird</p>
-            <span class="item__preco">R$ 45</span>
-            <p class="item__desc">Premium Rum Envelhecido/Campari/Abacaxi/Limão-Taiti (Encorpado-Amargo-Tropical.</p>
-          </div>
-          <div class="item">
-            <p class="item__nome">Midori</p>
-            <span class="item__preco">R$ 45</span>
-            <p class="item__desc">Premium Vodka/Abacaxi/Yuzu/Manjericão/Kiwi/Limão-Taiti. (Refrencante-Frutado-Exótico)</p>
-          </div>
-          <div class="item">
-            <p class="item__nome">MoscoW Mule</p>
-            <span class="item__preco">R$ 45</span>
-            <p class="item__desc">Premium vodka/Limão-Taiti/Gengibre (Refrescante-Citrico-Clássico)</p>
-          </div>
-          <div class="item">
-            <p class="item__nome">Negroni</p>
-            <span class="item__preco">R$ 45</span>
-            <p class="item__desc">Premiun Gin /Vermute Doce/ Amaro ( Encorpado -Amargo_Clássico)</p>
-          </div>
-          <div class="item">
-            <p class="item__nome">Paçoka</p>
-            <span class="item__preco">R$ 45</span>
-            <p class="item__desc">Premium Vodka/Paçoca/Licor/Baileys/Caramelo Salgado/Leite de aveia (cremoso-Doce_Brasileiro)</p>
-          </div>
-          <div class="item">
-            <p class="item__nome">Porn Star Martine</p>
-            <span class="item__preco">R$ 45</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Wiskey Business</p>
-            <span class="item__preco">R$ 45</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Wiskey Sour</p>
-            <span class="item__preco">R$ 45</span>
-          </div>
+    <div class="destaques">
+      <figure class="destaque" style="transition-delay:0ms">
+        <div class="destaque__foto">
+          <img src="assets/img/drinks/negroni.jpg" alt="Negroni" loading="lazy" onerror="this.remove()">
+          <span>Foto — Negroni</span>
         </div>
-        <div class="familia">
-          <div class="familia__head"><h3>Digestivos/Doses</h3><span>17 opções</span></div>
-          <div class="item">
-            <p class="item__nome">Balena chocolate Dose</p>
-            <span class="item__preco">R$ 24</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Ballantine s 7 anos Dose</p>
-            <span class="item__preco">R$ 28</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Buchanans 12 anos ( Dose )</p>
-            <span class="item__preco">R$ 32</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Cachaça Branca Dose/Sagatiba</p>
-            <span class="item__preco">R$ 20</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Cachaça Envelhecida Weber Amburana Dose</p>
-            <span class="item__preco">R$ 26</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Cachaça Premium Dose 7 Madeiras</p>
-            <span class="item__preco">R$ 30</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Campari (Dose)</p>
-            <span class="item__preco">R$ 46</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Cdb</p>
-            <span class="item__preco">R$ 8</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Chivas Regal (12 anos) dose</p>
-            <span class="item__preco">R$ 30</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Don Cream Dose</p>
-            <span class="item__preco">R$ 24</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Glenliddich 12 anos Dose</p>
-            <span class="item__preco">R$ 32</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Glenlivet 12 Anos Dose</p>
-            <span class="item__preco">R$ 32</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Jhonnie Walker Gold Label ( Dose )</p>
-            <span class="item__preco">R$ 38</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Jhonnie Walker Red Label ( Dose )</p>
-            <span class="item__preco">R$ 30</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Licor 43 Dose</p>
-            <span class="item__preco">R$ 32</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Old parr Dose ( 12anos)</p>
-            <span class="item__preco">R$ 32</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Shot de Limão</p>
-            <span class="item__preco">R$ 4</span>
-          </div>
+        <p class="destaque__nome">Negroni <span class="destaque__preco">R$ 45</span></p>
+        <p class="destaque__desc">Gin premium, vermute doce e amaro. Encorpado, amargo, clássico.</p>
+      </figure>
+      <figure class="destaque" style="transition-delay:90ms">
+        <div class="destaque__foto">
+          <img src="assets/img/drinks/espresso-martini.jpg" alt="Espresso Martini" loading="lazy" onerror="this.remove()">
+          <span>Foto — Espresso Martini</span>
         </div>
-        <div class="familia">
-          <div class="familia__head"><h3>Cerveja 600ml</h3><span>5 opções</span></div>
-          <div class="item">
-            <p class="item__nome">Brahma 600 ml</p>
-            <span class="item__preco">R$ 20</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Corona 600 ml</p>
-            <span class="item__preco">R$ 24</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Original 600 ml</p>
-            <span class="item__preco">R$ 20</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Spaten 600 ml</p>
-            <span class="item__preco">R$ 24</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Stella Gold 600ml</p>
-            <span class="item__preco">R$ 24</span>
-          </div>
+        <p class="destaque__nome">Espresso Martini <span class="destaque__preco">R$ 45</span></p>
+        <p class="destaque__desc">Vodka premium, licor de café e café expresso. Encorpado e doce.</p>
+      </figure>
+      <figure class="destaque" style="transition-delay:180ms">
+        <div class="destaque__foto">
+          <img src="assets/img/drinks/moscow-mule.jpg" alt="Moscow Mule" loading="lazy" onerror="this.remove()">
+          <span>Foto — Moscow Mule</span>
         </div>
-        <div class="familia">
-          <div class="familia__head"><h3>Sucos Especiais</h3><span>5 opções</span></div>
-          <div class="item">
-            <p class="item__nome">Abacaxi com Hotelã e Gengibre (copo)</p>
-            <span class="item__preco">R$ 18</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Caju com Limão (Copo)</p>
-            <span class="item__preco">R$ 16</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Frutas Vermelhas (Copo)</p>
-            <span class="item__preco">R$ 16</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Manga com Maracujá (copo)</p>
-            <span class="item__preco">R$ 18</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Maracujá com Laranja (Copo)</p>
-            <span class="item__preco">R$ 18</span>
-          </div>
+        <p class="destaque__nome">Moscow Mule <span class="destaque__preco">R$ 45</span></p>
+        <p class="destaque__desc">Vodka premium, limão-taiti e gengibre. Refrescante e cítrico.</p>
+      </figure>
+      <figure class="destaque" style="transition-delay:270ms">
+        <div class="destaque__foto">
+          <img src="assets/img/drinks/jungle-bird.jpg" alt="Jungle Bird" loading="lazy" onerror="this.remove()">
+          <span>Foto — Jungle Bird</span>
         </div>
-        <div class="familia">
-          <div class="familia__head"><h3>Bebidas</h3><span>15 opções</span></div>
-          <div class="item">
-            <p class="item__nome">Água com gás</p>
-            <span class="item__preco">R$ 9</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Àgua de coco 1litro</p>
-            <span class="item__preco">R$ 30</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Água de coco 200 ML</p>
-            <span class="item__preco">R$ 12</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Àgua de coco 330ml</p>
-            <span class="item__preco">R$ 16</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Água sem gas</p>
-            <span class="item__preco">R$ 8</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Água Tônica lata</p>
-            <span class="item__preco">R$ 9</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Água Tônica Zero lata</p>
-            <span class="item__preco">R$ 9</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Guaraná Lata</p>
-            <span class="item__preco">R$ 9</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Guaraná Zero lata</p>
-            <span class="item__preco">R$ 9</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">H2O Limão</p>
-            <span class="item__preco">R$ 12</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">H2O Limoneto</p>
-            <span class="item__preco">R$ 12</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Pepsi Black lata</p>
-            <span class="item__preco">R$ 9</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Pepsi Lata</p>
-            <span class="item__preco">R$ 9</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Red Bull Lata</p>
-            <span class="item__preco">R$ 16</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Red Bull Zero Lata</p>
-            <span class="item__preco">R$ 16</span>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="familia">
-          <div class="familia__head"><h3>Caipirinhas</h3><span>4 opções</span></div>
-          <div class="item">
-            <p class="item__nome">Caipinha de Limão</p>
-            <span class="item__preco">R$ 34</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Caipirinha de Abacaxi com Hortelã</p>
-            <span class="item__preco">R$ 34</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Caipirinha de Manga com pimenta</p>
-            <span class="item__preco">R$ 36</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Caipirinha de Maracujá</p>
-            <span class="item__preco">R$ 36</span>
-          </div>
-        </div>
-        <div class="familia">
-          <div class="familia__head"><h3>Caipiroska</h3><span>4 opções</span></div>
-          <div class="item">
-            <p class="item__nome">Caipiroska de Abacaxi com Hotelã</p>
-            <span class="item__preco">R$ 34</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Caipiroska de Limão</p>
-            <span class="item__preco">R$ 34</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Caipiroska de Manga com Pimenta</p>
-            <span class="item__preco">R$ 36</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Caipiroska de Maracujá</p>
-            <span class="item__preco">R$ 36</span>
-          </div>
-        </div>
-        <div class="familia">
-          <div class="familia__head"><h3>Vodkas/Gin</h3><span>7 opções</span></div>
-          <div class="item">
-            <p class="item__nome">Absolut Dose</p>
-            <span class="item__preco">R$ 30</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Belvedere Dose</p>
-            <span class="item__preco">R$ 32</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Gin Beefeater Dose</p>
-            <span class="item__preco">R$ 24</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Gin Kamai Dose</p>
-            <span class="item__preco">R$ 28</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Gin Tanqueray Dose</p>
-            <span class="item__preco">R$ 34</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Grey Goose Dose</p>
-            <span class="item__preco">R$ 32</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Kamai Dose</p>
-            <span class="item__preco">R$ 28</span>
-          </div>
-        </div>
-        <div class="familia">
-          <div class="familia__head"><h3>Tequila</h3><span>1 opção</span></div>
-          <div class="item">
-            <p class="item__nome">José Cuervo Dose</p>
-            <span class="item__preco">R$ 26</span>
-          </div>
-        </div>
-        <div class="familia">
-          <div class="familia__head"><h3>Combos/Bar</h3><span>10 opções</span></div>
-          <div class="item">
-            <p class="item__nome">Ballantine`s 7 anos</p>
-            <span class="item__preco">R$ 320</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Buchanans 12 anos</p>
-            <span class="item__preco">R$ 390</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Campari Garrafa</p>
-            <span class="item__preco">R$ 220</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Chivas Regal 12 anos</p>
-            <span class="item__preco">R$ 360</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Combo Grey Groose</p>
-            <span class="item__preco">R$ 410</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Glenfiddich 12 anos</p>
-            <span class="item__preco">R$ 560</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Glenlivet 12 Anos</p>
-            <span class="item__preco">R$ 540</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Jhonnie Walker Gold Label</p>
-            <span class="item__preco">R$ 450</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Johnnie Walker Red Label</p>
-            <span class="item__preco">R$ 340</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Old Parr 12 Anos combo</p>
-            <span class="item__preco">R$ 380</span>
-          </div>
-        </div>
-        <div class="familia">
-          <div class="familia__head"><h3>Long Neck</h3><span>6 opções</span></div>
-          <div class="item">
-            <p class="item__nome">Brahma Zero Long neck</p>
-            <span class="item__preco">R$ 14</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Corona Long Neck</p>
-            <span class="item__preco">R$ 16</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Corona Zero Long Neck</p>
-            <span class="item__preco">R$ 14</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Flying Fish</p>
-            <span class="item__preco">R$ 14</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Michelob Long neck</p>
-            <span class="item__preco">R$ 14</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Spaten Long neck</p>
-            <span class="item__preco">R$ 16</span>
-          </div>
-        </div>
-        <div class="familia">
-          <div class="familia__head"><h3>Sucos</h3><span>6 opções</span></div>
-          <div class="item">
-            <p class="item__nome">Abacaxi</p>
-            <span class="item__preco">R$ 14</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Abacaxi com Hortelã</p>
-            <span class="item__preco">R$ 16</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Acerola</p>
-            <span class="item__preco">R$ 14</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Caju</p>
-            <span class="item__preco">R$ 14</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Laranja</p>
-            <span class="item__preco">R$ 14</span>
-          </div>
-          <div class="item">
-            <p class="item__nome">Limão</p>
-            <span class="item__preco">R$ 14</span>
-          </div>
-        </div>
-        <div class="familia">
-          <div class="familia__head"><h3>Chopp</h3><span>1 opção</span></div>
-          <div class="item">
-            <p class="item__nome">Double Chopp Brahma Happy Hour</p>
-            <span class="item__preco">R$ 14</span>
-          </div>
-        </div>
-        <div class="familia">
-          <div class="familia__head"><h3>Couvert artistico</h3><span>1 opção</span></div>
-          <div class="item">
-            <p class="item__nome">Couvert artistico</p>
-            <span class="item__preco">R$ 15</span>
-          </div>
-        </div>
-      </div>
-      <!-- SAIPOS:BAR:FIM -->
+        <p class="destaque__nome">Jungle Bird <span class="destaque__preco">R$ 45</span></p>
+        <p class="destaque__desc">Rum envelhecido, Campari, abacaxi e limão-taiti. Amargo e tropical.</p>
+      </figure>
+    </div>
+
+    <div class="linha" style="margin-top:clamp(34px,4vw,54px)">
+      <a class="btn" href="/bebidas">Ver a carta completa</a>
     </div>
   </div>
 </section>
@@ -2652,9 +2330,9 @@ p:last-child { margin-bottom: 0; }
      estado onde o texto suma. -->
 <script>
 (function () {
-  var alvos = document.querySelectorAll('#chopp .chopp-entra, #chopp .taca');
+  var alvos = document.querySelectorAll('#chopp .chopp-entra, #chopp .taca, .sobe, .destaque');
   if (!alvos.length) return;
-  if (!('IntersectionObserver' in window)) {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
     alvos.forEach(function (e) { e.classList.add('visivel'); });
     return;
   }
