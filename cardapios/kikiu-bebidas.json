@@ -361,7 +361,12 @@
             },
             {
               "nome": "Água de Coco",
-              "sub": "300ml",
+              "sub": "200ml",
+              "preco": 12
+            },
+            {
+              "nome": "Água de Coco",
+              "sub": "330ml",
               "preco": 16
             },
             {
