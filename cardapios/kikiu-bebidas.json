@@ -168,7 +168,8 @@
               "nome": "Banana Sour",
               "ingredientes": "Cachaça / Banana / Maracujá / Água de Coco / Limão Taiti / Mascavo",
               "perfil": "SUAVE – FRUTADO – TROPICAL",
-              "foto": "banana-sour.jpg"
+              "foto": "banana-sour.jpg",
+              "ativo": false
             },
             {
               "nome": "Black Velvet",
@@ -180,13 +181,15 @@
               "nome": "Carajillo",
               "ingredientes": "Premium Tequila / Licor 43 / Licor de Café / Café Espresso",
               "perfil": "ENCORPADO – DOCE – DIGESTIVO",
-              "foto": "carajillo.jpg"
+              "foto": "carajillo.jpg",
+              "ativo": false
             },
             {
               "nome": "Espresso Martini",
               "ingredientes": "Premium Vodka / Licor de Café / Café Espresso",
               "perfil": "ENCORPADO – DOCE – CLÁSSICO",
-              "foto": "espresso-martini.jpg"
+              "foto": "espresso-martini.jpg",
+              "ativo": false
             },
             {
               "nome": "Jungle Bird",
@@ -204,7 +207,8 @@
               "nome": "Midori",
               "ingredientes": "Premium Vodka / Abacaxi / Yuzu / Manjericão / Kiwi / Limão Taiti",
               "perfil": "REFRESCANTE – FRUTADO – EXÓTICO",
-              "foto": "midori.jpg"
+              "foto": "midori.jpg",
+              "ativo": false
             },
             {
               "nome": "Moscow Mule",
@@ -234,7 +238,8 @@
               "nome": "Valentina",
               "ingredientes": "Premium Rum Branco / Melão / Maçã / Maracujá / Limão Siciliano / Baunilha / Laranja / Abacaxi",
               "perfil": "REFRESCANTE – FRUTADO – EXÓTICO",
-              "foto": "valentina.jpg"
+              "foto": "valentina.jpg",
+              "ativo": false
             }
           ]
         },
@@ -318,7 +323,7 @@
             {
               "nome": "Corona Cero",
               "sub": "sem álcool",
-              "preco": 16
+              "preco": 14
             },
             {
               "nome": "Flying Fish",
@@ -334,11 +339,13 @@
             },
             {
               "nome": "Stella Artois",
-              "preco": 16
+              "preco": 16,
+              "ativo": false
             },
             {
               "nome": "Stella Pure Gold",
-              "preco": 17
+              "preco": 17,
+              "ativo": false
             }
           ],
           "quebraAntes": true
@@ -396,7 +403,8 @@
             },
             {
               "nome": "Pepsi Black",
-              "preco": 9
+              "preco": 9,
+              "ativo": false
             },
             {
               "nome": "Tônica",
@@ -431,7 +439,8 @@
             },
             {
               "nome": "Caipirinha de Caju",
-              "preco": 24
+              "preco": 24,
+              "ativo": false
             },
             {
               "nome": "Caipirinha de Limão",
@@ -457,7 +466,8 @@
             },
             {
               "nome": "Caju",
-              "preco": 24
+              "preco": 24,
+              "ativo": false
             },
             {
               "nome": "Limão",
@@ -610,7 +620,8 @@
             },
             {
               "nome": "Aperol",
-              "preco": 20
+              "preco": 20,
+              "ativo": false
             },
             {
               "nome": "Licor 43",
@@ -618,7 +629,8 @@
             },
             {
               "nome": "Licor 43 Chocolate",
-              "preco": 25
+              "preco": 25,
+              "ativo": false
             }
           ]
         }
@@ -657,11 +669,13 @@
             },
             {
               "nome": "Manga",
-              "preco": 13
+              "preco": 13,
+              "ativo": false
             },
             {
               "nome": "Maracujá",
-              "preco": 12
+              "preco": 12,
+              "ativo": false
             }
           ]
         },
@@ -678,7 +692,8 @@
             },
             {
               "nome": "Frutas vermelhas",
-              "preco": 16
+              "preco": 16,
+              "ativo": false
             },
             {
               "nome": "Manga com maracujá",

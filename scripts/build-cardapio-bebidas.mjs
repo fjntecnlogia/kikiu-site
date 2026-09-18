@@ -28,6 +28,17 @@ const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const ler = p => readFile(join(RAIZ, p), 'utf8');
 const dados = JSON.parse(await ler('cardapios/kikiu-bebidas.json'));
 
+// `ativo: false` = existe no nosso cardapio e NAO existe no PDV. Regra do
+// Fundador (18/09/2026): o que nao esta no Saipos nao fica no ar. O item nao
+// e apagado — descricao, foto e preco ficam guardados; basta tirar a marca
+// (ou cadastrar no PDV) para ele voltar.
+//
+// Filtrado AQUI, e nao na hora de montar a lista: na primeira tentativa eu
+// filtrei so a lista visivel, e os quinze desativados continuaram no
+// JSON-LD — a pagina nao os mostrava e o Google continuava lendo que o bar
+// vende Banana Sour. Uma peneira so, antes de tudo.
+for (const b of dados.blocos) for (const g of b.grupos) g.itens = g.itens.filter(it => it.ativo !== false);
+
 const brl = n => `R$ ${n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const selo = '<div class="selo"><i></i><i></i><i></i></div>';
@@ -252,6 +263,7 @@ ${scriptPaginador}
 const secoesQR = dados.blocos.map(b => {
   const itens = [];
   for (const g of b.grupos) {
+    if (!g.itens.length) continue;        // grupo vazio nao vira subtitulo solto
     if (g.titulo) itens.push({ divisor: g.titulo });
     for (const it of g.itens) {
       itens.push({

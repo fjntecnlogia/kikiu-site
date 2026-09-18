@@ -59,12 +59,15 @@ const RUIDO = new Set([
 ]);
 
 const semAcento = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+/** cero vira zero: a casa escreve "Corona Cero" no cardápio e "Corona Zero"
+ *  no PDV — mesma cerveja, duas grafias. */
+const zeroCero = s => s.replace(/\bcero\b/g, 'zero');
 /** k vira c: a casa escreve Usuzucuri onde o cardápio tem Usuzukuri. */
 const chave = s => semAcento(s).replace(/k/g, 'c').replace(/[^a-z0-9]+/g, '');
 
 function tokens(s) {
   return new Set(
-    semAcento(s)
+    zeroCero(semAcento(s))
       .replace(/k/g, 'c')
       .replace(/[^a-z0-9]+/g, ' ')
       .split(' ')
@@ -116,7 +119,37 @@ function parecenca(a, b) {
  * Escolhe entre candidatos. Exige nota mínima E margem sobre o segundo:
  * empate é sorteio, e sorteio em preço é pior que preço velho.
  */
+/** Volume em ml, ou null quando o nome nao diz tamanho.
+ *
+ *  Existe por um susto: juntar o `sub` ao nome para casar as tres aguas de
+ *  coco fez o casador parear "1 litro" (R$ 30) com "200 ML" (R$ 12) — as
+ *  palavras de tamanho ('ml', 'litro') estao em RUIDO e sao jogadas fora, e
+ *  "1litro" grudado no PDV virava um token que nao batia com nada. O robo
+ *  ia gravar agua de coco de um litro a R$ 12, e ele roda sozinho a cada
+ *  seis horas.
+ *
+ *  Com isto, dois nomes que DIZEM tamanho so casam se o tamanho for o mesmo.
+ *  Quem nao diz tamanho continua casando por palavra, como antes. */
+function volumeMl(s) {
+  const t = semAcento(s);
+  let m = t.match(/(\d+(?:[.,]\d+)?)\s*(?:l\b|lt\b|litros?\b)/);
+  if (m) return Math.round(parseFloat(m[1].replace(',', '.')) * 1000);
+  m = t.match(/(\d+)\s*ml\b/);
+  if (m) return parseInt(m[1], 10);
+  return null;
+}
+
 function melhor(nome, candidatos, { minimo = 0.6, margem = 0.15 } = {}) {
+  // Tamanho diferente nunca e o mesmo produto, por mais parecido que o nome
+  // seja. Filtra ANTES de pontuar: depois de pontuar, um empate ja teria
+  // escolhido errado.
+  const vAlvo = volumeMl(nome);
+  if (vAlvo !== null) {
+    const mesmos = candidatos.filter(c => { const v = volumeMl(c.nome); return v === null || v === vAlvo; });
+    candidatos = mesmos.length ? mesmos : [];
+  } else {
+    candidatos = candidatos.filter(c => volumeMl(c.nome) === null || candidatos.every(x => volumeMl(x.nome) !== null));
+  }
   // nome idêntico vale 2, fora da escala: senão "Pipoca de Camarão" empata
   // em 1,0 com "Camarão" (todas as palavras de um cabem no outro) e a regra
   // de margem descarta os dois — justo o caso em que não há dúvida nenhuma.
@@ -288,7 +321,7 @@ async function rodarBebidas(pdv) {
   const nossos = [];
   for (const bloco of d.blocos) {
     for (const g of bloco.grupos) {
-      for (const it of g.itens) nossos.push({ bloco: bloco.titulo, grupo: g.titulo ?? bloco.titulo, nome: it.nome, item: it, blocoRef: bloco });
+      for (const it of g.itens) nossos.push({ bloco: bloco.titulo, grupo: g.titulo ?? bloco.titulo, nome: it.sub ? `${it.nome} ${it.sub}` : it.nome, item: it, blocoRef: bloco });
     }
   }
 
