@@ -85,7 +85,7 @@ SAIDA.mkdir(parents=True, exist_ok=True)
 # a identidade de cada casa, para o cartão não parecer de fornecedor
 TEMAS = {
     'saiko':     dict(papel='#f6f2e9', marca='#c8102e', chamada='Cardápio digital'),
-    'kikiu':     dict(papel='#fbf7f2', marca='#e0402c', chamada='Menu de bebidas'),
+    'kikiu':     dict(papel='#fbf7f2', marca='#e0402c', chamada='Cardápio'),
     'forneatto': dict(papel='#f7f4ee', marca='#c4161c', chamada='Cardápio digital'),
 }
 

@@ -1,6 +1,12 @@
-name: Sincronizar cardápio do Saipos
+name: Sincronizar preços do PDV
 
-# A casa muda o preço no PDV; o site precisa acompanhar sozinho.
+# A casa muda o preço no balcão; o cardápio do QR precisa acompanhar sozinho.
+#
+# Este workflow falhou 8 vezes seguidas entre 17 e 18/09/2026, em silêncio.
+# Ele havia sido copiado do monorepo e ainda falava de `bar/index.html`, um
+# caminho que não existe neste repositório: o `git diff` sobre um caminho
+# inexistente sai com erro e derruba o passo. Resultado: nenhum preço do
+# Kikiu acompanhou o PDV desde a separação dos repositórios.
 on:
   schedule:
     - cron: '0 */6 * * *'   # a cada 6 horas
@@ -23,17 +29,26 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Puxar o cardápio
-        run: node scripts/sync-cardapio.mjs
+      # Preço, e só preço: o nome, a descrição e a ordem do cardápio são
+      # escritos aqui, não no PDV. O casamento é por token e por categoria —
+      # sem isso, a dose de whisky herda o preço da garrafa.
+      - name: Atualizar os preços pelo PDV
+        run: node scripts/sync-precos.mjs bebidas --aplicar
+
+      # A página do QR e o PDF da gráfica saem do mesmo JSON. Se o build não
+      # rodar aqui, o preço muda no arquivo e não muda na mesa do cliente.
+      - name: Regerar a página do QR e o PDF
+        run: node scripts/build-cardapio-bebidas.mjs
 
       - name: Commitar se algo mudou
         run: |
-          if git diff --quiet -- assets/data/cardapio-kikiu.json bar/index.html; then
-            echo "Cardápio sem alteração — nada a commitar."
+          ALVOS="cardapios/kikiu-bebidas.json bebidas.html cardapios/kikiu-bebidas-impressao.html"
+          if git diff --quiet -- $ALVOS; then
+            echo "Preços sem alteração — nada a commitar."
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/data/cardapio-kikiu.json bar/index.html
-          git commit -m "Cardápio do Kikiu sincronizado com o Saipos"
+          git add $ALVOS
+          git commit -m "Precos do Kikiu sincronizados com o PDV"
           git push

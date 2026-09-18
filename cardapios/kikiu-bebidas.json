@@ -1,10 +1,159 @@
 {
   "casa": "Kikiu Gastrobar",
-  "titulo": "Menu de Bebidas",
+  "titulo": "Cardápio",
   "assinatura": "Casa Pro Coquetéis",
   "endereco": "Shopping Três Américas · Cuiabá — MT",
   "fonte": "Transcrito do menu impresso do Kikiu, com os preços corrigidos à mão pela casa. Os 8 itens de letra dúbia foram CONFERIDOS E APROVADOS pela casa em 11/09/2026 — nenhuma pendência. Item novo entra sem marca: quem cadastrar confere antes.",
   "blocos": [
+    {
+      "id": "cozinha",
+      "titulo": "Cozinha",
+      "grupos": [
+        {
+          "titulo": "Petiscos",
+          "itens": [
+            {
+              "nome": "Iscas de frango super crocantes",
+              "preco": 66,
+              "sub": "mostarda Dijon"
+            },
+            {
+              "nome": "Picanha Angus fatiada",
+              "preco": 97,
+              "sub": "batata frita, molho da casa"
+            },
+            {
+              "nome": "Iscas de peixe branco crocante",
+              "preco": 83,
+              "sub": "molho cítrico"
+            },
+            {
+              "nome": "Cubos de filé mignon acebolado",
+              "preco": 108,
+              "sub": "Grana Padano"
+            },
+            {
+              "nome": "Batata frita especial",
+              "preco": 45,
+              "sub": "azeite trufado, queijo e ervas"
+            }
+          ]
+        },
+        {
+          "titulo": "Pastéis",
+          "itens": [
+            {
+              "nome": "Pastel de carne à bolonhesa",
+              "preco": 55,
+              "sub": "parmesão"
+            },
+            {
+              "nome": "Pastel cremoso de camarão",
+              "preco": 78,
+              "sub": "Catupiry"
+            },
+            {
+              "nome": "Pastel de Cupim desfiado com cream cheese",
+              "preco": 63
+            },
+            {
+              "nome": "Pastel de calabresa",
+              "preco": 58,
+              "sub": "mussarela"
+            }
+          ]
+        },
+        {
+          "titulo": "Croquetes",
+          "itens": [
+            {
+              "nome": "Bolinho mineiro de milho, bacon",
+              "preco": 62,
+              "sub": "queijo meia cura"
+            },
+            {
+              "nome": "Croquete de ossobuco",
+              "preco": 68,
+              "sub": "provolone defumado"
+            },
+            {
+              "nome": "Bolinho crocante de pintado",
+              "preco": 64,
+              "sub": "ervas finas"
+            },
+            {
+              "nome": "Croquete de carne seca",
+              "preco": 61,
+              "sub": "abóbora cremosa"
+            }
+          ]
+        },
+        {
+          "titulo": "Especiais",
+          "itens": [
+            {
+              "nome": "Escondidinho de Ragu de Costela",
+              "preco": 81
+            },
+            {
+              "nome": "Gratinado de Catupiry",
+              "preco": 115,
+              "sub": "cubos de filé mignon"
+            },
+            {
+              "nome": "Moela e coração ao molho roti especial",
+              "preco": 55
+            },
+            {
+              "nome": "Carne de onça",
+              "preco": 78,
+              "sub": "especialidade da casa"
+            }
+          ]
+        },
+        {
+          "titulo": "Steaks & chapas",
+          "itens": [
+            {
+              "nome": "Picanha Angus",
+              "preco": 145
+            },
+            {
+              "nome": "Carré de cordeiro",
+              "preco": 162
+            },
+            {
+              "nome": "Sobrecoxa desossada na mostarda",
+              "preco": 81
+            },
+            {
+              "nome": "Linguiça cuiabana gratinada",
+              "preco": 52
+            }
+          ]
+        },
+        {
+          "titulo": "Lanches",
+          "itens": [
+            {
+              "nome": "Sanduíche de pernil assado por 12h",
+              "preco": 42,
+              "sub": "compota de abacaxi, queijo coalho"
+            },
+            {
+              "nome": "Sanduíche de churrasquinho de picanha",
+              "preco": 55,
+              "sub": "Emmental, vinagrete, molho de páprica"
+            },
+            {
+              "nome": "Sanduíche crocante de frango",
+              "preco": 42,
+              "sub": "molho picante, picles, alface"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "casa-pro",
       "titulo": "Drinks Casa Pro",
@@ -536,6 +685,29 @@
             }
           ],
           "quebraAntes": true
+        }
+      ]
+    },
+    {
+      "id": "sobremesas",
+      "titulo": "Sobremesas",
+      "grupos": [
+        {
+          "titulo": "Sobremesas",
+          "itens": [
+            {
+              "nome": "Mousse de chocolate",
+              "preco": 35
+            },
+            {
+              "nome": "Banoffe",
+              "preco": 45
+            },
+            {
+              "nome": "Cheesecake",
+              "preco": 38
+            }
+          ]
         }
       ]
     }

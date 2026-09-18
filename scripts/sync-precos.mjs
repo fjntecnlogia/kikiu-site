@@ -212,6 +212,18 @@ const MAPA_BEBIDAS = [
   { grupo: 'Copo 300ml',      cats: ['Sucos'] },
   { grupo: 'Sucos especiais', cats: ['Sucos Especiais'] },
   { bloco: 'Drinks Casa Pro', cats: ['Drinks Casa Pro'] },
+
+  // A cozinha e as sobremesas entraram no cardapio do QR em 18/09/2026. Sem
+  // estas linhas o robo de preco nao as enxerga: ele listava LANCHES,
+  // STEAKS & CHAPAS e Sobremesas em "categorias do PDV fora deste cardapio",
+  // e o preco delas nunca acompanharia o balcao.
+  { grupo: 'Petiscos',        cats: ['PETISCOS'] },
+  { grupo: 'Pastéis',         cats: ['PETISCOS & BOTECARIA — PASTÉIS'] },
+  { grupo: 'Croquetes',       cats: ['PETISCOS & BOTECARIA — CROQUETES'] },
+  { grupo: 'Especiais',       cats: ['ESPECIAIS'] },
+  { grupo: 'Steaks & chapas', cats: ['STEAKS & CHAPAS'] },
+  { grupo: 'Lanches',         cats: ['LANCHES'] },
+  { bloco: 'Sobremesas',      cats: ['Sobremesas'] },
 ];
 /** Onde ficam os preços de GARRAFA — nunca confundir com dose. */
 const CATS_GARRAFA = ['Combos/Bar'];

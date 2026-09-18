@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 /**
- * build-cardapio-bebidas.mjs — menu de bebidas do Kikiu para a gráfica.
+ * build-cardapio-bebidas.mjs — o cardapio do Kikiu: QR da mesa e gráfica.
+ *
+ * Nasceu so com bebida, porque so bebida havia. Desde 18/09/2026 carrega
+ * tambem a cozinha (petiscos, pasteis, croquetes, especiais, steaks e os
+ * LANCHES novos) e as sobremesas, que sao as mesmas das tres casas.
  *
  *   node scripts/build-cardapio-bebidas.mjs
  *
@@ -221,7 +225,7 @@ await writeFile(join(RAIZ, 'cardapios/kikiu-bebidas-impressao.html'),
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<title>Menu de Bebidas — Kikiu Gastrobar — impressão</title>
+<title>Cardápio — Kikiu Gastrobar — impressão</title>
 <!-- GERADO por scripts/build-cardapio-bebidas.mjs a partir de
      cardapios/kikiu-bebidas.json. Não editar à mão: a próxima execução
      sobrescreve. Layout em cardapios/_bebidas.css; conteúdo no JSON. -->
@@ -255,22 +259,22 @@ const secoesQR = dados.blocos.map(b => {
         desc: it.ingredientes,
         nota: it.garrafa ? `${brl(it.garrafa)} a garrafa` : it.perfil ? `(${it.perfil})` : null,
         preco: it.preco ?? b.precoUnico,
-        foto: it.foto ? `../assets/img/drinks/${it.foto}` : null,
+        foto: it.foto ? `/assets/img/drinks/${it.foto}` : null,
       });
     }
   }
   return { id: idDe(b.titulo), titulo: b.titulo, nota: b.notaPreco, itens };
 });
 
-await writeFile(join(RAIZ, 'bar/bebidas.html'), paginaCardapio({
-  casa: 'Kikiu Gastrobar', titulo: 'Menu de Bebidas', endereco: dados.endereco,
+await writeFile(join(RAIZ, 'bebidas.html'), paginaCardapio({
+  casa: 'Kikiu Gastrobar', titulo: 'Cardápio', endereco: dados.endereco,
   // a marca abre e fecha a pagina: a mesma taca da fachada e do impresso
   logo: {
-    src: '../assets/img/logos/web/kikiu-escuro.png',
+    src: '/assets/img/logos/web/kikiu-escuro.png',
     alt: 'Kikiu Gastrobar', largura: 180, altura: 58,
   },
-  icone: { aba: '../assets/img/icone/kikiu-32.png', inicio: '../assets/img/icone/kikiu-180.png' },
-  descricao: 'Menu de bebidas do Kikiu Gastrobar — coquetelaria autoral da Casa Pro, cervejas, destilados e sucos, no Shopping Três Américas, Cuiabá.',
+  icone: { aba: '/assets/img/icone/kikiu-32.png', inicio: '/assets/img/icone/kikiu-180.png' },
+  descricao: 'Cardápio do Kikiu Gastrobar — cozinha, lanches, coquetelaria autoral da Casa Pro, cervejas, destilados, sucos e sobremesas, no Shopping Três Américas, Cuiabá.',
   gerador: 'scripts/build-cardapio-bebidas.mjs',
   fontes: 'https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@400;600;700&display=swap',
   rodape: 'Preços sujeitos a alteração. Venda de bebida alcoólica proibida para menores de 18 anos.',
@@ -285,7 +289,7 @@ await writeFile(join(RAIZ, 'bar/bebidas.html'), paginaCardapio({
   },
   secoes: secoesQR,
   jsonld: {
-    '@context': 'https://schema.org', '@type': 'Menu', name: 'Menu de Bebidas Kikiu Gastrobar',
+    '@context': 'https://schema.org', '@type': 'Menu', name: 'Cardápio Kikiu Gastrobar',
     hasMenuSection: dados.blocos.map(b => ({
       '@type': 'MenuSection', name: b.titulo,
       hasMenuItem: b.grupos.flatMap(g => g.itens.map(it => ({
@@ -296,7 +300,7 @@ await writeFile(join(RAIZ, 'bar/bebidas.html'), paginaCardapio({
     })),
   },
 }));
-console.log('   -> bar/bebidas.html (pagina do QR code)');
+console.log('   -> bebidas.html (pagina do QR code)');
 
 const total = dados.blocos.reduce((n, b) => n + b.grupos.reduce((m, g) => m + g.itens.length, 0), 0);
 const conferir = dados.blocos.flatMap(b => b.grupos.flatMap(g =>
