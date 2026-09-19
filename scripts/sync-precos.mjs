@@ -370,6 +370,18 @@ async function rodarBebidas(pdv) {
 
   const catsUsadas = new Set([...candidatosPorCat.keys(), ...CATS_GARRAFA]);
 
+  // Item DESATIVADO que casou com o PDV e erro: alguem (eu, em 18/09) tirou
+  // do ar um produto que a casa vende. Aconteceu com a Caipirinha de Caju e
+  // a Caipiroska de Caju, escondidas por um dia inteiro — a lista de
+  // desativar foi copiada de uma rodada anterior ao --aplicar, quando os
+  // pares ainda estavam se acomodando. Agora a rodada de 6 em 6 horas grita,
+  // em vez de depender de alguem lembrar de conferir.
+  const ressuscitar = nossos.filter(n => usados.has(n.item) && n.item.ativo === false);
+  if (ressuscitar.length) {
+    console.log('\nDESATIVADO MAS EXISTE NO PDV — religar, esta escondido do cliente:');
+    for (const r of ressuscitar) console.log(`   ${r.grupo} / ${r.nome}`);
+  }
+
   const soNosso = nossos.filter(n => !usados.has(n.item)).map(n => `${n.grupo} / ${n.nome}`);
   imprimir('KIKIU — menu de bebidas', mudancas, semDono, soNosso);
 

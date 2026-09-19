@@ -439,8 +439,7 @@
             },
             {
               "nome": "Caipirinha de Caju",
-              "preco": 36,
-              "ativo": false
+              "preco": 36
             },
             {
               "nome": "Caipirinha de Limão",
@@ -466,8 +465,7 @@
             },
             {
               "nome": "Caju",
-              "preco": 36,
-              "ativo": false
+              "preco": 36
             },
             {
               "nome": "Limão",
