@@ -461,19 +461,19 @@
           "itens": [
             {
               "nome": "Abacaxi com Hortelã",
-              "preco": 34
+              "preco": 42
             },
             {
               "nome": "Caju",
-              "preco": 36
+              "preco": 41
             },
             {
               "nome": "Limão",
-              "preco": 34
+              "preco": 38
             },
             {
               "nome": "Maracujá",
-              "preco": 36
+              "preco": 39
             }
           ]
         }
@@ -515,17 +515,17 @@
             },
             {
               "nome": "Chivas Regal 12 anos",
-              "preco": 30,
+              "preco": 35,
               "garrafa": 360
             },
             {
               "nome": "Glenfiddich 12 anos",
-              "preco": 32,
+              "preco": 45,
               "garrafa": 560
             },
             {
               "nome": "Glenlivet 12 anos",
-              "preco": 32,
+              "preco": 42,
               "garrafa": 540
             },
             {
@@ -540,7 +540,7 @@
             },
             {
               "nome": "Old Parr 12 anos",
-              "preco": 32,
+              "preco": 35,
               "garrafa": 380
             }
           ],
@@ -556,12 +556,12 @@
             },
             {
               "nome": "Belvedere",
-              "preco": 32,
+              "preco": 38,
               "garrafa": 390
             },
             {
               "nome": "Grey Goose",
-              "preco": 32,
+              "preco": 38,
               "garrafa": 410
             },
             {
@@ -576,7 +576,7 @@
           "itens": [
             {
               "nome": "Beefeater",
-              "preco": 24,
+              "preco": 32,
               "garrafa": 330
             },
             {
@@ -586,7 +586,7 @@
             },
             {
               "nome": "Tanqueray",
-              "preco": 34,
+              "preco": 32,
               "garrafa": 280
             }
           ]
@@ -672,7 +672,7 @@
             },
             {
               "nome": "Maracujá",
-              "preco": 12,
+              "preco": 14,
               "ativo": false
             }
           ]
