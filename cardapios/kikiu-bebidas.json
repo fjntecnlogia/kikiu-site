@@ -128,7 +128,8 @@
             },
             {
               "nome": "Linguiça cuiabana gratinada",
-              "preco": 52
+              "preco": 52,
+              "ativo": false
             }
           ]
         },
@@ -138,7 +139,8 @@
             {
               "nome": "Sanduíche de pernil assado por 12h",
               "preco": 42,
-              "sub": "compota de abacaxi, queijo coalho"
+              "sub": "compota de abacaxi, queijo coalho",
+              "ativo": false
             },
             {
               "nome": "Sanduíche de churrasquinho de picanha",
@@ -165,11 +167,15 @@
           "arejado": true,
           "itens": [
             {
+              "nome": "Aperol Spritz",
+              "ingredientes": "Aperol / Espumante / Água com Gás / Laranja",
+              "perfil": "LEVE – CÍTRICO – REFRESCANTE"
+            },
+            {
               "nome": "Banana Sour",
               "ingredientes": "Cachaça / Banana / Maracujá / Água de Coco / Limão Taiti / Mascavo",
               "perfil": "SUAVE – FRUTADO – TROPICAL",
-              "foto": "banana-sour.jpg",
-              "ativo": false
+              "foto": "banana-sour.jpg"
             },
             {
               "nome": "Black Velvet",
@@ -181,15 +187,13 @@
               "nome": "Carajillo",
               "ingredientes": "Premium Tequila / Licor 43 / Licor de Café / Café Espresso",
               "perfil": "ENCORPADO – DOCE – DIGESTIVO",
-              "foto": "carajillo.jpg",
-              "ativo": false
+              "foto": "carajillo.jpg"
             },
             {
               "nome": "Espresso Martini",
               "ingredientes": "Premium Vodka / Licor de Café / Café Espresso",
               "perfil": "ENCORPADO – DOCE – CLÁSSICO",
-              "foto": "espresso-martini.jpg",
-              "ativo": false
+              "foto": "espresso-martini.jpg"
             },
             {
               "nome": "Jungle Bird",
@@ -207,8 +211,7 @@
               "nome": "Midori",
               "ingredientes": "Premium Vodka / Abacaxi / Yuzu / Manjericão / Kiwi / Limão Taiti",
               "perfil": "REFRESCANTE – FRUTADO – EXÓTICO",
-              "foto": "midori.jpg",
-              "ativo": false
+              "foto": "midori.jpg"
             },
             {
               "nome": "Moscow Mule",
@@ -238,8 +241,7 @@
               "nome": "Valentina",
               "ingredientes": "Premium Rum Branco / Melão / Maçã / Maracujá / Limão Siciliano / Baunilha / Laranja / Abacaxi",
               "perfil": "REFRESCANTE – FRUTADO – EXÓTICO",
-              "foto": "valentina.jpg",
-              "ativo": false
+              "foto": "valentina.jpg"
             }
           ]
         },
@@ -369,7 +371,8 @@
             {
               "nome": "Água de Coco",
               "sub": "200ml",
-              "preco": 12
+              "preco": 12,
+              "ativo": false
             },
             {
               "nome": "Água de Coco",
@@ -379,7 +382,8 @@
             {
               "nome": "Água de Coco",
               "sub": "1 litro",
-              "preco": 30
+              "preco": 30,
+              "ativo": false
             },
             {
               "nome": "Guaraná",
@@ -403,8 +407,7 @@
             },
             {
               "nome": "Pepsi Black",
-              "preco": 9,
-              "ativo": false
+              "preco": 9
             },
             {
               "nome": "Tônica",
@@ -472,6 +475,10 @@
               "preco": 38
             },
             {
+              "nome": "Manga com Pimenta",
+              "preco": 44
+            },
+            {
               "nome": "Maracujá",
               "preco": 39
             }
@@ -527,6 +534,10 @@
               "nome": "Glenlivet 12 anos",
               "preco": 42,
               "garrafa": 540
+            },
+            {
+              "nome": "Johnnie Walker Black Label 12 anos",
+              "preco": 35
             },
             {
               "nome": "Johnnie Walker Gold Label",
@@ -629,6 +640,10 @@
               "nome": "Licor 43 Chocolate",
               "preco": 25,
               "ativo": false
+            },
+            {
+              "nome": "Shot de limão",
+              "preco": 4
             }
           ]
         }
@@ -655,7 +670,8 @@
             },
             {
               "nome": "Caju",
-              "preco": 14
+              "preco": 14,
+              "ativo": false
             },
             {
               "nome": "Laranja",
@@ -672,8 +688,11 @@
             },
             {
               "nome": "Maracujá",
-              "preco": 14,
-              "ativo": false
+              "preco": 14
+            },
+            {
+              "nome": "Morango",
+              "preco": 14
             }
           ]
         },
@@ -682,11 +701,13 @@
           "itens": [
             {
               "nome": "Abacaxi, hortelã e gengibre",
-              "preco": 18
+              "preco": 18,
+              "ativo": false
             },
             {
               "nome": "Caju com limão",
-              "preco": 16
+              "preco": 16,
+              "ativo": false
             },
             {
               "nome": "Frutas vermelhas",
@@ -695,11 +716,13 @@
             },
             {
               "nome": "Manga com maracujá",
-              "preco": 18
+              "preco": 18,
+              "ativo": false
             },
             {
               "nome": "Maracujá com laranja",
-              "preco": 18
+              "preco": 18,
+              "ativo": false
             }
           ],
           "quebraAntes": true

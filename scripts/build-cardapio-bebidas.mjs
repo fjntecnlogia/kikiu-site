@@ -39,6 +39,11 @@ const dados = JSON.parse(await ler('cardapios/kikiu-bebidas.json'));
 // vende Banana Sour. Uma peneira so, antes de tudo.
 for (const b of dados.blocos) for (const g of b.grupos) g.itens = g.itens.filter(it => it.ativo !== false);
 
+// Grupo que ficou sem nenhum item vira um subtitulo solto: em 24/09 os cinco
+// sucos especiais sairam do PDV de uma vez e a folha impressa ficou com o
+// titulo "Sucos especiais" e nada embaixo. Cai junto com os itens.
+for (const b of dados.blocos) b.grupos = b.grupos.filter(g => g.itens.length);
+
 const brl = n => `R$ ${n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const selo = '<div class="selo"><i></i><i></i><i></i></div>';
