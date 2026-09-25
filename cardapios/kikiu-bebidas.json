@@ -291,7 +291,7 @@
           "itens": [
             {
               "nome": "Brahma",
-              "preco": 14.9
+              "preco": 20
             },
             {
               "nome": "Corona",
@@ -299,7 +299,7 @@
             },
             {
               "nome": "Original",
-              "preco": 14.9
+              "preco": 20
             },
             {
               "nome": "Spaten",
@@ -419,7 +419,7 @@
             },
             {
               "nome": "Red Bull",
-              "preco": 16
+              "preco": 24.9
             },
             {
               "nome": "Red Bull Sem Açúcar",
