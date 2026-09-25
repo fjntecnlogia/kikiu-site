@@ -44,6 +44,15 @@ for (const b of dados.blocos) for (const g of b.grupos) g.itens = g.itens.filter
 // titulo "Sucos especiais" e nada embaixo. Cai junto com os itens.
 for (const b of dados.blocos) b.grupos = b.grupos.filter(g => g.itens.length);
 
+// Foto so entra quando for DA CASA. Em 25/09 o Fundador mandou tirar todas: as
+// que estavam no ar nao eram dos restaurantes e ja estava dando problema. O
+// campo `foto` de cada drink fica guardado no JSON — quando as fotos de verdade
+// chegarem, `fotosDaCasa: true` devolve todas de uma vez. Peneirado AQUI, na
+// mesma passada do ativo:false, para o impresso, o QR e o JSON-LD concordarem.
+if (dados.fotosDaCasa !== true) {
+  for (const b of dados.blocos) for (const g of b.grupos) for (const it of g.itens) delete it.foto;
+}
+
 const brl = n => `R$ ${n.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const selo = '<div class="selo"><i></i><i></i><i></i></div>';
