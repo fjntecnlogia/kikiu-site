@@ -139,7 +139,31 @@ function volumeMl(s) {
   return null;
 }
 
+/** O nome anuncia a versao ZERO do produto?
+ *
+ *  Existe por um erro que foi para o ar em 25/09: o PDV tem "Red Bull Lata"
+ *  a R$ 16 e "Red Bull  Zero Lata" a R$ 24,90; o casador pareou o nosso
+ *  "Red Bull" com o Zero e o nosso "Red Bull Sem Acucar" com o normal, e
+ *  publicou os dois precos trocados. 'zero' nao esta em RUIDO, mas tambem
+ *  nao bastava: a escolha e gulosa, e quem chega primeiro leva o candidato
+ *  que sobrou, certo ou errado.
+ *
+ *  Mesma licao do volume: nao adianta pontuar melhor, tem que NAO PODER
+ *  parear. Zero com nao-zero e outro produto, com outro preco.
+ *
+ *  `cero` conta como zero (o PDV escreve "Corona Cero"), como ja faz o
+ *  `zeroCero` dos tokens — senao a Corona sem alcool deixaria de casar. */
+function ehZero(s) {
+  const t = semAcento(s).replace(/\bcero\b/g, 'zero');
+  return /\b(zero|diet|light|sem\s+acucar|sem\s+alcool)\b/.test(t);
+}
+
 function melhor(nome, candidatos, { minimo = 0.6, margem = 0.15 } = {}) {
+  // Zero e nao-zero nunca sao o mesmo produto. Filtra ANTES de pontuar, pela
+  // mesma razao do tamanho.
+  const zeroAlvo = ehZero(nome);
+  candidatos = candidatos.filter(c => ehZero(c.nome) === zeroAlvo);
+
   // Tamanho diferente nunca e o mesmo produto, por mais parecido que o nome
   // seja. Filtra ANTES de pontuar: depois de pontuar, um empate ja teria
   // escolhido errado.
