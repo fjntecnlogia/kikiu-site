@@ -170,7 +170,8 @@
             {
               "nome": "Aperol Spritz",
               "ingredientes": "Aperol / Espumante / Água com Gás / Laranja",
-              "perfil": "LEVE – CÍTRICO – REFRESCANTE"
+              "perfil": "LEVE – CÍTRICO – REFRESCANTE",
+              "preco": 22.5
             },
             {
               "nome": "Banana Sour",
@@ -218,13 +219,15 @@
               "nome": "Moscow Mule",
               "ingredientes": "Premium Vodka / Limão Taiti / Gengibre",
               "perfil": "REFRESCANTE – CÍTRICO – CLÁSSICO",
-              "foto": "moscow-mule.jpg"
+              "foto": "moscow-mule.jpg",
+              "preco": 22.5
             },
             {
               "nome": "Negroni",
               "ingredientes": "Premium Gin / Vermute Doce / Amaro",
               "perfil": "ENCORPADO – AMARGO – CLÁSSICO",
-              "foto": "negroni.jpg"
+              "foto": "negroni.jpg",
+              "preco": 22.5
             },
             {
               "nome": "Paçoka",
@@ -236,13 +239,15 @@
               "nome": "Porn Star Martini",
               "ingredientes": "Vodka de Baunilha / Maracujá / Abacaxi / Limão Siciliano",
               "perfil": "SUAVE – FRUTADO – EXÓTICO",
-              "foto": "porn-star-martini.jpg"
+              "foto": "porn-star-martini.jpg",
+              "preco": 22.5
             },
             {
               "nome": "Valentina",
               "ingredientes": "Premium Rum Branco / Melão / Maçã / Maracujá / Limão Siciliano / Baunilha / Laranja / Abacaxi",
               "perfil": "REFRESCANTE – FRUTADO – EXÓTICO",
-              "foto": "valentina.jpg"
+              "foto": "valentina.jpg",
+              "preco": 22.5
             }
           ]
         },
@@ -253,7 +258,8 @@
             {
               "nome": "Whiskey Business",
               "ingredientes": "Premium Whiskey / Canela / Limão Siciliano / Pimenta / Angostura Bitters",
-              "perfil": "INTENSO – PICANTE – AROMÁTICO"
+              "perfil": "INTENSO – PICANTE – AROMÁTICO",
+              "preco": 22.5
             },
             {
               "nome": "Whiskey Sour",
