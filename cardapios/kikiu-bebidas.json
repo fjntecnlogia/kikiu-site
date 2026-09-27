@@ -171,7 +171,7 @@
               "nome": "Aperol Spritz",
               "ingredientes": "Aperol / Espumante / Água com Gás / Laranja",
               "perfil": "LEVE – CÍTRICO – REFRESCANTE",
-              "preco": 22.5
+              "preco": 45
             },
             {
               "nome": "Banana Sour",
@@ -220,14 +220,14 @@
               "ingredientes": "Premium Vodka / Limão Taiti / Gengibre",
               "perfil": "REFRESCANTE – CÍTRICO – CLÁSSICO",
               "foto": "moscow-mule.jpg",
-              "preco": 22.5
+              "preco": 45
             },
             {
               "nome": "Negroni",
               "ingredientes": "Premium Gin / Vermute Doce / Amaro",
               "perfil": "ENCORPADO – AMARGO – CLÁSSICO",
               "foto": "negroni.jpg",
-              "preco": 22.5
+              "preco": 45
             },
             {
               "nome": "Paçoka",
@@ -240,14 +240,14 @@
               "ingredientes": "Vodka de Baunilha / Maracujá / Abacaxi / Limão Siciliano",
               "perfil": "SUAVE – FRUTADO – EXÓTICO",
               "foto": "porn-star-martini.jpg",
-              "preco": 22.5
+              "preco": 45
             },
             {
               "nome": "Valentina",
               "ingredientes": "Premium Rum Branco / Melão / Maçã / Maracujá / Limão Siciliano / Baunilha / Laranja / Abacaxi",
               "perfil": "REFRESCANTE – FRUTADO – EXÓTICO",
               "foto": "valentina.jpg",
-              "preco": 22.5
+              "preco": 45
             }
           ]
         },
@@ -259,7 +259,7 @@
               "nome": "Whiskey Business",
               "ingredientes": "Premium Whiskey / Canela / Limão Siciliano / Pimenta / Angostura Bitters",
               "perfil": "INTENSO – PICANTE – AROMÁTICO",
-              "preco": 22.5
+              "preco": 45
             },
             {
               "nome": "Whiskey Sour",
