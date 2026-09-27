@@ -168,10 +168,16 @@
           "arejado": true,
           "itens": [
             {
+              "nome": "Agueixa"
+            },
+            {
               "nome": "Aperol Spritz",
               "ingredientes": "Aperol / Espumante / Água com Gás / Laranja",
               "perfil": "LEVE – CÍTRICO – REFRESCANTE",
               "preco": 45
+            },
+            {
+              "nome": "Arona"
             },
             {
               "nome": "Banana Sour",
@@ -195,13 +201,11 @@
               "nome": "Espresso Martini",
               "ingredientes": "Premium Vodka / Licor de Café / Café Espresso",
               "perfil": "ENCORPADO – DOCE – CLÁSSICO",
-              "foto": "espresso-martini.jpg"
+              "foto": "espresso-martini.jpg",
+              "ativo": false
             },
             {
-              "nome": "Jungle Bird",
-              "ingredientes": "Premium Rum Envelhecido / Campari / Abacaxi / Limão Taiti",
-              "perfil": "ENCORPADO – AMARGO – TROPICAL",
-              "foto": "jungle-bird.jpg"
+              "nome": "Fitzgerald"
             }
           ]
         },
@@ -210,10 +214,25 @@
           "quebraAntes": true,
           "itens": [
             {
+              "nome": "Gin Tônica"
+            },
+            {
+              "nome": "Jungle Bird",
+              "ingredientes": "Premium Rum Envelhecido / Campari / Abacaxi / Limão Taiti",
+              "perfil": "ENCORPADO – AMARGO – TROPICAL",
+              "foto": "jungle-bird.jpg"
+            },
+            {
+              "nome": "Lampião"
+            },
+            {
               "nome": "Midori",
               "ingredientes": "Premium Vodka / Abacaxi / Yuzu / Manjericão / Kiwi / Limão Taiti",
               "perfil": "REFRESCANTE – FRUTADO – EXÓTICO",
               "foto": "midori.jpg"
+            },
+            {
+              "nome": "Mojito"
             },
             {
               "nome": "Moscow Mule",
@@ -228,12 +247,19 @@
               "perfil": "ENCORPADO – AMARGO – CLÁSSICO",
               "foto": "negroni.jpg",
               "preco": 45
-            },
+            }
+          ]
+        },
+        {
+          "arejado": true,
+          "quebraAntes": true,
+          "itens": [
             {
               "nome": "Paçoka",
               "ingredientes": "Premium Vodka / Paçoca / Licor Baileys / Caramelo Salgado / Leite de Aveia",
               "perfil": "CREMOSO – DOCE – BRASILEIRO",
-              "foto": "pacoka.jpg"
+              "foto": "pacoka.jpg",
+              "ativo": false
             },
             {
               "nome": "Porn Star Martini",
@@ -243,18 +269,18 @@
               "preco": 45
             },
             {
+              "nome": "Ranei Duce"
+            },
+            {
+              "nome": "The Shacet"
+            },
+            {
               "nome": "Valentina",
               "ingredientes": "Premium Rum Branco / Melão / Maçã / Maracujá / Limão Siciliano / Baunilha / Laranja / Abacaxi",
               "perfil": "REFRESCANTE – FRUTADO – EXÓTICO",
               "foto": "valentina.jpg",
               "preco": 45
-            }
-          ]
-        },
-        {
-          "arejado": true,
-          "quebraAntes": true,
-          "itens": [
+            },
             {
               "nome": "Whiskey Business",
               "ingredientes": "Premium Whiskey / Canela / Limão Siciliano / Pimenta / Angostura Bitters",
@@ -264,7 +290,8 @@
             {
               "nome": "Whiskey Sour",
               "ingredientes": "Premium Bourbon / Limão Siciliano / Xarope Simples / Angostura Bitters",
-              "perfil": "REFRESCANTE – CÍTRICO – CLÁSSICO"
+              "perfil": "REFRESCANTE – CÍTRICO – CLÁSSICO",
+              "ativo": false
             }
           ]
         }
