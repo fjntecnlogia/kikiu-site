@@ -48,6 +48,12 @@ const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://delivery-api.saipos.com/v1';
 const DOMINIO = 'forneatosaikokikiu.saipos.com';
 const APLICAR = process.argv.includes('--aplicar');
+
+// Piso de sanidade do catalogo. Em 30/09/2026 o Saipos servia 228 itens; o
+// piso e pouco mais da metade disso, largo o bastante para a casa tirar uma
+// secao inteira do ar sem falso alarme, e apertado o bastante para pegar uma
+// fonte que parou de responder direito.
+const MINIMO_ITENS = 120;
 const PEDIDOS = process.argv.slice(2).filter(a => !a.startsWith('--'));
 
 // ── normalização ──────────────────────────────────────────────────────────
@@ -218,6 +224,32 @@ async function baixarPdv() {
     if (!porCategoria.has(nomeCat)) porCategoria.set(nomeCat, []);
     porCategoria.get(nomeCat).push({ nome: String(item.desc_store_item).replace(/\s+/g, ' ').trim(), preco: v.price });
   }
+  // ── freio de mao ──────────────────────────────────────────────────────
+  // A casa troca o PDV do Saipos para o Tacto em 30/09-01/10/2026. Este robo
+  // roda sozinho de 6 em 6 horas COM --aplicar, e o dia da troca e o dia em
+  // que a fonte pode responder pela metade: loja esvaziando, catalogo
+  // parcial, preco zerado no meio da migracao. Escrever isso no cardapio e
+  // preco errado na mesa do cliente, sem ninguem olhando.
+  //
+  // Entao: catalogo magro demais nao e catalogo, e erro de fonte. Aborta
+  // antes de comparar qualquer coisa — parar com o preco de ontem e sempre
+  // melhor que gravar o preco de um catalogo pela metade.
+  const total = [...porCategoria.values()].reduce((n, l) => n + l.length, 0);
+  if (total < MINIMO_ITENS) {
+    throw new Error(
+      `o PDV devolveu so ${total} itens (o piso e ${MINIMO_ITENS}). ` +
+      'Catalogo pela metade ou fonte trocada — NAO gravei preco nenhum. ' +
+      'Se a casa migrou para outro PDV, e aqui que o script precisa mudar.');
+  }
+  // Preco zero ou negativo nunca e preco: sai do catalogo antes de parear.
+  for (const [cat, lista] of porCategoria) {
+    const bons = lista.filter(x => typeof x.preco === 'number' && x.preco > 0);
+    if (bons.length !== lista.length) {
+      console.log(`   AVISO: ${lista.length - bons.length} item(ns) de "${cat}" vieram sem preco valido e foram ignorados`);
+    }
+    porCategoria.set(cat, bons);
+  }
+
   return porCategoria;
 }
 
