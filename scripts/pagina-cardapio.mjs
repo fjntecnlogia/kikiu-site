@@ -250,6 +250,7 @@ ${d.secoes.map(secao).join('\n')}
 </main>
 
 <script type="application/ld+json">${JSON.stringify(d.jsonld)}</script>
+<script type="module" src="/assets/analytics.js"></script>
 </body>
 </html>
 `;
