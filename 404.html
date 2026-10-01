@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Página não encontrada · Kikiu Gastro Bar</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/img/logos/web/kikiu-escuro.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Pagina de rota perdida. Mesma identidade da casa, sem navegacao de topo:
+   quem chega aqui errou o caminho e precisa de SAIDA, nao de menu. */
+:root{ --petrol:#1e3a45;--petrol-deep:#142831;--crema:#f7efe7;--crema-dim:rgba(247,239,231,.66);--pessego:#f2a882;--filete:rgba(242,168,130,.26) }
+*{box-sizing:border-box}
+body{margin:0;min-height:100svh;display:grid;place-items:center;
+  padding:clamp(24px,7vw,64px);background:var(--petrol-deep);color:var(--crema);
+  font-family:"Karla",-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.bloco{max-width:560px;width:100%;display:flex;flex-direction:column;
+  gap:clamp(20px,4vw,30px);text-align:center}
+.selo{width:clamp(56px,13vw,84px);height:auto;margin:0 auto;}
+.numero{font-family:"Outfit",-apple-system,sans-serif;font-size:clamp(50px,15vw,92px);line-height:.9;
+  margin:0;font-weight:700;letter-spacing:-.03em;color:var(--pessego)}
+h1{font-family:"Outfit",-apple-system,sans-serif;font-size:clamp(21px,5vw,30px);line-height:1.2;margin:0;
+  font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+p{margin:0;color:var(--crema-dim);font-size:16px;max-width:42ch;margin-inline:auto}
+.saidas{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:4px}
+.bt{font-family:"Karla",-apple-system,sans-serif;font-size:13.5px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;padding:13px 22px;text-decoration:none;
+  border:1px solid var(--filete);color:var(--crema);border-radius:999px;
+  transition:background .15s,color .15s,border-color .15s}
+.bt:hover,.bt:focus-visible{background:var(--pessego);border-color:var(--pessego);color:#142831}
+.bt--forte{background:var(--pessego);border-color:var(--pessego);color:#142831}
+.bt--forte:hover,.bt--forte:focus-visible{background:transparent;color:var(--crema);border-color:var(--filete)}
+.bt:focus-visible{outline:2px solid var(--pessego);outline-offset:3px}
+.casas{margin-top:clamp(16px,4vw,26px);padding-top:clamp(16px,4vw,26px);
+  border-top:1px solid var(--filete);display:flex;flex-direction:column;gap:11px}
+.casas__t{font-family:"Karla",-apple-system,sans-serif;font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--crema-dim)}
+.casas__l{display:flex;flex-wrap:wrap;gap:12px 22px;justify-content:center}
+.par{display:inline-flex;align-items:baseline;gap:7px;white-space:nowrap}
+.casas__l a{color:var(--crema);text-decoration:none;font-size:15px;
+  border-bottom:1px solid var(--filete);padding-bottom:2px}
+.casas__l a:hover,.casas__l a:focus-visible{border-color:var(--pessego);color:var(--pessego)}
+.casas__l span{color:var(--crema-dim);font-size:13px}
+</style>
+
+<main class="bloco">
+  <img class="selo" src="assets/img/logos/web/kikiu-escuro.png" alt="">
+  <p class="numero">404</p>
+  <h1>Essa porta não leva a lugar nenhum.</h1>
+  <p>A página não existe. Mas a noite continua — e ela começa no mesmo endereço de sempre.</p>
+  <div class="saidas">
+    <a class="bt bt--forte" href="/">Voltar ao início</a>
+    <a class="bt" href="/cardapio">Ver o cardápio</a>
+    <a class="bt" href="https://wa.me/5565992388558?text=Ol%C3%A1!%20Queria%20reservar%20uma%20mesa%20no%20Kikiu." target="_blank" rel="noopener">Reservar</a>
+  </div>
+  <div class="casas">
+    <span class="casas__t">Nossas casas</span>
+    <div class="casas__l">
+      <span class="par"><a href="https://saikogastronomia.com.br">Saikō Gastronomia</a> <span>Japão</span></span>
+      <span class="par"><a href="https://forneattocucina.com.br">Forneatto Cucina</a> <span>Itália</span></span>
+    </div>
+  </div>
+</main>
+</html>
