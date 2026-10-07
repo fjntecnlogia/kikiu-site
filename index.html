@@ -393,8 +393,13 @@ p:last-child { margin-bottom: 0; }
 .horas li:last-child { border-bottom: 0; }
 .horas b { font-weight: 700; }
 .horas span { color: var(--crema-dim); font-variant-numeric: tabular-nums; }
-.mapa { aspect-ratio: 4/3; width: 100%; border-radius: 14px; border: 1px solid var(--filete-soft); background: var(--petrol-lift); display: grid; place-items: center; }
+.mapa { aspect-ratio: 4/3; width: 100%; border-radius: 14px; overflow: hidden; border: 1px solid var(--filete-soft); background: var(--petrol-lift); display: grid; place-items: center; }
 .mapa span { font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(247,239,231,.42); }
+/* O mapa e um <iframe> do Google: a caixa centraliza o conteudo, entao o
+   iframe precisa dizer que ocupa a celula inteira, senao encolhe para o
+   tamanho natural dele e sobra moldura em volta. */
+.mapa iframe { width: 100%; height: 100%; border: 0; display: block;
+  justify-self: stretch; align-self: stretch; }
 /* ── fachada ──────────────────────────────────────────────────── */
 /* Retrato: porta de rua e alta, e a fachada deitada corta o letreiro. */
 .fachada {
@@ -879,7 +884,7 @@ p:last-child { margin-bottom: 0; }
         <li><b>Domingo e segunda</b><span>Fechado</span></li>
       </ul>
       <div class="linha">
-        <a class="btn btn--fio" href="https://maps.google.com/?q=Av.+Bras%C3%ADlia%2C+177+-+Jardim+das+Am%C3%A9ricas%2C+Cuiab%C3%A1+-+MT" target="_blank" rel="noopener">Abrir no Google Maps</a>
+        <a class="btn btn--fio" href="https://www.google.com/maps/search/?api=1&amp;query=-15.61167%2C-56.07355" target="_blank" rel="noopener">Abrir no Google Maps</a>
       </div>
     </div>
     <div>
@@ -890,8 +895,17 @@ p:last-child { margin-bottom: 0; }
         <img src="assets/img/bar/porta.jpg" alt="Fachada do Kikiu — fachada escura e mesas na calçada" loading="lazy" onerror="this.remove()">
         <span>Foto — fachada</span>
       </figure>
-      <!-- TROCAR pelo <iframe> que o Google Maps gera em Compartilhar → Incorporar -->
-      <div class="mapa"><span>Mapa — Google Maps</span></div>
+      <!-- O ENDERECO SOZINHO NAO SERVE PARA O MAPA. "Av. Brasilia, 177" tem
+           mais de um ponto nessa avenida: o palpite do geocodificador erra de
+           99 m a quase 1 km. O que esta aqui e a COORDENADA do predio, lida do
+           GPS das fotos tiradas dentro da casa em 02/10/2026. Alfinete a um
+           quarteirao de distancia e pior do que mapa nenhum. -->
+      <div class="mapa">
+        <iframe src="https://www.google.com/maps?q=-15.61167,-56.07355&amp;z=17&amp;hl=pt-BR&amp;output=embed"
+                title="Mapa — Kikiu, Av. Brasília, 177, Jardim das Américas, Cuiabá/MT"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 </section>
