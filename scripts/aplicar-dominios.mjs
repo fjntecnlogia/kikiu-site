@@ -161,6 +161,15 @@ const vercel = {
   }),
 
   rewrites: [
+    // A pagina do QR code desta casa pode NAO se chamar /cardapio (no Kikiu e
+    // /bebidas). /cardapio e o que as pessoas digitam e o que pode estar em
+    // material ja impresso, entao ele precisa cair na pagina certa.
+    // Isto estava escrito A MAO no vercel.json e o gerador o APAGAVA a cada
+    // rodada — o caso que o CLAUDE.md descreve ("o vercel.json nao se edita a
+    // mao"). O nome real ja vem do casa.json; agora sai daqui.
+    ...(casa.cardapio && casa.cardapio !== 'cardapio'
+      ? [{ source: '/cardapio', destination: `/${casa.cardapio}` }]
+      : []),
     { source: '/reservas-api/:caminho*', destination: `${SISTEMA}/reservas/:caminho*` },
     { source: '/agenda-api/:caminho*',   destination: `${SISTEMA}/eventos/:caminho*` },
     { source: '/opiniao-api/:caminho*',  destination: `${SISTEMA}/opiniao/:caminho*` },
