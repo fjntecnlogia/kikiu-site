@@ -393,8 +393,17 @@ p:last-child { margin-bottom: 0; }
 .horas li:last-child { border-bottom: 0; }
 .horas b { font-weight: 700; }
 .horas span { color: var(--crema-dim); font-variant-numeric: tabular-nums; }
-.mapa { aspect-ratio: 4/3; width: 100%; border-radius: 14px; border: 1px solid var(--filete-soft); background: var(--petrol-lift); display: grid; place-items: center; }
-.mapa span { font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(247,239,231,.42); }
+.mapa { aspect-ratio: 4/3; width: 100%; border-radius: 14px; overflow: hidden; border: 1px solid var(--filete-soft); background: var(--petrol-lift); position: relative; display: block; text-decoration: none; }
+.mapa img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+/* O selo diz que a imagem e clicavel. Mapa que parece figura ninguem toca. */
+.mapa__abrir { position: absolute; left: 14px; bottom: 14px; z-index: 1;
+  background:#1e3a45;color:#f7efe7; border-radius: 999px;
+  font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  padding: 9px 15px; }
+/* Em tela estreita a caixa do mapa encolhe mas o selo nao: a 390px ele
+   tomava mais da metade da largura e virava faixa, nao selo. */
+@media (max-width: 640px) { .mapa__abrir { font-size: 10px; letter-spacing: .1em;
+  padding: 7px 11px; left: 10px; bottom: 10px; } }
 /* ── fachada ──────────────────────────────────────────────────── */
 /* Retrato: porta de rua e alta, e a fachada deitada corta o letreiro. */
 .fachada {
@@ -879,7 +888,7 @@ p:last-child { margin-bottom: 0; }
         <li><b>Domingo e segunda</b><span>Fechado</span></li>
       </ul>
       <div class="linha">
-        <a class="btn btn--fio" href="https://maps.google.com/?q=Av.+Bras%C3%ADlia%2C+177+-+Jardim+das+Am%C3%A9ricas%2C+Cuiab%C3%A1+-+MT" target="_blank" rel="noopener">Abrir no Google Maps</a>
+        <a class="btn btn--fio" href="https://www.google.com/maps/dir/?api=1&amp;destination=-15.61167%2C-56.07355" target="_blank" rel="noopener">Como chegar</a>
       </div>
     </div>
     <div>
@@ -890,8 +899,24 @@ p:last-child { margin-bottom: 0; }
         <img src="assets/img/bar/porta.jpg" alt="Fachada do Kikiu — fachada escura e mesas na calçada" loading="lazy" onerror="this.remove()">
         <span>Foto — fachada</span>
       </figure>
-      <!-- TROCAR pelo <iframe> que o Google Maps gera em Compartilhar → Incorporar -->
-      <div class="mapa"><span>Mapa — Google Maps</span></div>
+      <!-- O MAPA E UMA IMAGEM, E A IMAGEM E O LINK. Duas razoes, as duas medidas:
+           1. O embed do Google NAO NOMEIA o lugar. Pedir o alfinete com rotulo
+              (q=loc:lat,lng (Nome)) devolve o mesmo pb= sem o nome: o rotulo e
+              descartado. So um perfil no Google Meu Negocio poria o nome la, e as
+              tres casas ainda nao tem. Numa imagem nossa a casa aparece pelo nome.
+           2. O embed custa quase 1 MB e cookies de terceiro numa secao que a
+              pessoa ve por dois segundos antes de tocar para abrir o mapa dela.
+           Tocar abre a LOCALIZACAO no app de mapas do celular, que e o que a
+           pessoa quer. A coordenada e a do predio (-15.61167,-56.07355), lida do
+           GPS das fotos tiradas dentro da casa: o ENDERECO sozinho geocodifica
+           ate 1 km fora, porque a Avenida Brasilia inteira e um CEP so.
+           Os ladrilhos sao do OpenStreetMap e o credito esta gravado na imagem,
+           que e o que a licenca pede. -->
+      <a class="mapa" href="https://www.google.com/maps/search/?api=1&amp;query=-15.61167%2C-56.07355" target="_blank" rel="noopener"
+         aria-label="Abrir a localização do Kikiu Gastrobar no Google Maps">
+        <img src="assets/img/bar/mapa.jpg" alt="Mapa: Kikiu Gastrobar na Av. Brasília, 177, Jardim das Américas, Cuiabá — ao lado do Shopping Três Américas" loading="lazy">
+        <span class="mapa__abrir">Abrir no Google Maps</span>
+      </a>
     </div>
   </div>
 </section>
@@ -954,6 +979,12 @@ p:last-child { margin-bottom: 0; }
     "postalCode": "78060-601",
     "addressCountry": "BR"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -15.61167,
+    "longitude": -56.07355
+  },
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=-15.61167%2C-56.07355",
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday"], "opens": "17:00", "closes": "23:59" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "17:00", "closes": "02:00" }
