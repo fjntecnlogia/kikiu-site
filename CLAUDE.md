@@ -66,6 +66,7 @@ As tres telas do site falam com o sistema por um **proxy no proprio dominio**:
 | `/reservas-api/kikiu` | `/public/reservas/kikiu` |
 | `/agenda-api/kikiu` | `/public/eventos/kikiu` |
 | `/opiniao-api/kikiu` | `/public/opiniao/kikiu` |
+| `/promocoes-api/kikiu` | `/public/promocoes/kikiu` |
 
 O proxy roda no servidor da Vercel, entao **o navegador so ve
 kikiu.com.br** — nunca o endereco de quem hospeda o sistema. E isso que
