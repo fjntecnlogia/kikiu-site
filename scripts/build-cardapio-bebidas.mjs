@@ -292,7 +292,14 @@ const secoesQR = dados.blocos.map(b => {
   return { id: idDe(b.titulo), titulo: b.titulo, nota: b.notaPreco, itens };
 });
 
+// O dominio e a rota saem do casa.json, a fonte unica, para a pagina nascer
+// com canonical e og corretos — ver o porque no molde.
+const casa = JSON.parse(await ler('casa.json')).casa;
+const BASE = `https://${casa.dominio}`;
+
 await writeFile(join(RAIZ, 'bebidas.html'), paginaCardapio({
+  url: `${BASE}/${casa.cardapio}`,
+  ogImagem: `${BASE}/assets/img/${casa.imagens}/og.jpg`,
   casa: 'Kikiu Gastrobar', titulo: 'Cardápio', endereco: dados.endereco,
   // Chopp em dobro e SEGUNDA E TERCA, e so. O Double Chopp existe no PDV mas
   // nao entra como linha fixa do cardapio: item fixo diz "sempre", e nos

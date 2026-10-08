@@ -29,6 +29,20 @@ const brl = n => `R$ ${n.toLocaleString('pt-BR',
 export const idDe = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '')
   .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
+/**
+ * O canonical e as tags og NASCEM preenchidas, e isso nao e detalhe.
+ *
+ * Elas ficavam vazias no molde e o `aplicar-dominios.mjs` as preenchia
+ * DEPOIS. So que o robo de preco regenera esta pagina de 6 em 6 horas, com
+ * --aplicar, e NAO roda o aplicar-dominios — entao cada sincronizacao de
+ * preco devolvia o canonical e a imagem que o WhatsApp mostra para "".
+ *
+ * A prova esta no historico: o commit 28e908f do saiko-site, feito pelo
+ * robo, mexeu em exatamente tres linhas — as tres.
+ *
+ * Nascendo certo, nao ha o que apagar, e o aplicar-dominios vira no-op
+ * nestes campos em vez de ser um segundo passo que alguem esquece.
+ */
 export function paginaCardapio(d) {
   const t = d.tema;
 
@@ -82,12 +96,12 @@ export function paginaCardapio(d) {
 <link rel="icon" href="${esc(d.icone.aba)}" sizes="32x32">
 <link rel="apple-touch-icon" href="${esc(d.icone.inicio)}">
 <meta name="apple-mobile-web-app-title" content="${esc(d.casa)}">
-<link rel="canonical" href="">
+<link rel="canonical" href="${esc(d.url)}">
 <meta property="og:type" content="restaurant.menu">
 <meta property="og:title" content="${esc(d.titulo)} — ${esc(d.casa)}">
 <meta property="og:description" content="${esc(d.descricao)}">
-<meta property="og:url" content="">
-<meta property="og:image" content="">
+<meta property="og:url" content="${esc(d.url)}">
+<meta property="og:image" content="${esc(d.ogImagem)}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="${d.fontes}">
