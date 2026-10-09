@@ -173,6 +173,7 @@ const vercel = {
     { source: '/reservas-api/:caminho*', destination: `${SISTEMA}/reservas/:caminho*` },
     { source: '/agenda-api/:caminho*',   destination: `${SISTEMA}/eventos/:caminho*` },
     { source: '/opiniao-api/:caminho*',  destination: `${SISTEMA}/opiniao/:caminho*` },
+    { source: '/promocoes-api/:caminho*', destination: `${SISTEMA}/promocoes/:caminho*` },
   ],
 
   headers: [

@@ -63,6 +63,10 @@
     {
       "source": "/opiniao-api/:caminho*",
       "destination": "https://api-painel.fjntecnologia.com.br/public/opiniao/:caminho*"
+    },
+    {
+      "source": "/promocoes-api/:caminho*",
+      "destination": "https://api-painel.fjntecnologia.com.br/public/promocoes/:caminho*"
     }
   ],
   "headers": [

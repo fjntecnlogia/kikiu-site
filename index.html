@@ -652,6 +652,20 @@ p:last-child { margin-bottom: 0; }
   <div class="agd" data-agenda="kikiu"></div>
 </section>
 
+<!-- ═══ promoções ═══
+     Irmã da agenda, com a mesma folha (.agd) e a mesma regra: nasce
+     escondida e /assets/promocoes/promocoes.js só mostra a seção se a
+     casa tiver promoção VALENDO no painel. Vencida some sozinha; seção
+     vazia diria "esta casa não faz promoção". -->
+<section class="block agd-secao" id="promocoes" hidden>
+  <div class="wrap" style="margin-bottom:44px">
+    <span class="rotulo">Promoções</span>
+    <h2>promoções da casa</h2>
+    <p class="sub" style="margin-top:18px">O que vale esta semana, direto do salão.</p>
+  </div>
+  <div class="agd" data-promocoes="kikiu"></div>
+</section>
+
 
 <!-- ═══ drinks ═══ -->
 <!-- ═══ drinks ═══
@@ -2409,6 +2423,7 @@ p:last-child { margin-bottom: 0; }
       <!-- SAIPOS:JSONLD:FIM -->
 <script src="assets/reserva/reserva.js" defer></script>
 <script src="assets/agenda/agenda.js" defer></script>
+<script src="assets/promocoes/promocoes.js" defer></script>
 
 <!-- Liga a animacao do "chopp em dobro" quando a secao entra na tela.
      Sem observer o navegador nao tem nada ligado e a secao fica parada e
