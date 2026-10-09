@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Cardápio — Kikiu Gastrobar</title>
 <meta name="description" content="Cardápio do Kikiu Gastrobar — cozinha, lanches, coquetelaria autoral da Casa Pro, cervejas, destilados, sucos e sobremesas, no Shopping Três Américas, Cuiabá.">
-<meta name="theme-color" content="#161311">
+<meta name="theme-color" content="#14100e">
 <link rel="icon" href="/assets/img/icone/kikiu-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="/assets/img/icone/kikiu-180.png">
 <meta name="apple-mobile-web-app-title" content="Kikiu Gastrobar">
@@ -22,11 +22,11 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --papel:#fbf7f2; --tinta:#171412; --suave:#6d6560;
-  --marca:#e0402c; --fio:#e6ded5; --barra:#161311; --sobre-barra:#fbf7f2;
+  --papel:#14100e; --cartao:#201a17; --tinta:#f7f1ea; --suave:#b3a89e;
+  --marca:#e0402c; --realce:#f2a882; --fio:#322a25; --barra:#14100e; --sobre-barra:#f7f1ea;
   --display:"Abril Fatface", Georgia, serif; --texto:"Poppins", -apple-system, sans-serif;
 }
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;background:var(--papel)}
 body{
   background:var(--papel); color:var(--tinta); font-family:var(--texto);
   font-size:16px; line-height:1.5;
@@ -34,92 +34,115 @@ body{
 }
 img{max-width:100%;display:block}
 
-/* ── cabeçalho ─────────────────────────────────────────────────────── */
-.capa{background:var(--barra);color:var(--sobre-barra);text-align:center;
-  padding:calc(26px + env(safe-area-inset-top)) 20px 24px}
-/* A barra do topo tem a cor de fundo do logo de cada casa, então o PNG entra
-   sem moldura e sem halo. max-width segura o logo largo (o do Kikiu é 3x mais
-   largo que alto) em celular estreito. */
-.capa__logo{height:58px;width:auto;max-width:76%;margin:0 auto}
-.capa__casa{font-family:var(--display);font-size:30px;line-height:1.1;font-weight:400}
-.capa__tit{font-family:var(--texto);font-size:11px;letter-spacing:.26em;
-  text-transform:uppercase;opacity:.72;margin-top:12px}
-/* o nome da casa existe como <h1> para leitor de tela e para o Google:
-   o logo é imagem, e página de cardápio sem título nenhum é página órfã */
+/* ── abertura: a foto da casa, o logo e nada mais ───────────────────── */
+.capa{position:relative;isolation:isolate;overflow:hidden;color:var(--sobre-barra);
+  min-height:min(74svh,560px);display:flex;flex-direction:column;
+  justify-content:flex-end;align-items:center;text-align:center;
+  padding:calc(40px + env(safe-area-inset-top)) 22px 34px;background:var(--barra)}
+.capa__foto{position:absolute;inset:0;z-index:-2;width:100%;height:100%;
+  object-fit:cover;object-position:center 30%}
+/* o degradê é o que faz o logo e o texto lerem em cima de qualquer foto, e
+   o que funde a foto com o fundo do cardápio sem uma linha de corte */
+.capa::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(0,0,0,.34) 0%,rgba(0,0,0,.08) 28%,
+    rgba(0,0,0,.55) 66%,var(--papel) 100%)}
+.capa__logo{height:58px;width:auto;max-width:72%;margin:0 auto;
+  filter:drop-shadow(0 4px 18px rgba(0,0,0,.55))}
+.capa__casa{font-family:var(--display);font-size:38px;line-height:1.1;font-weight:400}
+.capa__tit{font-family:var(--texto);font-size:12px;letter-spacing:.34em;
+  text-transform:uppercase;color:var(--realce);margin-top:18px;font-weight:700}
 .soleitor{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;
   clip-path:inset(50%);white-space:nowrap;border:0}
 /* [hidden] e regra da folha do navegador: qualquer display do autor ganha
    dela. Sem esta linha a pílula da mesa aparecia vazia enquanto o script
    não rodava — e continuava vazia em quem abre a página sem ?mesa. */
 .capa__mesa[hidden]{display:none}
-.capa__mesa{display:inline-block;margin-top:14px;font-weight:700;font-size:13px;
-  letter-spacing:.1em;text-transform:uppercase;
-  border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:6px 16px}
-.capa__end{font-size:12.5px;opacity:.66;margin-top:14px}
+.capa__mesa{display:inline-block;margin-top:16px;font-weight:700;font-size:13px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--sobre-barra);
+  background:rgba(0,0,0,.45);border:1px solid var(--realce);
+  border-radius:999px;padding:7px 18px;backdrop-filter:blur(6px)}
+.capa__end{font-size:12.5px;opacity:.78;margin-top:16px}
 /* Promoção do dia. Nasce escondida pela mesma razão da pílula da mesa: só o
    script sabe que dia é hoje NA CASA, e prometer no dia errado é pior que
    não prometer. */
 .capa__promo[hidden]{display:none}
 .capa__promo{display:block;margin:16px auto 0;max-width:30ch;font-weight:700;
   font-size:13.5px;line-height:1.5;border-radius:12px;padding:10px 16px;
-  background:rgba(242,168,130,.16);border:1px solid rgba(242,168,130,.45)}
+  color:var(--sobre-barra);backdrop-filter:blur(6px);
+  background:rgba(0,0,0,.5);border:1px solid var(--realce)}
 
-/* ── fichas de seção: grudam no topo e levam direto ────────────────── */
-.fichas{position:sticky;top:0;z-index:9;background:var(--papel);
+
+/* ── fichas de seção: grudam no topo, a da seção atual acende ────────── */
+.fichas{position:sticky;top:0;z-index:9;
+  background:color-mix(in srgb,var(--papel) 90%,transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   border-bottom:1px solid var(--fio);
   display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
-  padding:11px 16px;scroll-padding-left:16px}
+  padding:12px 16px;scroll-padding-left:16px}
 .fichas::-webkit-scrollbar{display:none}
 .fichas a{flex:0 0 auto;text-decoration:none;color:var(--suave);
-  font-size:13px;font-weight:600;white-space:nowrap;
-  border:1px solid var(--fio);border-radius:999px;padding:7px 14px}
-.fichas a:active{background:var(--marca);border-color:var(--marca);color:#fff}
+  font-size:13.5px;font-weight:700;white-space:nowrap;
+  background:var(--cartao);border:1px solid var(--fio);border-radius:999px;
+  padding:9px 16px;transition:background .2s,color .2s,border-color .2s}
+.fichas a.on,.fichas a:active{background:var(--marca);border-color:var(--marca);color:#fff}
 
 /* ── seções ────────────────────────────────────────────────────────── */
 main{padding:0 16px;max-width:640px;margin:0 auto}
-.sec{padding-top:30px;scroll-margin-top:62px}
+.sec{padding-top:44px;scroll-margin-top:64px}
+.sec__cab{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
 .sec__tit{font-family:var(--display);font-weight:400;
-  font-size:25px;line-height:1.15;color:var(--marca);
-  display:flex;align-items:baseline;gap:10px}
-.sec__marca{font-family:var(--texto);font-weight:500;font-size:15px;
-  color:var(--suave);opacity:.75;flex:0 0 auto;letter-spacing:.06em}
-.sec__nota{font-size:12.5px;color:var(--suave);margin-top:5px}
-.lista{list-style:none;margin-top:14px}
+  font-size:32px;line-height:1.08;color:var(--tinta);letter-spacing:.005em}
+.sec__tit::after{content:"";display:block;width:44px;height:3px;border-radius:3px;
+  background:var(--marca);margin-top:12px}
+/* o sinal da casa, grande e apagado: ocupa o canto como carimbo, não como texto */
+.sec__marca{font-family:var(--display);font-weight:400;font-size:58px;
+  line-height:.9;color:var(--marca);opacity:.22;flex:0 0 auto;letter-spacing:.02em;
+  user-select:none}
+.sec__nota{font-size:13px;color:var(--suave);margin-top:12px}
+.lista{list-style:none;margin-top:20px;display:grid;gap:12px}
 
-.div{font-family:var(--display);font-weight:400;font-size:16px;
-  padding:22px 0 2px;color:var(--tinta);letter-spacing:.01em}
-.div:first-child{padding-top:4px}
-.i{padding:15px 0;border-bottom:1px solid var(--fio)}
-.i:last-child{border-bottom:0}
-.i--foto{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:start}
-/* 86px = a miniatura (72) + o vão (14): o item sem foto entra na mesma
-   coluna de texto dos que têm, em vez de encostar na margem */
-.lista--comfoto .i:not(.i--foto){padding-left:86px}
-.lista--comfoto .div{padding-left:86px}
-.i__foto{width:72px;height:86px;object-fit:cover;border-radius:50% 50% 4px 4px / 34% 34% 4px 4px}
-.i__topo{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.div{font-family:var(--texto);font-weight:700;font-size:12px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--realce);padding:14px 2px 0}
+.div:first-child{padding-top:0}
+.i{background:var(--cartao);border:1px solid var(--fio);border-radius:16px;
+  padding:18px 18px 17px;overflow:hidden}
+.i__topo{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
 .i__nome{font-family:var(--display);font-weight:400;
-  font-size:17px;line-height:1.25}
-.i__preco{font-weight:700;font-size:15px;white-space:nowrap;color:var(--marca)}
-.i__sub{font-size:12.5px;color:var(--suave);margin-top:2px}
-.i__desc{font-size:13.5px;color:var(--suave);margin-top:5px;line-height:1.45}
-.i__nota{font-size:12px;color:var(--suave);margin-top:4px;font-style:italic}
+  font-size:19px;line-height:1.22}
+.i__preco{flex:0 0 auto;font-weight:700;font-size:16px;white-space:nowrap;
+  color:var(--realce);letter-spacing:.01em;padding-top:1px}
+.i__sub{font-size:13px;color:var(--suave);margin-top:3px}
+.i__desc{font-size:14px;color:var(--suave);margin-top:8px;line-height:1.5}
+.i__nota{font-size:12.5px;color:var(--suave);margin-top:6px;font-style:italic}
+/* prato com foto: a foto manda, de ponta a ponta do cartão. É este o layout que
+   sobe sozinho quando o JSON ganhar o campo foto (as fotos da casa chegando). */
+.i--foto{padding:0}
+.i--foto .i__txt{padding:16px 18px 18px}
+.i__foto{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+  .i{opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .45s ease}
+  .i.vis{opacity:1;transform:none}
+}
+@media (min-width:560px){
+  .sec__tit{font-size:36px}
+}
 
 /* ── rodapé ────────────────────────────────────────────────────────── */
-.pe{margin-top:38px;padding:26px 16px 8px;border-top:1px solid var(--fio);
+.pe{margin-top:48px;padding:28px 16px 8px;border-top:1px solid var(--fio);
   text-align:center;color:var(--suave);font-size:12.5px;line-height:1.7}
-.pe a{color:var(--marca);font-weight:600}
-/* o ícone já vem com o fundo escuro da casa: arredondado vira um selo */
-.pe__selo{width:38px;height:38px;border-radius:50%;margin:0 auto 14px}
+.pe a{color:var(--realce);font-weight:700}
+.pe__selo{width:42px;height:42px;border-radius:50%;margin:0 auto 14px}
 .topo{display:inline-block;margin-top:18px;text-decoration:none;
-  border:1px solid var(--fio);border-radius:999px;padding:9px 20px;
-  color:var(--suave);font-size:13px;font-weight:600}
-@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+  border:1px solid var(--fio);border-radius:999px;padding:10px 22px;
+  color:var(--suave);font-size:13px;font-weight:700}
 </style>
 </head>
 <body>
 
 <header class="capa">
+  <img class="capa__foto" src="/assets/img/bar/chopp.jpg" alt="" fetchpriority="high" decoding="async">
   <img class="capa__logo" src="/assets/img/logos/web/kikiu-escuro.png" alt="Kikiu Gastrobar"
        width="180" height="58" fetchpriority="high">
   <h1 class="soleitor">Kikiu Gastrobar — Cardápio</h1>
@@ -141,6 +164,7 @@ main{padding:0 16px;max-width:640px;margin:0 auto}
   el.hidden = false;
 })();
 </script>
+
 
 <script>
 // A promocao do dia. O dia tem que ser o DA CASA, nao o do aparelho: quem
@@ -166,7 +190,7 @@ main{padding:0 16px;max-width:640px;margin:0 auto}
 
 <main>
 <section class="sec" id="cozinha">
-    <h2 class="sec__tit">Cozinha</h2>
+    <div class="sec__cab"><h2 class="sec__tit">Cozinha</h2></div>
     
     <ul class="lista"><li class="div">Petiscos</li><li class="i"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Iscas de frango super crocantes</h3><span class="i__preco">R$ 66,00</span></div><p class="i__sub">mostarda Dijon</p>
@@ -215,7 +239,7 @@ main{padding:0 16px;max-width:640px;margin:0 auto}
     </div></li></ul>
   </section>
 <section class="sec" id="drinks-casa-pro">
-    <h2 class="sec__tit">Drinks Casa Pro</h2>
+    <div class="sec__cab"><h2 class="sec__tit">Drinks Casa Pro</h2></div>
     <p class="sec__nota">cada unidade por: R$ 45,00</p>
     <ul class="lista"><li class="i"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Agueixa</h3><span class="i__preco">R$ 45,00</span></div>
@@ -258,7 +282,7 @@ main{padding:0 16px;max-width:640px;margin:0 auto}
     </div></li></ul>
   </section>
 <section class="sec" id="cervejas">
-    <h2 class="sec__tit">Cervejas</h2>
+    <div class="sec__cab"><h2 class="sec__tit">Cervejas</h2></div>
     
     <ul class="lista"><li class="div">Chopp</li><li class="i"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Brahma Chopp Caldereta</h3><span class="i__preco">R$ 11,00</span></div><p class="i__sub">caldereta 300ml</p>
@@ -291,7 +315,7 @@ main{padding:0 16px;max-width:640px;margin:0 auto}
     </div></li></ul>
   </section>
 <section class="sec" id="nao-alcoolicos">
-    <h2 class="sec__tit">Não-Alcoólicos</h2>
+    <div class="sec__cab"><h2 class="sec__tit">Não-Alcoólicos</h2></div>
     
     <ul class="lista"><li class="i"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Água com Gás</h3><span class="i__preco">R$ 9,00</span></div>
@@ -322,7 +346,7 @@ main{padding:0 16px;max-width:640px;margin:0 auto}
     </div></li></ul>
   </section>
 <section class="sec" id="drinks-kikiu">
-    <h2 class="sec__tit">Drinks Kikiu</h2>
+    <div class="sec__cab"><h2 class="sec__tit">Drinks Kikiu</h2></div>
     
     <ul class="lista"><li class="div">Caipirinhas</li><li class="i"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Caipirinha de Abacaxi com Hortelã</h3><span class="i__preco">R$ 34,00</span></div>
@@ -347,7 +371,7 @@ main{padding:0 16px;max-width:640px;margin:0 auto}
     </div></li></ul>
   </section>
 <section class="sec" id="dose-destilados">
-    <h2 class="sec__tit">Dose / Destilados</h2>
+    <div class="sec__cab"><h2 class="sec__tit">Dose / Destilados</h2></div>
     
     <ul class="lista"><li class="div">Cachaças</li><li class="i"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Cachaça branca</h3><span class="i__preco">R$ 20,00</span></div>
@@ -402,7 +426,7 @@ main{padding:0 16px;max-width:640px;margin:0 auto}
     </div></li></ul>
   </section>
 <section class="sec" id="sucos-naturais">
-    <h2 class="sec__tit">Sucos Naturais</h2>
+    <div class="sec__cab"><h2 class="sec__tit">Sucos Naturais</h2></div>
     
     <ul class="lista"><li class="div">Copo 300ml</li><li class="i"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Abacaxi</h3><span class="i__preco">R$ 14,00</span></div>
@@ -421,7 +445,7 @@ main{padding:0 16px;max-width:640px;margin:0 auto}
     </div></li></ul>
   </section>
 <section class="sec" id="sobremesas">
-    <h2 class="sec__tit">Sobremesas</h2>
+    <div class="sec__cab"><h2 class="sec__tit">Sobremesas</h2></div>
     
     <ul class="lista"><li class="div">Sobremesas</li><li class="i"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Mousse de chocolate</h3><span class="i__preco">R$ 35,00</span></div>
@@ -439,6 +463,37 @@ main{padding:0 16px;max-width:640px;margin:0 auto}
     <br><a class="topo" href="#">Voltar ao topo</a>
   </footer>
 </main>
+
+<script>
+// A ficha da seção que está na tela acende, e os cartões entram ao rolar. Sem
+// IntersectionObserver (navegador velho) nada disso é necessário: a página
+// inteira já é legível, e os cartões nascem visíveis pelo noscript abaixo.
+(function () {
+  if (!('IntersectionObserver' in window)) {
+    document.documentElement.classList.add('sem-io');
+    [].forEach.call(document.querySelectorAll('.i'), function (c) { c.classList.add('vis'); });
+    return;
+  }
+  var fichas = document.querySelector('.fichas');
+  var cartoes = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vis'); cartoes.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -6% 0px' });
+  [].forEach.call(document.querySelectorAll('.i'), function (c) { cartoes.observe(c); });
+
+  var secoes = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      [].forEach.call(fichas.querySelectorAll('a'), function (a) {
+        var on = a.getAttribute('href') === '#' + e.target.id;
+        a.classList.toggle('on', on);
+        if (on) fichas.scrollTo({ left: a.offsetLeft - 16, behavior: 'smooth' });
+      });
+    });
+  }, { rootMargin: '-30% 0px -65% 0px' });
+  [].forEach.call(document.querySelectorAll('.sec'), function (s) { secoes.observe(s); });
+})();
+</script>
+<noscript><style>.i{opacity:1!important;transform:none!important}</style></noscript>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Menu","name":"Cardápio Kikiu Gastrobar","hasMenuSection":[{"@type":"MenuSection","name":"Cozinha","hasMenuItem":[{"@type":"MenuItem","name":"Iscas de frango super crocantes","offers":{"@type":"Offer","price":"66.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Picanha Angus fatiada","offers":{"@type":"Offer","price":"97.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Iscas de peixe branco crocante","offers":{"@type":"Offer","price":"83.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Cubos de filé mignon acebolado","offers":{"@type":"Offer","price":"108.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Batata frita especial","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Pastel de carne à bolonhesa","offers":{"@type":"Offer","price":"55.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Pastel cremoso de camarão","offers":{"@type":"Offer","price":"78.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Pastel de Cupim desfiado com cream cheese","offers":{"@type":"Offer","price":"63.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Pastel de calabresa","offers":{"@type":"Offer","price":"58.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Bolinho mineiro de milho, bacon","offers":{"@type":"Offer","price":"62.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Croquete de ossobuco","offers":{"@type":"Offer","price":"68.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Bolinho crocante de pintado","offers":{"@type":"Offer","price":"64.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Croquete de carne seca","offers":{"@type":"Offer","price":"61.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Escondidinho de Ragu de Costela","offers":{"@type":"Offer","price":"81.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Gratinado de Catupiry","offers":{"@type":"Offer","price":"115.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Moela e coração ao molho roti especial","offers":{"@type":"Offer","price":"55.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Carne de onça","offers":{"@type":"Offer","price":"78.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Picanha Angus","offers":{"@type":"Offer","price":"145.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Carré de cordeiro","offers":{"@type":"Offer","price":"162.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Sobrecoxa desossada na mostarda","offers":{"@type":"Offer","price":"81.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Sanduíche de churrasquinho de picanha","offers":{"@type":"Offer","price":"55.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Sanduíche crocante de frango","offers":{"@type":"Offer","price":"42.00","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Drinks Casa Pro","hasMenuItem":[{"@type":"MenuItem","name":"Agueixa","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Aperol Spritz","description":"Aperol / Espumante / Água com Gás / Laranja","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Arona","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Banana Sour","description":"Cachaça / Banana / Maracujá / Água de Coco / Limão Taiti / Mascavo","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Black Velvet","description":"Cachaça / Café / Chocolate / Gengibre / Pimenta / Limão Taiti","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Carajillo","description":"Premium Tequila / Licor 43 / Licor de Café / Café Espresso","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Fitzgerald","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Gin Tônica","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Jungle Bird","description":"Premium Rum Envelhecido / Campari / Abacaxi / Limão Taiti","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Lampião","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Midori","description":"Premium Vodka / Abacaxi / Yuzu / Manjericão / Kiwi / Limão Taiti","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Mojito","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Moscow Mule","description":"Premium Vodka / Limão Taiti / Gengibre","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Negroni","description":"Premium Gin / Vermute Doce / Amaro","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Porn Star Martini","description":"Vodka de Baunilha / Maracujá / Abacaxi / Limão Siciliano","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Ranei Duce","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"The Shacet","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Valentina","description":"Premium Rum Branco / Melão / Maçã / Maracujá / Limão Siciliano / Baunilha / Laranja / Abacaxi","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Whiskey Business","description":"Premium Whiskey / Canela / Limão Siciliano / Pimenta / Angostura Bitters","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Cervejas","hasMenuItem":[{"@type":"MenuItem","name":"Brahma Chopp Caldereta","offers":{"@type":"Offer","price":"11.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Brahma Chopp Caneca","offers":{"@type":"Offer","price":"16.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Cosmel Caneca","offers":{"@type":"Offer","price":"21.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Brahma","offers":{"@type":"Offer","price":"20.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Corona","offers":{"@type":"Offer","price":"24.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Original","offers":{"@type":"Offer","price":"20.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Spaten","offers":{"@type":"Offer","price":"24.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Stella Pure Gold","offers":{"@type":"Offer","price":"24.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Brahma Zero","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Corona","offers":{"@type":"Offer","price":"16.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Corona Cero","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Flying Fish","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Michelob","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Spaten","offers":{"@type":"Offer","price":"16.00","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Não-Alcoólicos","hasMenuItem":[{"@type":"MenuItem","name":"Água com Gás","offers":{"@type":"Offer","price":"9.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Água sem Gás","offers":{"@type":"Offer","price":"8.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Água de Coco","offers":{"@type":"Offer","price":"16.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Guaraná","offers":{"@type":"Offer","price":"9.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Guaraná Zero","offers":{"@type":"Offer","price":"9.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"H2O Limão","offers":{"@type":"Offer","price":"12.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"H2O Limoneto","offers":{"@type":"Offer","price":"12.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Pepsi","offers":{"@type":"Offer","price":"9.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Pepsi Black","offers":{"@type":"Offer","price":"9.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Tônica","offers":{"@type":"Offer","price":"9.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Tônica Zero","offers":{"@type":"Offer","price":"9.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Red Bull","offers":{"@type":"Offer","price":"16.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Red Bull Sem Açúcar","offers":{"@type":"Offer","price":"24.90","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Drinks Kikiu","hasMenuItem":[{"@type":"MenuItem","name":"Caipirinha de Abacaxi com Hortelã","offers":{"@type":"Offer","price":"34.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Caipirinha de Caju","offers":{"@type":"Offer","price":"36.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Caipirinha de Limão","offers":{"@type":"Offer","price":"34.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Caipirinha de Manga com Pimenta","offers":{"@type":"Offer","price":"36.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Caipirinha de Maracujá","offers":{"@type":"Offer","price":"36.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Abacaxi com Hortelã","offers":{"@type":"Offer","price":"42.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Caju","offers":{"@type":"Offer","price":"41.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Limão","offers":{"@type":"Offer","price":"38.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Manga com Pimenta","offers":{"@type":"Offer","price":"44.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Maracujá","offers":{"@type":"Offer","price":"39.00","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Dose / Destilados","hasMenuItem":[{"@type":"MenuItem","name":"Cachaça branca","offers":{"@type":"Offer","price":"20.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Cachaça envelhecida","offers":{"@type":"Offer","price":"26.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Cachaça premium","offers":{"@type":"Offer","price":"30.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Ballantine's 7 anos","offers":{"@type":"Offer","price":"28.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Buchanans 12 anos","offers":{"@type":"Offer","price":"32.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Chivas Regal 12 anos","offers":{"@type":"Offer","price":"35.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Glenfiddich 12 anos","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Glenlivet 12 anos","offers":{"@type":"Offer","price":"42.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Johnnie Walker Black Label 12 anos","offers":{"@type":"Offer","price":"35.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Johnnie Walker Gold Label","offers":{"@type":"Offer","price":"38.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Johnnie Walker Red Label 7 anos","offers":{"@type":"Offer","price":"30.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Old Parr 12 anos","offers":{"@type":"Offer","price":"35.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Absolut","offers":{"@type":"Offer","price":"30.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Belvedere","offers":{"@type":"Offer","price":"38.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Grey Goose","offers":{"@type":"Offer","price":"38.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Kamai","offers":{"@type":"Offer","price":"28.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Beefeater","offers":{"@type":"Offer","price":"32.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Kamai","offers":{"@type":"Offer","price":"28.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Tanqueray","offers":{"@type":"Offer","price":"32.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"José Cuervo","offers":{"@type":"Offer","price":"26.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Balena","offers":{"@type":"Offer","price":"24.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Don Cream","offers":{"@type":"Offer","price":"24.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Campari","offers":{"@type":"Offer","price":"46.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Licor 43","offers":{"@type":"Offer","price":"32.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Shot de limão","offers":{"@type":"Offer","price":"4.00","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Sucos Naturais","hasMenuItem":[{"@type":"MenuItem","name":"Abacaxi","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Abacaxi com hortelã","offers":{"@type":"Offer","price":"16.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Acerola","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Laranja","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Limão","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Maracujá","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Morango","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Sobremesas","hasMenuItem":[{"@type":"MenuItem","name":"Mousse de chocolate","offers":{"@type":"Offer","price":"35.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Banoffe","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Cheesecake","offers":{"@type":"Offer","price":"38.00","priceCurrency":"BRL"}}]}]}</script>
 <script type="module" src="/assets/analytics.js"></script>

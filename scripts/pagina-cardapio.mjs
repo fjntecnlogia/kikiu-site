@@ -52,7 +52,7 @@ export function paginaCardapio(d) {
     // ninguém a achar nada.
     if (it.divisor) return `<li class="div">${esc(it.divisor)}</li>`;
     const foto = it.foto
-      ? `<img class="i__foto" src="${esc(it.foto)}" alt="${esc(it.nome)}" loading="lazy" decoding="async" width="72" height="86">`
+      ? `<img class="i__foto" src="${esc(it.foto)}" alt="${esc(it.nome)}" loading="lazy" decoding="async" width="640" height="480">`
       : '';
     const linhas = [
       it.sub  ? `<p class="i__sub">${esc(it.sub)}</p>` : '',
@@ -76,7 +76,7 @@ export function paginaCardapio(d) {
     const marca = s.marca
       ? `<span class="sec__marca" aria-hidden="true">${esc(s.marca)}</span>` : '';
     return `<section class="sec" id="${esc(s.id)}">
-    <h2 class="sec__tit">${marca}${esc(s.titulo)}</h2>
+    <div class="sec__cab"><h2 class="sec__tit">${esc(s.titulo)}</h2>${marca}</div>
     ${s.nota ? `<p class="sec__nota">${esc(s.nota)}</p>` : ''}
     <ul class="lista${comFoto}">${s.itens.map(item).join('')}</ul>
   </section>`;
@@ -109,11 +109,11 @@ export function paginaCardapio(d) {
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --papel:${t.papel}; --tinta:${t.tinta}; --suave:${t.suave};
-  --marca:${t.marca}; --fio:${t.fio}; --barra:${t.barra}; --sobre-barra:${t.sobreBarra};
+  --papel:${t.papel}; --cartao:${t.cartao}; --tinta:${t.tinta}; --suave:${t.suave};
+  --marca:${t.marca}; --realce:${t.realce}; --fio:${t.fio}; --barra:${t.barra}; --sobre-barra:${t.sobreBarra};
   --display:${t.display}; --texto:${t.texto};
 }
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;background:var(--papel)}
 body{
   background:var(--papel); color:var(--tinta); font-family:var(--texto);
   font-size:16px; line-height:1.5;
@@ -121,92 +121,115 @@ body{
 }
 img{max-width:100%;display:block}
 
-/* ── cabeçalho ─────────────────────────────────────────────────────── */
-.capa{background:var(--barra);color:var(--sobre-barra);text-align:center;
-  padding:calc(26px + env(safe-area-inset-top)) 20px 24px}
-/* A barra do topo tem a cor de fundo do logo de cada casa, então o PNG entra
-   sem moldura e sem halo. max-width segura o logo largo (o do Kikiu é 3x mais
-   largo que alto) em celular estreito. */
-.capa__logo{height:${t.logoAltura}px;width:auto;max-width:76%;margin:0 auto}
-.capa__casa{font-family:var(--display);font-size:30px;line-height:1.1;font-weight:${t.pesoDisplay}}
-.capa__tit{font-family:var(--texto);font-size:11px;letter-spacing:.26em;
-  text-transform:uppercase;opacity:.72;margin-top:12px}
-/* o nome da casa existe como <h1> para leitor de tela e para o Google:
-   o logo é imagem, e página de cardápio sem título nenhum é página órfã */
+/* ── abertura: a foto da casa, o logo e nada mais ───────────────────── */
+.capa{position:relative;isolation:isolate;overflow:hidden;color:var(--sobre-barra);
+  min-height:min(74svh,560px);display:flex;flex-direction:column;
+  justify-content:flex-end;align-items:center;text-align:center;
+  padding:calc(40px + env(safe-area-inset-top)) 22px 34px;background:var(--barra)}
+.capa__foto{position:absolute;inset:0;z-index:-2;width:100%;height:100%;
+  object-fit:cover;object-position:${t.heroPos || 'center'}}
+/* o degradê é o que faz o logo e o texto lerem em cima de qualquer foto, e
+   o que funde a foto com o fundo do cardápio sem uma linha de corte */
+.capa::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(0,0,0,.34) 0%,rgba(0,0,0,.08) 28%,
+    rgba(0,0,0,.55) 66%,var(--papel) 100%)}
+.capa__logo{height:${t.logoAltura}px;width:auto;max-width:72%;margin:0 auto;
+  filter:drop-shadow(0 4px 18px rgba(0,0,0,.55))}
+.capa__casa{font-family:var(--display);font-size:38px;line-height:1.1;font-weight:${t.pesoDisplay}}
+.capa__tit{font-family:var(--texto);font-size:12px;letter-spacing:.34em;
+  text-transform:uppercase;color:var(--realce);margin-top:18px;font-weight:700}
 .soleitor{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;
   clip-path:inset(50%);white-space:nowrap;border:0}
 /* [hidden] e regra da folha do navegador: qualquer display do autor ganha
    dela. Sem esta linha a pílula da mesa aparecia vazia enquanto o script
    não rodava — e continuava vazia em quem abre a página sem ?mesa. */
 .capa__mesa[hidden]{display:none}
-.capa__mesa{display:inline-block;margin-top:14px;font-weight:700;font-size:13px;
-  letter-spacing:.1em;text-transform:uppercase;
-  border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:6px 16px}
-.capa__end{font-size:12.5px;opacity:.66;margin-top:14px}
+.capa__mesa{display:inline-block;margin-top:16px;font-weight:700;font-size:13px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--sobre-barra);
+  background:rgba(0,0,0,.45);border:1px solid var(--realce);
+  border-radius:999px;padding:7px 18px;backdrop-filter:blur(6px)}
+.capa__end{font-size:12.5px;opacity:.78;margin-top:16px}
 /* Promoção do dia. Nasce escondida pela mesma razão da pílula da mesa: só o
    script sabe que dia é hoje NA CASA, e prometer no dia errado é pior que
    não prometer. */
 .capa__promo[hidden]{display:none}
 .capa__promo{display:block;margin:16px auto 0;max-width:30ch;font-weight:700;
   font-size:13.5px;line-height:1.5;border-radius:12px;padding:10px 16px;
-  background:rgba(242,168,130,.16);border:1px solid rgba(242,168,130,.45)}
+  color:var(--sobre-barra);backdrop-filter:blur(6px);
+  background:rgba(0,0,0,.5);border:1px solid var(--realce)}
 
-/* ── fichas de seção: grudam no topo e levam direto ────────────────── */
-.fichas{position:sticky;top:0;z-index:9;background:var(--papel);
+
+/* ── fichas de seção: grudam no topo, a da seção atual acende ────────── */
+.fichas{position:sticky;top:0;z-index:9;
+  background:color-mix(in srgb,var(--papel) 90%,transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   border-bottom:1px solid var(--fio);
   display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
-  padding:11px 16px;scroll-padding-left:16px}
+  padding:12px 16px;scroll-padding-left:16px}
 .fichas::-webkit-scrollbar{display:none}
 .fichas a{flex:0 0 auto;text-decoration:none;color:var(--suave);
-  font-size:13px;font-weight:600;white-space:nowrap;
-  border:1px solid var(--fio);border-radius:999px;padding:7px 14px}
-.fichas a:active{background:var(--marca);border-color:var(--marca);color:#fff}
+  font-size:13.5px;font-weight:700;white-space:nowrap;
+  background:var(--cartao);border:1px solid var(--fio);border-radius:999px;
+  padding:9px 16px;transition:background .2s,color .2s,border-color .2s}
+.fichas a.on,.fichas a:active{background:var(--marca);border-color:var(--marca);color:#fff}
 
 /* ── seções ────────────────────────────────────────────────────────── */
 main{padding:0 16px;max-width:640px;margin:0 auto}
-.sec{padding-top:30px;scroll-margin-top:62px}
+.sec{padding-top:44px;scroll-margin-top:64px}
+.sec__cab{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
 .sec__tit{font-family:var(--display);font-weight:${t.pesoDisplay};
-  font-size:25px;line-height:1.15;color:var(--marca);
-  display:flex;align-items:baseline;gap:10px}
-.sec__marca{font-family:var(--texto);font-weight:500;font-size:15px;
-  color:var(--suave);opacity:.75;flex:0 0 auto;letter-spacing:.06em}
-.sec__nota{font-size:12.5px;color:var(--suave);margin-top:5px}
-.lista{list-style:none;margin-top:14px}
+  font-size:32px;line-height:1.08;color:var(--tinta);letter-spacing:.005em}
+.sec__tit::after{content:"";display:block;width:44px;height:3px;border-radius:3px;
+  background:var(--marca);margin-top:12px}
+/* o sinal da casa, grande e apagado: ocupa o canto como carimbo, não como texto */
+.sec__marca{font-family:var(--display);font-weight:${t.pesoDisplay};font-size:58px;
+  line-height:.9;color:var(--marca);opacity:.22;flex:0 0 auto;letter-spacing:.02em;
+  user-select:none}
+.sec__nota{font-size:13px;color:var(--suave);margin-top:12px}
+.lista{list-style:none;margin-top:20px;display:grid;gap:12px}
 
-.div{font-family:var(--display);font-weight:${t.pesoDisplay};font-size:16px;
-  padding:22px 0 2px;color:var(--tinta);letter-spacing:.01em}
-.div:first-child{padding-top:4px}
-.i{padding:15px 0;border-bottom:1px solid var(--fio)}
-.i:last-child{border-bottom:0}
-.i--foto{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:start}
-/* 86px = a miniatura (72) + o vão (14): o item sem foto entra na mesma
-   coluna de texto dos que têm, em vez de encostar na margem */
-.lista--comfoto .i:not(.i--foto){padding-left:86px}
-.lista--comfoto .div{padding-left:86px}
-.i__foto{width:72px;height:86px;object-fit:cover;border-radius:${t.arco}}
-.i__topo{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.div{font-family:var(--texto);font-weight:700;font-size:12px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--realce);padding:14px 2px 0}
+.div:first-child{padding-top:0}
+.i{background:var(--cartao);border:1px solid var(--fio);border-radius:16px;
+  padding:18px 18px 17px;overflow:hidden}
+.i__topo{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
 .i__nome{font-family:var(--display);font-weight:${t.pesoDisplay};
-  font-size:17px;line-height:1.25}
-.i__preco{font-weight:700;font-size:15px;white-space:nowrap;color:var(--marca)}
-.i__sub{font-size:12.5px;color:var(--suave);margin-top:2px}
-.i__desc{font-size:13.5px;color:var(--suave);margin-top:5px;line-height:1.45}
-.i__nota{font-size:12px;color:var(--suave);margin-top:4px;font-style:italic}
+  font-size:19px;line-height:1.22}
+.i__preco{flex:0 0 auto;font-weight:700;font-size:16px;white-space:nowrap;
+  color:var(--realce);letter-spacing:.01em;padding-top:1px}
+.i__sub{font-size:13px;color:var(--suave);margin-top:3px}
+.i__desc{font-size:14px;color:var(--suave);margin-top:8px;line-height:1.5}
+.i__nota{font-size:12.5px;color:var(--suave);margin-top:6px;font-style:italic}
+/* prato com foto: a foto manda, de ponta a ponta do cartão. É este o layout que
+   sobe sozinho quando o JSON ganhar o campo foto (as fotos da casa chegando). */
+.i--foto{padding:0}
+.i--foto .i__txt{padding:16px 18px 18px}
+.i__foto{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+  .i{opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .45s ease}
+  .i.vis{opacity:1;transform:none}
+}
+@media (min-width:560px){
+  .sec__tit{font-size:36px}
+}
 
 /* ── rodapé ────────────────────────────────────────────────────────── */
-.pe{margin-top:38px;padding:26px 16px 8px;border-top:1px solid var(--fio);
+.pe{margin-top:48px;padding:28px 16px 8px;border-top:1px solid var(--fio);
   text-align:center;color:var(--suave);font-size:12.5px;line-height:1.7}
-.pe a{color:var(--marca);font-weight:600}
-/* o ícone já vem com o fundo escuro da casa: arredondado vira um selo */
-.pe__selo{width:38px;height:38px;border-radius:50%;margin:0 auto 14px}
+.pe a{color:var(--realce);font-weight:700}
+.pe__selo{width:42px;height:42px;border-radius:50%;margin:0 auto 14px}
 .topo{display:inline-block;margin-top:18px;text-decoration:none;
-  border:1px solid var(--fio);border-radius:999px;padding:9px 20px;
-  color:var(--suave);font-size:13px;font-weight:600}
-@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+  border:1px solid var(--fio);border-radius:999px;padding:10px 22px;
+  color:var(--suave);font-size:13px;font-weight:700}
 </style>
 </head>
 <body>
 
 <header class="capa">
+  ${t.heroImg ? `<img class="capa__foto" src="${esc(t.heroImg)}" alt="" fetchpriority="high" decoding="async">` : ''}
   ${d.logo ? `<img class="capa__logo" src="${esc(d.logo.src)}" alt="${esc(d.logo.alt)}"
        width="${d.logo.largura}" height="${d.logo.altura}" fetchpriority="high">`
            : `<p class="capa__casa">${esc(d.casa)}</p>`}
@@ -229,6 +252,7 @@ main{padding:0 16px;max-width:640px;margin:0 auto}
   el.hidden = false;
 })();
 <\/script>
+
 ${d.promo ? `
 <script>
 // A promocao do dia. O dia tem que ser o DA CASA, nao o do aparelho: quem
@@ -262,6 +286,37 @@ ${d.secoes.map(secao).join('\n')}
     <br><a class="topo" href="#">Voltar ao topo</a>
   </footer>
 </main>
+
+<script>
+// A ficha da seção que está na tela acende, e os cartões entram ao rolar. Sem
+// IntersectionObserver (navegador velho) nada disso é necessário: a página
+// inteira já é legível, e os cartões nascem visíveis pelo noscript abaixo.
+(function () {
+  if (!('IntersectionObserver' in window)) {
+    document.documentElement.classList.add('sem-io');
+    [].forEach.call(document.querySelectorAll('.i'), function (c) { c.classList.add('vis'); });
+    return;
+  }
+  var fichas = document.querySelector('.fichas');
+  var cartoes = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vis'); cartoes.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -6% 0px' });
+  [].forEach.call(document.querySelectorAll('.i'), function (c) { cartoes.observe(c); });
+
+  var secoes = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      [].forEach.call(fichas.querySelectorAll('a'), function (a) {
+        var on = a.getAttribute('href') === '#' + e.target.id;
+        a.classList.toggle('on', on);
+        if (on) fichas.scrollTo({ left: a.offsetLeft - 16, behavior: 'smooth' });
+      });
+    });
+  }, { rootMargin: '-30% 0px -65% 0px' });
+  [].forEach.call(document.querySelectorAll('.sec'), function (s) { secoes.observe(s); });
+})();
+<\/script>
+<noscript><style>.i{opacity:1!important;transform:none!important}</style></noscript>
 
 <script type="application/ld+json">${JSON.stringify(d.jsonld)}</script>
 <script type="module" src="/assets/analytics.js"></script>
