@@ -318,6 +318,10 @@ await writeFile(join(RAIZ, 'bebidas.html'), paginaCardapio({
   },
   icone: { aba: '/assets/img/icone/kikiu-32.png', inicio: '/assets/img/icone/kikiu-180.png' },
   descricao: 'Cardápio do Kikiu Gastrobar — cozinha, lanches, coquetelaria autoral da Casa Pro, cervejas, destilados, sucos e sobremesas, no Shopping Três Américas, Cuiabá.',
+  // O cardapio acompanha o painel ao vivo (preco, foto, item que acabou) e a
+  // carta de vinhos e uma pagina so, igual nas tres casas.
+  apiSlug: casa.id,
+  extras: [{ texto: 'Vinhos', href: '/vinhos' }],
   gerador: 'scripts/build-cardapio-bebidas.mjs',
   fontes: 'https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@400;600;700&display=swap',
   rodape: 'Preços sujeitos a alteração. Venda de bebida alcoólica proibida para menores de 18 anos.',
