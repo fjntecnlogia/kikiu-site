@@ -322,8 +322,10 @@ await writeFile(join(RAIZ, 'bebidas.html'), paginaCardapio({
   fontes: 'https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@400;600;700&display=swap',
   rodape: 'Preços sujeitos a alteração. Venda de bebida alcoólica proibida para menores de 18 anos.',
   tema: {
-    papel: '#fbf7f2', tinta: '#171412', suave: '#6d6560', marca: '#e0402c',
-    fio: '#e6ded5', barra: '#161311', sobreBarra: '#fbf7f2',
+    papel: '#14100e', cartao: '#201a17', tinta: '#f7f1ea', suave: '#b3a89e',
+    marca: '#e0402c', realce: '#f2a882', fio: '#322a25',
+    barra: '#14100e', sobreBarra: '#f7f1ea',
+    heroImg: '/assets/img/bar/chopp.jpg', heroPos: 'center 30%',
     display: '"Abril Fatface", Georgia, serif',
     texto: '"Poppins", -apple-system, sans-serif',
     pesoDisplay: 400,
