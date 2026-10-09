@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carta de vinhos — Kikiu Gastrobar</title>
+<meta name="description" content="Carta de vinhos e espumantes — 40 rótulos, de espumantes, champagne, brancos, tintos, meias garrafas. Kikiu Gastrobar, Cuiabá.">
+
+<meta name="theme-color" content="#14100e">
+<link rel="icon" href="/assets/img/icone/kikiu-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/img/icone/kikiu-180.png">
+<meta name="apple-mobile-web-app-title" content="Kikiu Gastrobar">
+<link rel="canonical" href="https://kikiu.com.br/vinhos">
+<meta property="og:type" content="restaurant.menu">
+<meta property="og:title" content="Carta de vinhos — Kikiu Gastrobar">
+<meta property="og:description" content="Carta de vinhos e espumantes — 40 rótulos, de espumantes, champagne, brancos, tintos, meias garrafas. Kikiu Gastrobar, Cuiabá.">
+<meta property="og:url" content="https://kikiu.com.br/vinhos">
+<meta property="og:image" content="https://kikiu.com.br/assets/img/bar/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@400;600;700&display=swap">
+<!-- GERADO por scripts/build-vinhos.mjs. Não editar à mão. -->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --papel:#14100e; --cartao:#201a17; --tinta:#f7f1ea; --suave:#b3a89e;
+  --marca:#e0402c; --realce:#f2a882; --fio:#322a25; --barra:#14100e; --sobre-barra:#f7f1ea;
+  --display:"Abril Fatface", Georgia, serif; --texto:"Poppins", -apple-system, sans-serif;
+}
+html{-webkit-text-size-adjust:100%;background:var(--papel)}
+body{
+  background:var(--papel); color:var(--tinta); font-family:var(--texto);
+  font-size:16px; line-height:1.5;
+  padding-bottom:calc(28px + env(safe-area-inset-bottom));
+}
+img{max-width:100%;display:block}
+
+/* ── abertura: a foto da casa, o logo e nada mais ───────────────────── */
+.capa{position:relative;isolation:isolate;overflow:hidden;color:var(--sobre-barra);
+  min-height:auto;display:flex;flex-direction:column;
+  justify-content:flex-end;align-items:center;text-align:center;
+  padding:calc(40px + env(safe-area-inset-top)) 22px 34px;background:var(--barra)}
+.capa__foto{position:absolute;inset:0;z-index:-2;width:100%;height:100%;
+  object-fit:cover;object-position:center}
+/* o degradê é o que faz o logo e o texto lerem em cima de qualquer foto, e
+   o que funde a foto com o fundo do cardápio sem uma linha de corte */
+/* sem foto (tema claro) não há o que escurecer: o degradê só existe com foto */
+
+.capa__logo{height:58px;width:auto;max-width:72%;margin:0 auto;
+  filter:drop-shadow(0 4px 18px rgba(0,0,0,.55))}
+.capa__casa{font-family:var(--display);font-size:38px;line-height:1.1;font-weight:400}
+.capa__tit{font-family:var(--texto);font-size:12px;letter-spacing:.34em;
+  text-transform:uppercase;color:var(--realce);margin-top:18px;font-weight:700}
+.soleitor{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;
+  clip-path:inset(50%);white-space:nowrap;border:0}
+/* [hidden] e regra da folha do navegador: qualquer display do autor ganha
+   dela. Sem esta linha a pílula da mesa aparecia vazia enquanto o script
+   não rodava — e continuava vazia em quem abre a página sem ?mesa. */
+.capa__mesa[hidden]{display:none}
+.capa__mesa{display:inline-block;margin-top:16px;font-weight:700;font-size:13px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--sobre-barra);
+  background:color-mix(in srgb,var(--barra) 55%,transparent);border:1px solid var(--realce);
+  border-radius:999px;padding:7px 18px;backdrop-filter:blur(6px)}
+.capa__end{font-size:12.5px;opacity:.78;margin-top:16px}
+/* Promoção do dia. Nasce escondida pela mesma razão da pílula da mesa: só o
+   script sabe que dia é hoje NA CASA, e prometer no dia errado é pior que
+   não prometer. */
+.capa__promo[hidden]{display:none}
+.capa__promo{display:block;margin:16px auto 0;max-width:30ch;font-weight:700;
+  font-size:13.5px;line-height:1.5;border-radius:12px;padding:10px 16px;
+  color:var(--sobre-barra);backdrop-filter:blur(6px);
+  background:color-mix(in srgb,var(--barra) 60%,transparent);border:1px solid var(--realce)}
+
+
+/* ── fichas de seção: grudam no topo, a da seção atual acende ────────── */
+.fichas{position:sticky;top:0;z-index:9;
+  background:color-mix(in srgb,var(--papel) 90%,transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--fio);
+  display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
+  padding:12px 16px;scroll-padding-left:16px}
+.fichas::-webkit-scrollbar{display:none}
+.fichas a{flex:0 0 auto;text-decoration:none;color:var(--suave);
+  font-size:13.5px;font-weight:700;white-space:nowrap;
+  background:var(--cartao);border:1px solid var(--fio);border-radius:999px;
+  padding:9px 16px;transition:background .2s,color .2s,border-color .2s}
+.fichas a.on,.fichas a:active{background:var(--marca);border-color:var(--marca);color:#fff}
+.fichas a.extra{border-color:var(--realce);color:var(--realce)}
+.i[hidden],.div[hidden],.sec[hidden],.fichas a[hidden]{display:none}
+
+/* ── seções ────────────────────────────────────────────────────────── */
+main{padding:0 16px;max-width:640px;margin:0 auto}
+.sec{padding-top:44px;scroll-margin-top:64px}
+.sec__cab{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.sec__tit{font-family:var(--display);font-weight:400;
+  font-size:32px;line-height:1.08;color:var(--tinta);letter-spacing:.005em}
+.sec__tit::after{content:"";display:block;width:44px;height:3px;border-radius:3px;
+  background:var(--marca);margin-top:12px}
+/* o sinal da casa, grande e apagado: ocupa o canto como carimbo, não como texto */
+.sec__marca{font-family:var(--display);font-weight:400;font-size:58px;
+  line-height:.9;color:var(--marca);opacity:.22;flex:0 0 auto;letter-spacing:.02em;
+  user-select:none}
+.sec__nota{font-size:13px;color:var(--suave);margin-top:12px}
+.lista{list-style:none;margin-top:20px;display:grid;gap:12px}
+
+.div{font-family:var(--texto);font-weight:700;font-size:12px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--realce);padding:14px 2px 0}
+.div:first-child{padding-top:0}
+.i{background:var(--cartao);border:1px solid var(--fio);border-radius:16px;
+  padding:18px 18px 17px;overflow:hidden}
+.i__topo{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.i__nome{font-family:var(--display);font-weight:400;
+  font-size:19px;line-height:1.22}
+.i__preco{flex:0 0 auto;font-weight:700;font-size:16px;white-space:nowrap;
+  color:var(--realce);letter-spacing:.01em;padding-top:1px}
+.i__sub{font-size:13px;color:var(--suave);margin-top:3px}
+.i__desc{font-size:14px;color:var(--suave);margin-top:8px;line-height:1.5}
+.i__nota{font-size:12.5px;color:var(--suave);margin-top:6px;font-style:italic}
+/* prato com foto: a foto manda, de ponta a ponta do cartão. É este o layout que
+   sobe sozinho quando o JSON ganhar o campo foto (as fotos da casa chegando). */
+.i--foto{padding:0}
+.i--foto .i__txt{padding:16px 18px 18px}
+.i__foto{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+  .i{opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .45s ease}
+  .i.vis{opacity:1;transform:none}
+}
+@media (min-width:560px){
+  .sec__tit{font-size:36px}
+}
+
+/* ── rodapé ────────────────────────────────────────────────────────── */
+.pe{margin-top:48px;padding:28px 16px 8px;border-top:1px solid var(--fio);
+  text-align:center;color:var(--suave);font-size:12.5px;line-height:1.7}
+.pe a{color:var(--realce);font-weight:700}
+.pe__selo{width:42px;height:42px;border-radius:50%;margin:0 auto 14px}
+.topo{display:inline-block;margin-top:18px;text-decoration:none;
+  border:1px solid var(--fio);border-radius:999px;padding:10px 22px;
+  color:var(--suave);font-size:13px;font-weight:700}
+</style>
+</head>
+<body>
+
+<header class="capa">
+  
+  <img class="capa__logo" src="/assets/img/logos/web/kikiu-escuro.png" alt="Kikiu Gastrobar"
+       width="180" height="58" fetchpriority="high">
+  <h1 class="soleitor">Kikiu Gastrobar — Carta de vinhos</h1>
+  <p class="capa__tit">Carta de vinhos</p>
+  <p class="capa__mesa" hidden></p>
+  <p class="capa__promo" hidden></p>
+  <p class="capa__end">Shopping Três Américas · Cuiabá — MT</p>
+</header>
+<script>
+// ?mesa=7 vira "Mesa 7" no topo. O numero vem do QR colado na propria mesa,
+// entao e ele que identifica de onde veio o cliente quando o atendimento
+// entrar. Tratado como numero, nunca como texto: e parametro de URL, qualquer
+// um digita o que quiser ali.
+(function () {
+  var n = parseInt(new URLSearchParams(location.search).get('mesa'), 10);
+  if (!(n >= 1 && n <= 99)) return;
+  var el = document.querySelector('.capa__mesa');
+  el.textContent = 'Mesa ' + n;
+  el.hidden = false;
+})();
+</script>
+
+
+
+<nav class="fichas" aria-label="Seções do cardápio"><a class="extra" href="/cardapio">Cardápio</a><a href="#espumantes">Espumantes</a><a href="#champagne">Champagne</a><a href="#brancos">Brancos</a><a href="#tintos">Tintos</a><a href="#meias-garrafas">Meias garrafas</a></nav>
+
+<main>
+<section class="sec" id="espumantes" data-titulo="ESPUMANTES">
+    <div class="sec__cab"><h2 class="sec__tit">Espumantes</h2></div>
+    
+    <ul class="lista"><li class="i" data-nome="Brasil 1913 Sparkling Brut"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Brasil 1913 Sparkling Brut</h3><span class="i__preco">R$ 130,00</span></div><p class="i__desc">Uva: Chardonnay Serra Gaúcha/RS - Basso · Teor Alc.: 11,5%</p>
+    </div></li><li class="i" data-nome="Brasil 1913 Sparkling Moscatel"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Brasil 1913 Sparkling Moscatel</h3><span class="i__preco">R$ 130,00</span></div><p class="i__desc">Uva: Moscato Bianco &amp; Moscato Giallo Serra Gaúcha/RS - Basso · Teor Alc.: 7,5%</p>
+    </div></li><li class="i" data-nome="Brasil 1913 Sparkling Prosecco"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Brasil 1913 Sparkling Prosecco</h3><span class="i__preco">R$ 130,00</span></div><p class="i__desc">Uva: Glera Serra Gaúcha/RS - Basso · Teor Alc.: 11,7%</p>
+    </div></li><li class="i" data-nome="Brasil Chandon Brut Rosé"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Brasil Chandon Brut Rosé</h3><span class="i__preco">R$ 240,00</span></div><p class="i__desc">Uva: Pinot Noir, Riesling Itálico, Chardonnay Serra Gaúcha/RS - Chandon · Teor Alc.: 11,9%</p>
+    </div></li></ul>
+  </section>
+<section class="sec" id="champagne" data-titulo="CHAMPAGNE">
+    <div class="sec__cab"><h2 class="sec__tit">Champagne</h2></div>
+    
+    <ul class="lista"><li class="i" data-nome="Piper Heidsieck"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Piper Heidsieck</h3><span class="i__preco">R$ 850,00</span></div><p class="i__desc">Uva: Pinot Noir, Pinot Meunier &amp; Chardonnay Champagne - Piper Heidsieck Teor Alc.: 12%</p>
+    </div></li></ul>
+  </section>
+<section class="sec" id="brancos" data-titulo="Vinho Branco">
+    <div class="sec__cab"><h2 class="sec__tit">Brancos</h2></div>
+    
+    <ul class="lista"><li class="i" data-nome="Chile Casas del Maipo"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Chile Casas del Maipo</h3><span class="i__preco">R$ 110,00</span></div><p class="i__desc">Uva: Sauvignon Blanc Vale do Maule - CWC · Teor Alc.: 13%</p>
+    </div></li><li class="i" data-nome="Argentina 4 Estaciones Summer"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Argentina 4 Estaciones Summer</h3><span class="i__preco">R$ 120,00</span></div><p class="i__desc">Uva: Torrontes Mendoza - Tittarelli · Teor Alc.: 13%</p>
+    </div></li><li class="i" data-nome="ROSÉ 4 Estaciones Spring Rose"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">ROSÉ 4 Estaciones Spring Rose</h3><span class="i__preco">R$ 125,00</span></div><p class="i__desc">Uva: Malbec Mendoza - Tittarelli · Teor Alc.: 13%</p>
+    </div></li><li class="i" data-nome="Chile Chaka"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Chile Chaka</h3><span class="i__preco">R$ 140,00</span></div><p class="i__desc">Uva: Chardonnay Vale Central - Vina Marty · Teor Alc.: 13,5%</p>
+    </div></li><li class="i" data-nome="Itália Collezione"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Itália Collezione</h3><span class="i__preco">R$ 199,00</span></div><p class="i__desc">Uva: Pinot Grigio Veneto - Sensi · Teor Alc.: 12,5%</p>
+    </div></li><li class="i" data-nome="Uruguai Toscanini Reserve"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Uruguai Toscanini Reserve</h3><span class="i__preco">R$ 200,00</span></div><p class="i__desc">Uva: Chardonnay Paso Cuello, Canelones - Toscanini · Teor Alc.: 13,5% Amadurecimento: 10 meses em barricas</p>
+    </div></li><li class="i" data-nome="Françа Chateau Bellevue Rougier Blanc"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Françа Chateau Bellevue Rougier Blanc</h3><span class="i__preco">R$ 210,00</span></div><p class="i__desc">Uva: Semillion, Muscadelle e Sauvignon Blanc Bordeaux - Terre de Vignerons · Teor Alc.: 11,5%</p>
+    </div></li><li class="i" data-nome="ROSÉ Susana Balbo"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">ROSÉ Susana Balbo</h3><span class="i__preco">R$ 260,00</span></div><p class="i__desc">Uva: Malbec e Pinot Noir Valle De Uco - Susana Balbo Teor Alc.: 12%</p>
+    </div></li><li class="i" data-nome="Argentina Angelica Zapata"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Argentina Angelica Zapata</h3><span class="i__preco">R$ 290,00</span></div><p class="i__desc">Uva: Chardonnay Mendoza - Catena Zapata · Teor Alc.: 13,5%</p>
+    </div></li><li class="i" data-nome="França Petit Chablis"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">França Petit Chablis</h3><span class="i__preco">R$ 499,00</span></div><p class="i__desc">Uva: Chardonnay Bourgogne - André Goichot · Teor Alc.: 13%</p>
+    </div></li></ul>
+  </section>
+<section class="sec" id="tintos" data-titulo="Vinho Tinto">
+    <div class="sec__cab"><h2 class="sec__tit">Tintos</h2></div>
+    
+    <ul class="lista"><li class="i" data-nome="Chile Casas del Maipo"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Chile Casas del Maipo</h3><span class="i__preco">R$ 110,00</span></div><p class="i__desc">Uva: Cabernet Sauvignon Vale do Maule - CWC · Teor Alc.: 13%</p>
+    </div></li><li class="i" data-nome="Argentina 4 Estaciones Autumn"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Argentina 4 Estaciones Autumn</h3><span class="i__preco">R$ 120,00</span></div><p class="i__desc">Uva: Malbec Mendoza - Tittarelli · Teor Alc.: 13%</p>
+    </div></li><li class="i" data-nome="Portugal Esperança Alentejo"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Portugal Esperança Alentejo</h3><span class="i__preco">R$ 135,00</span></div><p class="i__desc">Uva: Aragonez, Trincadeira &amp; Castelão Alentejo - Segur Estates · Teor Alc.: 13,5% Amadurecimento: 06 meses</p>
+    </div></li><li class="i" data-nome="Chile Chaka (Carmenere)"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Chile Chaka (Carmenere)</h3><span class="i__preco">R$ 140,00</span></div><p class="i__desc">Uva: Carmenere Vale Central - Vina Marty · Teor Alc.: 14%</p>
+    </div></li><li class="i" data-nome="Chile Chaka (Merlot)"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Chile Chaka (Merlot)</h3><span class="i__preco">R$ 140,00</span></div><p class="i__desc">Uva: Merlot Vale Central - Vina Marty · Teor Alc.: 14%</p>
+    </div></li><li class="i" data-nome="Brasil 1550 BRAS Reserva"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Brasil 1550 BRAS Reserva</h3><span class="i__preco">R$ 149,00</span></div><p class="i__desc">Uva: Cabernet Sauvignon Farroupilha/RS - Basso · Teor Alc.: 13,5%</p>
+    </div></li><li class="i" data-nome="Chile Casas del Maipo Reserva"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Chile Casas del Maipo Reserva</h3><span class="i__preco">R$ 150,00</span></div><p class="i__desc">Uva: Pinot Noir Vale do Maule - CWC · Teor Alc.: 13,5% Amadurecimento: 09 meses</p>
+    </div></li><li class="i" data-nome="Argentina Vasco Viejo"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Argentina Vasco Viejo</h3><span class="i__preco">R$ 160,00</span></div><p class="i__desc">Uva: Malbec Mendoza - Bodegas Lopez · Teor Alc.: 14% Amadurecimento: 03 meses em barricas</p>
+    </div></li><li class="i" data-nome="França Le Petit Maynne Bordeaux"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">França Le Petit Maynne Bordeaux</h3><span class="i__preco">R$ 170,00</span></div><p class="i__desc">Uva: Merlot, Cabernet Sauvignon e Cabernet Franc Bordeaux - Petit Maynne · Teor Alc.: 13,5%</p>
+    </div></li><li class="i" data-nome="Argentina Malacara (Malbec)"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Argentina Malacara (Malbec)</h3><span class="i__preco">R$ 180,00</span></div><p class="i__desc">Uva: Malbec Mendoza - Kauzo Estates · Teor Alc.: 14%</p>
+    </div></li><li class="i" data-nome="Argentina Malacara (Cabernet Sauvignon)"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Argentina Malacara (Cabernet Sauvignon)</h3><span class="i__preco">R$ 180,00</span></div><p class="i__desc">Uva: Cabernet Sauvignon Mendoza - Kauzo Estates · Teor Alc.: 13,8%</p>
+    </div></li><li class="i" data-nome="Itália Toso Barbera DOCG"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Itália Toso Barbera DOCG</h3><span class="i__preco">R$ 190,00</span></div><p class="i__desc">Uva: Barbera Piemonte - Toso · Teor Alc.: 13%</p>
+    </div></li><li class="i" data-nome="Argentina 4 Estaciones Icon Blend"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Argentina 4 Estaciones Icon Blend</h3><span class="i__preco">R$ 190,00</span></div><p class="i__desc">Uva: Malbec, Cabernet Sauvignon e Petit Verdot Vale do Uco - Tittarelli · Teor Alc.: 14% Amadurecimento: 06 meses em barricas</p>
+    </div></li><li class="i" data-nome="Espanha Aradon"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Espanha Aradon</h3><span class="i__preco">R$ 200,00</span></div><p class="i__desc">Uva: 90% Tempranillo e 10% Garnacha D.O. Rioja - Bodegas Aradon · Teor Alc.: 14% Amadurecimento: 04 meses</p>
+    </div></li><li class="i" data-nome="Itália Chianti"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Itália Chianti</h3><span class="i__preco">R$ 210,00</span></div><p class="i__desc">Uva: Sangiovese Toscana - Sensi · Teor Alc.: 14%</p>
+    </div></li><li class="i" data-nome="França Côtes du Rhône Urbain V"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">França Côtes du Rhône Urbain V</h3><span class="i__preco">R$ 220,00</span></div><p class="i__desc">Uva: Grenache, Syrah e Mourvèdre Côtes du Rhône - Urbain V · Teor Alc.: 13%</p>
+    </div></li><li class="i" data-nome="Itália Luccarelli Primitivo Puglia"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Itália Luccarelli Primitivo Puglia</h3><span class="i__preco">R$ 240,00</span></div><p class="i__desc">Uva: Primitivo Puglia - Luccarelli · Teor Alc.: 13,5%</p>
+    </div></li><li class="i" data-nome="Chile Casa Donoso Bourbon"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Chile Casa Donoso Bourbon</h3><span class="i__preco">R$ 250,00</span></div><p class="i__desc">Uva: Cabernet Sauvignon Vale Central - Casa Donoso · Teor Alc.: 13,5% Amadurecimento: 6-8 meses barricas Bourbon</p>
+    </div></li><li class="i" data-nome="Chile Montes Alpha"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Chile Montes Alpha</h3><span class="i__preco">R$ 360,00</span></div><p class="i__desc">Uva: Carménère Valle del Aconcágua - Viña Montes · Teor Alc.: 14,5% Amadurecimento: 12 meses em barricas</p>
+    </div></li><li class="i" data-nome="Argentina Angelica Zapata"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Argentina Angelica Zapata</h3><span class="i__preco">R$ 420,00</span></div><p class="i__desc">Uva: Malbec Mendoza - Catena Zapata · Teor Alc.: 13,5%</p>
+    </div></li><li class="i" data-nome="Itália 1400 Vulcanici DOC Primitivo di Manduria"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Itália 1400 Vulcanici DOC Primitivo di Manduria</h3><span class="i__preco">R$ 1.090,00</span></div><p class="i__desc">Uva: Primitivo Puglia - Vinícola Manieri · Teor Alc.: 14,5%</p>
+    </div></li><li class="i" data-nome="Itália Barolo"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Itália Barolo</h3><span class="i__preco">R$ 1.090,00</span></div><p class="i__desc">Uva: Nebbiolo Piemonte - Sensi · Teor Alc.: 14,5% Amadurecimento: 24 meses</p>
+    </div></li></ul>
+  </section>
+<section class="sec" id="meias-garrafas" data-titulo="Vinhos Meias garrafas">
+    <div class="sec__cab"><h2 class="sec__tit">Meias garrafas</h2></div>
+    
+    <ul class="lista"><li class="i" data-nome="Vinho fortificado"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">Vinho fortificado</h3><span class="i__preco">R$ 28,00</span></div>
+    </div></li><li class="i" data-nome="BRANCO Meia garrafa 375ml"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">BRANCO Meia garrafa 375ml</h3><span class="i__preco">R$ 60,00</span></div>
+    </div></li><li class="i" data-nome="TINTO Meia garrafa 375ml"><div class="i__txt">
+      <div class="i__topo"><h3 class="i__nome">TINTO Meia garrafa 375ml</h3><span class="i__preco">R$ 60,00</span></div>
+    </div></li></ul>
+  </section>
+
+  <footer class="pe">
+    <img class="pe__selo" src="/assets/img/icone/kikiu-180.png" alt="" width="38" height="38" loading="lazy">
+    Preços sujeitos a alteração. Venda de bebida alcoólica proibida para menores de 18 anos.<br>
+    <a href="/">Conheça o Kikiu Gastrobar</a>
+    <br><a class="topo" href="#">Voltar ao topo</a>
+  </footer>
+</main>
+
+<script>
+// A ficha da seção que está na tela acende, e os cartões entram ao rolar. Sem
+// IntersectionObserver (navegador velho) nada disso é necessário: a página
+// inteira já é legível, e os cartões nascem visíveis pelo noscript abaixo.
+(function () {
+  if (!('IntersectionObserver' in window)) {
+    document.documentElement.classList.add('sem-io');
+    [].forEach.call(document.querySelectorAll('.i'), function (c) { c.classList.add('vis'); });
+    return;
+  }
+  var fichas = document.querySelector('.fichas');
+  var cartoes = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('vis'); cartoes.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -6% 0px' });
+  [].forEach.call(document.querySelectorAll('.i'), function (c) { cartoes.observe(c); });
+
+  var secoes = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      [].forEach.call(fichas.querySelectorAll('a'), function (a) {
+        var on = a.getAttribute('href') === '#' + e.target.id;
+        a.classList.toggle('on', on);
+        if (on) fichas.scrollTo({ left: a.offsetLeft - 16, behavior: 'smooth' });
+      });
+    });
+  }, { rootMargin: '-30% 0px -65% 0px' });
+  [].forEach.call(document.querySelectorAll('.sec'), function (s) { secoes.observe(s); });
+})();
+</script>
+<noscript><style>.i{opacity:1!important;transform:none!important}</style></noscript>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Menu","name":"Carta de vinhos — Kikiu Gastrobar","hasMenuSection":[{"@type":"MenuSection","name":"Espumantes","hasMenuItem":[{"@type":"MenuItem","name":"Brasil 1913 Sparkling Brut","description":"Uva: Chardonnay Serra Gaúcha/RS - Basso · Teor Alc.: 11,5%","offers":{"@type":"Offer","price":"130.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Brasil 1913 Sparkling Moscatel","description":"Uva: Moscato Bianco & Moscato Giallo Serra Gaúcha/RS - Basso · Teor Alc.: 7,5%","offers":{"@type":"Offer","price":"130.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Brasil 1913 Sparkling Prosecco","description":"Uva: Glera Serra Gaúcha/RS - Basso · Teor Alc.: 11,7%","offers":{"@type":"Offer","price":"130.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Brasil Chandon Brut Rosé","description":"Uva: Pinot Noir, Riesling Itálico, Chardonnay Serra Gaúcha/RS - Chandon · Teor Alc.: 11,9%","offers":{"@type":"Offer","price":"240.00","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Champagne","hasMenuItem":[{"@type":"MenuItem","name":"Piper Heidsieck","description":"Uva: Pinot Noir, Pinot Meunier & Chardonnay Champagne - Piper Heidsieck Teor Alc.: 12%","offers":{"@type":"Offer","price":"850.00","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Brancos","hasMenuItem":[{"@type":"MenuItem","name":"Chile Casas del Maipo","description":"Uva: Sauvignon Blanc Vale do Maule - CWC · Teor Alc.: 13%","offers":{"@type":"Offer","price":"110.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Argentina 4 Estaciones Summer","description":"Uva: Torrontes Mendoza - Tittarelli · Teor Alc.: 13%","offers":{"@type":"Offer","price":"120.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"ROSÉ 4 Estaciones Spring Rose","description":"Uva: Malbec Mendoza - Tittarelli · Teor Alc.: 13%","offers":{"@type":"Offer","price":"125.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Chile Chaka","description":"Uva: Chardonnay Vale Central - Vina Marty · Teor Alc.: 13,5%","offers":{"@type":"Offer","price":"140.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Itália Collezione","description":"Uva: Pinot Grigio Veneto - Sensi · Teor Alc.: 12,5%","offers":{"@type":"Offer","price":"199.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Uruguai Toscanini Reserve","description":"Uva: Chardonnay Paso Cuello, Canelones - Toscanini · Teor Alc.: 13,5% Amadurecimento: 10 meses em barricas","offers":{"@type":"Offer","price":"200.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Françа Chateau Bellevue Rougier Blanc","description":"Uva: Semillion, Muscadelle e Sauvignon Blanc Bordeaux - Terre de Vignerons · Teor Alc.: 11,5%","offers":{"@type":"Offer","price":"210.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"ROSÉ Susana Balbo","description":"Uva: Malbec e Pinot Noir Valle De Uco - Susana Balbo Teor Alc.: 12%","offers":{"@type":"Offer","price":"260.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Argentina Angelica Zapata","description":"Uva: Chardonnay Mendoza - Catena Zapata · Teor Alc.: 13,5%","offers":{"@type":"Offer","price":"290.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"França Petit Chablis","description":"Uva: Chardonnay Bourgogne - André Goichot · Teor Alc.: 13%","offers":{"@type":"Offer","price":"499.00","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Tintos","hasMenuItem":[{"@type":"MenuItem","name":"Chile Casas del Maipo","description":"Uva: Cabernet Sauvignon Vale do Maule - CWC · Teor Alc.: 13%","offers":{"@type":"Offer","price":"110.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Argentina 4 Estaciones Autumn","description":"Uva: Malbec Mendoza - Tittarelli · Teor Alc.: 13%","offers":{"@type":"Offer","price":"120.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Portugal Esperança Alentejo","description":"Uva: Aragonez, Trincadeira & Castelão Alentejo - Segur Estates · Teor Alc.: 13,5% Amadurecimento: 06 meses","offers":{"@type":"Offer","price":"135.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Chile Chaka (Carmenere)","description":"Uva: Carmenere Vale Central - Vina Marty · Teor Alc.: 14%","offers":{"@type":"Offer","price":"140.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Chile Chaka (Merlot)","description":"Uva: Merlot Vale Central - Vina Marty · Teor Alc.: 14%","offers":{"@type":"Offer","price":"140.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Brasil 1550 BRAS Reserva","description":"Uva: Cabernet Sauvignon Farroupilha/RS - Basso · Teor Alc.: 13,5%","offers":{"@type":"Offer","price":"149.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Chile Casas del Maipo Reserva","description":"Uva: Pinot Noir Vale do Maule - CWC · Teor Alc.: 13,5% Amadurecimento: 09 meses","offers":{"@type":"Offer","price":"150.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Argentina Vasco Viejo","description":"Uva: Malbec Mendoza - Bodegas Lopez · Teor Alc.: 14% Amadurecimento: 03 meses em barricas","offers":{"@type":"Offer","price":"160.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"França Le Petit Maynne Bordeaux","description":"Uva: Merlot, Cabernet Sauvignon e Cabernet Franc Bordeaux - Petit Maynne · Teor Alc.: 13,5%","offers":{"@type":"Offer","price":"170.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Argentina Malacara (Malbec)","description":"Uva: Malbec Mendoza - Kauzo Estates · Teor Alc.: 14%","offers":{"@type":"Offer","price":"180.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Argentina Malacara (Cabernet Sauvignon)","description":"Uva: Cabernet Sauvignon Mendoza - Kauzo Estates · Teor Alc.: 13,8%","offers":{"@type":"Offer","price":"180.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Itália Toso Barbera DOCG","description":"Uva: Barbera Piemonte - Toso · Teor Alc.: 13%","offers":{"@type":"Offer","price":"190.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Argentina 4 Estaciones Icon Blend","description":"Uva: Malbec, Cabernet Sauvignon e Petit Verdot Vale do Uco - Tittarelli · Teor Alc.: 14% Amadurecimento: 06 meses em barricas","offers":{"@type":"Offer","price":"190.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Espanha Aradon","description":"Uva: 90% Tempranillo e 10% Garnacha D.O. Rioja - Bodegas Aradon · Teor Alc.: 14% Amadurecimento: 04 meses","offers":{"@type":"Offer","price":"200.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Itália Chianti","description":"Uva: Sangiovese Toscana - Sensi · Teor Alc.: 14%","offers":{"@type":"Offer","price":"210.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"França Côtes du Rhône Urbain V","description":"Uva: Grenache, Syrah e Mourvèdre Côtes du Rhône - Urbain V · Teor Alc.: 13%","offers":{"@type":"Offer","price":"220.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Itália Luccarelli Primitivo Puglia","description":"Uva: Primitivo Puglia - Luccarelli · Teor Alc.: 13,5%","offers":{"@type":"Offer","price":"240.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Chile Casa Donoso Bourbon","description":"Uva: Cabernet Sauvignon Vale Central - Casa Donoso · Teor Alc.: 13,5% Amadurecimento: 6-8 meses barricas Bourbon","offers":{"@type":"Offer","price":"250.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Chile Montes Alpha","description":"Uva: Carménère Valle del Aconcágua - Viña Montes · Teor Alc.: 14,5% Amadurecimento: 12 meses em barricas","offers":{"@type":"Offer","price":"360.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Argentina Angelica Zapata","description":"Uva: Malbec Mendoza - Catena Zapata · Teor Alc.: 13,5%","offers":{"@type":"Offer","price":"420.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Itália 1400 Vulcanici DOC Primitivo di Manduria","description":"Uva: Primitivo Puglia - Vinícola Manieri · Teor Alc.: 14,5%","offers":{"@type":"Offer","price":"1090.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Itália Barolo","description":"Uva: Nebbiolo Piemonte - Sensi · Teor Alc.: 14,5% Amadurecimento: 24 meses","offers":{"@type":"Offer","price":"1090.00","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Meias garrafas","hasMenuItem":[{"@type":"MenuItem","name":"Vinho fortificado","offers":{"@type":"Offer","price":"28.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"BRANCO Meia garrafa 375ml","offers":{"@type":"Offer","price":"60.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"TINTO Meia garrafa 375ml","offers":{"@type":"Offer","price":"60.00","priceCurrency":"BRL"}}]}]}</script>
+<script type="module" src="/assets/cardapio-vivo.js" data-api="/cardapio-api/forneatto"></script>
+<script type="module" src="/assets/analytics.js"></script>
+</body>
+</html>

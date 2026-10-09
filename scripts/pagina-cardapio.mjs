@@ -60,7 +60,7 @@ export function paginaCardapio(d) {
       it.nota ? `<p class="i__nota">${esc(it.nota)}</p>` : '',
     ].filter(Boolean).join('');
     const preco = it.preco != null ? `<span class="i__preco">${brl(it.preco)}</span>` : '';
-    return `<li class="i${it.foto ? ' i--foto' : ''}">${foto}<div class="i__txt">
+    return `<li class="i${it.foto ? ' i--foto' : ''}" data-nome="${esc(it.nome)}">${foto}<div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">${esc(it.nome)}</h3>${preco}</div>${linhas}
     </div></li>`;
   };
@@ -75,14 +75,18 @@ export function paginaCardapio(d) {
     // Decorativo — aria-hidden para o leitor de tela não soletrar.
     const marca = s.marca
       ? `<span class="sec__marca" aria-hidden="true">${esc(s.marca)}</span>` : '';
-    return `<section class="sec" id="${esc(s.id)}">
+    return `<section class="sec" id="${esc(s.id)}" data-titulo="${esc(s.categoria ?? s.titulo)}">
     <div class="sec__cab"><h2 class="sec__tit">${esc(s.titulo)}</h2>${marca}</div>
     ${s.nota ? `<p class="sec__nota">${esc(s.nota)}</p>` : ''}
     <ul class="lista${comFoto}">${s.itens.map(item).join('')}</ul>
   </section>`;
   };
 
-  const fichas = d.secoes.map(s =>
+  // Atalhos para outras páginas da casa (a carta de vinhos): ficam à frente das
+  // seções, com a borda acesa, para não se confundirem com uma seção.
+  const extras = (d.extras ?? []).map(e =>
+    `<a class="extra" href="${esc(e.href)}">${esc(e.texto)}</a>`).join('');
+  const fichas = extras + d.secoes.map(s =>
     `<a href="#${esc(s.id)}">${esc(s.titulo)}</a>`).join('');
 
   return `<!DOCTYPE html>
@@ -92,6 +96,7 @@ export function paginaCardapio(d) {
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(d.titulo)} — ${esc(d.casa)}</title>
 <meta name="description" content="${esc(d.descricao)}">
+${d.naoIndexar ? '<meta name="robots" content="noindex, nofollow">' : ''}
 <meta name="theme-color" content="${t.barra}">
 <link rel="icon" href="${esc(d.icone.aba)}" sizes="32x32">
 <link rel="apple-touch-icon" href="${esc(d.icone.inicio)}">
@@ -123,16 +128,17 @@ img{max-width:100%;display:block}
 
 /* ── abertura: a foto da casa, o logo e nada mais ───────────────────── */
 .capa{position:relative;isolation:isolate;overflow:hidden;color:var(--sobre-barra);
-  min-height:min(74svh,560px);display:flex;flex-direction:column;
+  min-height:${t.heroImg ? 'min(74svh,560px)' : 'auto'};display:flex;flex-direction:column;
   justify-content:flex-end;align-items:center;text-align:center;
   padding:calc(40px + env(safe-area-inset-top)) 22px 34px;background:var(--barra)}
 .capa__foto{position:absolute;inset:0;z-index:-2;width:100%;height:100%;
   object-fit:cover;object-position:${t.heroPos || 'center'}}
 /* o degradê é o que faz o logo e o texto lerem em cima de qualquer foto, e
    o que funde a foto com o fundo do cardápio sem uma linha de corte */
-.capa::after{content:"";position:absolute;inset:0;z-index:-1;
+/* sem foto (tema claro) não há o que escurecer: o degradê só existe com foto */
+${t.heroImg ? `.capa::after{content:"";position:absolute;inset:0;z-index:-1;
   background:linear-gradient(180deg,rgba(0,0,0,.34) 0%,rgba(0,0,0,.08) 28%,
-    rgba(0,0,0,.55) 66%,var(--papel) 100%)}
+    rgba(0,0,0,.55) 66%,var(--papel) 100%)}` : ''}
 .capa__logo{height:${t.logoAltura}px;width:auto;max-width:72%;margin:0 auto;
   filter:drop-shadow(0 4px 18px rgba(0,0,0,.55))}
 .capa__casa{font-family:var(--display);font-size:38px;line-height:1.1;font-weight:${t.pesoDisplay}}
@@ -146,7 +152,7 @@ img{max-width:100%;display:block}
 .capa__mesa[hidden]{display:none}
 .capa__mesa{display:inline-block;margin-top:16px;font-weight:700;font-size:13px;
   letter-spacing:.12em;text-transform:uppercase;color:var(--sobre-barra);
-  background:rgba(0,0,0,.45);border:1px solid var(--realce);
+  background:color-mix(in srgb,var(--barra) 55%,transparent);border:1px solid var(--realce);
   border-radius:999px;padding:7px 18px;backdrop-filter:blur(6px)}
 .capa__end{font-size:12.5px;opacity:.78;margin-top:16px}
 /* Promoção do dia. Nasce escondida pela mesma razão da pílula da mesa: só o
@@ -156,7 +162,7 @@ img{max-width:100%;display:block}
 .capa__promo{display:block;margin:16px auto 0;max-width:30ch;font-weight:700;
   font-size:13.5px;line-height:1.5;border-radius:12px;padding:10px 16px;
   color:var(--sobre-barra);backdrop-filter:blur(6px);
-  background:rgba(0,0,0,.5);border:1px solid var(--realce)}
+  background:color-mix(in srgb,var(--barra) 60%,transparent);border:1px solid var(--realce)}
 
 
 /* ── fichas de seção: grudam no topo, a da seção atual acende ────────── */
@@ -172,6 +178,8 @@ img{max-width:100%;display:block}
   background:var(--cartao);border:1px solid var(--fio);border-radius:999px;
   padding:9px 16px;transition:background .2s,color .2s,border-color .2s}
 .fichas a.on,.fichas a:active{background:var(--marca);border-color:var(--marca);color:#fff}
+.fichas a.extra{border-color:var(--realce);color:var(--realce)}
+.i[hidden],.div[hidden],.sec[hidden],.fichas a[hidden]{display:none}
 
 /* ── seções ────────────────────────────────────────────────────────── */
 main{padding:0 16px;max-width:640px;margin:0 auto}
@@ -319,6 +327,7 @@ ${d.secoes.map(secao).join('\n')}
 <noscript><style>.i{opacity:1!important;transform:none!important}</style></noscript>
 
 <script type="application/ld+json">${JSON.stringify(d.jsonld)}</script>
+${d.apiSlug ? `<script type="module" src="/assets/cardapio-vivo.js" data-api="/cardapio-api/${esc(d.apiSlug)}"></script>` : ''}
 <script type="module" src="/assets/analytics.js"></script>
 </body>
 </html>
