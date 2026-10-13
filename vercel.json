@@ -67,6 +67,10 @@
     {
       "source": "/promocoes-api/:caminho*",
       "destination": "https://api-painel.fjntecnologia.com.br/public/promocoes/:caminho*"
+    },
+    {
+      "source": "/cardapio-api/:caminho*",
+      "destination": "https://api-painel.fjntecnologia.com.br/public/menu/:caminho*"
     }
   ],
   "headers": [

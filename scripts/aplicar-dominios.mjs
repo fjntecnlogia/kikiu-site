@@ -19,6 +19,7 @@
  */
 
 import { readFile, writeFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -90,7 +91,9 @@ function aplicarTags(html) {
   html = html.replace(/("image":\s*")https?:\/\/[^"]*(")/g,
     `$1${base}/assets/img/${IMG}/og.jpg$2`);
   html = html.replace(/("hasMenu":\s*")https?:\/\/[^"#]*(#[^"]*)?(")/g,
-    (m, a, hash, z) => `${a}${base}/${hash ?? ''}${z}`);
+    // Com pagina de cardapio propria, o JSON-LD aponta para ELA (e nao para a
+    // home): e la que o cardapio existe, com os pratos e os precos.
+    (m, a, hash, z) => `${a}${base}/${casa.cardapio ?? ''}${casa.cardapio ? '' : (hash ?? '')}${z}`);
 
   await writeFile(arquivo, aplicarTags(html));
 }
@@ -110,7 +113,9 @@ if (rota) {
 
 // ─── sitemap e robots ──────────────────────────────────────────────────
 const paginas = [{ rota: '/', prio: '1.0' }]
-  .concat(rota ? [{ rota: `/${rota}`, prio: '0.9' }] : []);
+  .concat(rota ? [{ rota: `/${rota}`, prio: '0.9' }] : [])
+  // a carta de vinhos e igual nas tres casas e nasce do build-vinhos.mjs
+  .concat(existsSync(join(RAIZ, 'vinhos.html')) && casa.vinhosPublicos !== false ? [{ rota: '/vinhos', prio: '0.7' }] : []);
 
 await writeFile(join(RAIZ, 'sitemap.xml'),
 `<?xml version="1.0" encoding="UTF-8"?>
@@ -174,6 +179,7 @@ const vercel = {
     { source: '/agenda-api/:caminho*',   destination: `${SISTEMA}/eventos/:caminho*` },
     { source: '/opiniao-api/:caminho*',  destination: `${SISTEMA}/opiniao/:caminho*` },
     { source: '/promocoes-api/:caminho*', destination: `${SISTEMA}/promocoes/:caminho*` },
+    { source: '/cardapio-api/:caminho*',  destination: `${SISTEMA}/menu/:caminho*` },
   ],
 
   headers: [

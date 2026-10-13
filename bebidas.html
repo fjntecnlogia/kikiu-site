@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Cardápio — Kikiu Gastrobar</title>
 <meta name="description" content="Cardápio do Kikiu Gastrobar — cozinha, lanches, coquetelaria autoral da Casa Pro, cervejas, destilados, sucos e sobremesas, no Shopping Três Américas, Cuiabá.">
+
 <meta name="theme-color" content="#14100e">
 <link rel="icon" href="/assets/img/icone/kikiu-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="/assets/img/icone/kikiu-180.png">
@@ -43,6 +44,7 @@ img{max-width:100%;display:block}
   object-fit:cover;object-position:center 30%}
 /* o degradê é o que faz o logo e o texto lerem em cima de qualquer foto, e
    o que funde a foto com o fundo do cardápio sem uma linha de corte */
+/* sem foto (tema claro) não há o que escurecer: o degradê só existe com foto */
 .capa::after{content:"";position:absolute;inset:0;z-index:-1;
   background:linear-gradient(180deg,rgba(0,0,0,.34) 0%,rgba(0,0,0,.08) 28%,
     rgba(0,0,0,.55) 66%,var(--papel) 100%)}
@@ -59,7 +61,7 @@ img{max-width:100%;display:block}
 .capa__mesa[hidden]{display:none}
 .capa__mesa{display:inline-block;margin-top:16px;font-weight:700;font-size:13px;
   letter-spacing:.12em;text-transform:uppercase;color:var(--sobre-barra);
-  background:rgba(0,0,0,.45);border:1px solid var(--realce);
+  background:color-mix(in srgb,var(--barra) 55%,transparent);border:1px solid var(--realce);
   border-radius:999px;padding:7px 18px;backdrop-filter:blur(6px)}
 .capa__end{font-size:12.5px;opacity:.78;margin-top:16px}
 /* Promoção do dia. Nasce escondida pela mesma razão da pílula da mesa: só o
@@ -69,7 +71,7 @@ img{max-width:100%;display:block}
 .capa__promo{display:block;margin:16px auto 0;max-width:30ch;font-weight:700;
   font-size:13.5px;line-height:1.5;border-radius:12px;padding:10px 16px;
   color:var(--sobre-barra);backdrop-filter:blur(6px);
-  background:rgba(0,0,0,.5);border:1px solid var(--realce)}
+  background:color-mix(in srgb,var(--barra) 60%,transparent);border:1px solid var(--realce)}
 
 
 /* ── fichas de seção: grudam no topo, a da seção atual acende ────────── */
@@ -85,6 +87,8 @@ img{max-width:100%;display:block}
   background:var(--cartao);border:1px solid var(--fio);border-radius:999px;
   padding:9px 16px;transition:background .2s,color .2s,border-color .2s}
 .fichas a.on,.fichas a:active{background:var(--marca);border-color:var(--marca);color:#fff}
+.fichas a.extra{border-color:var(--realce);color:var(--realce)}
+.i[hidden],.div[hidden],.sec[hidden],.fichas a[hidden]{display:none}
 
 /* ── seções ────────────────────────────────────────────────────────── */
 main{padding:0 16px;max-width:640px;margin:0 auto}
@@ -186,272 +190,272 @@ main{padding:0 16px;max-width:640px;margin:0 auto}
 })();
 </script>
 
-<nav class="fichas" aria-label="Seções do cardápio"><a href="#cozinha">Cozinha</a><a href="#drinks-casa-pro">Drinks Casa Pro</a><a href="#cervejas">Cervejas</a><a href="#nao-alcoolicos">Não-Alcoólicos</a><a href="#drinks-kikiu">Drinks Kikiu</a><a href="#dose-destilados">Dose / Destilados</a><a href="#sucos-naturais">Sucos Naturais</a><a href="#sobremesas">Sobremesas</a></nav>
+<nav class="fichas" aria-label="Seções do cardápio"><a class="extra" href="/vinhos">Vinhos</a><a href="#cozinha">Cozinha</a><a href="#drinks-casa-pro">Drinks Casa Pro</a><a href="#cervejas">Cervejas</a><a href="#nao-alcoolicos">Não-Alcoólicos</a><a href="#drinks-kikiu">Drinks Kikiu</a><a href="#dose-destilados">Dose / Destilados</a><a href="#sucos-naturais">Sucos Naturais</a><a href="#sobremesas">Sobremesas</a></nav>
 
 <main>
-<section class="sec" id="cozinha">
+<section class="sec" id="cozinha" data-titulo="Cozinha">
     <div class="sec__cab"><h2 class="sec__tit">Cozinha</h2></div>
     
-    <ul class="lista"><li class="div">Petiscos</li><li class="i"><div class="i__txt">
+    <ul class="lista"><li class="div">Petiscos</li><li class="i" data-nome="Iscas de frango super crocantes"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Iscas de frango super crocantes</h3><span class="i__preco">R$ 66,00</span></div><p class="i__sub">mostarda Dijon</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Picanha Angus fatiada"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Picanha Angus fatiada</h3><span class="i__preco">R$ 97,00</span></div><p class="i__sub">batata frita, molho da casa</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Iscas de peixe branco crocante"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Iscas de peixe branco crocante</h3><span class="i__preco">R$ 83,00</span></div><p class="i__sub">molho cítrico</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Cubos de filé mignon acebolado"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Cubos de filé mignon acebolado</h3><span class="i__preco">R$ 108,00</span></div><p class="i__sub">Grana Padano</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Batata frita especial"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Batata frita especial</h3><span class="i__preco">R$ 45,00</span></div><p class="i__sub">azeite trufado, queijo e ervas</p>
-    </div></li><li class="div">Pastéis</li><li class="i"><div class="i__txt">
+    </div></li><li class="div">Pastéis</li><li class="i" data-nome="Pastel de carne à bolonhesa"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Pastel de carne à bolonhesa</h3><span class="i__preco">R$ 55,00</span></div><p class="i__sub">parmesão</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Pastel cremoso de camarão"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Pastel cremoso de camarão</h3><span class="i__preco">R$ 78,00</span></div><p class="i__sub">Catupiry</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Pastel de Cupim desfiado com cream cheese"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Pastel de Cupim desfiado com cream cheese</h3><span class="i__preco">R$ 63,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Pastel de calabresa"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Pastel de calabresa</h3><span class="i__preco">R$ 58,00</span></div><p class="i__sub">mussarela</p>
-    </div></li><li class="div">Croquetes</li><li class="i"><div class="i__txt">
+    </div></li><li class="div">Croquetes</li><li class="i" data-nome="Bolinho mineiro de milho, bacon"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Bolinho mineiro de milho, bacon</h3><span class="i__preco">R$ 62,00</span></div><p class="i__sub">queijo meia cura</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Croquete de ossobuco"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Croquete de ossobuco</h3><span class="i__preco">R$ 68,00</span></div><p class="i__sub">provolone defumado</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Bolinho crocante de pintado"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Bolinho crocante de pintado</h3><span class="i__preco">R$ 64,00</span></div><p class="i__sub">ervas finas</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Croquete de carne seca"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Croquete de carne seca</h3><span class="i__preco">R$ 61,00</span></div><p class="i__sub">abóbora cremosa</p>
-    </div></li><li class="div">Especiais</li><li class="i"><div class="i__txt">
+    </div></li><li class="div">Especiais</li><li class="i" data-nome="Escondidinho de Ragu de Costela"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Escondidinho de Ragu de Costela</h3><span class="i__preco">R$ 81,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Gratinado de Catupiry"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Gratinado de Catupiry</h3><span class="i__preco">R$ 115,00</span></div><p class="i__sub">cubos de filé mignon</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Moela e coração ao molho roti especial"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Moela e coração ao molho roti especial</h3><span class="i__preco">R$ 55,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Carne de onça"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Carne de onça</h3><span class="i__preco">R$ 78,00</span></div><p class="i__sub">especialidade da casa</p>
-    </div></li><li class="div">Steaks &amp; chapas</li><li class="i"><div class="i__txt">
+    </div></li><li class="div">Steaks &amp; chapas</li><li class="i" data-nome="Picanha Angus"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Picanha Angus</h3><span class="i__preco">R$ 145,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Carré de cordeiro"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Carré de cordeiro</h3><span class="i__preco">R$ 162,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Sobrecoxa desossada na mostarda"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Sobrecoxa desossada na mostarda</h3><span class="i__preco">R$ 81,00</span></div>
-    </div></li><li class="div">Lanches</li><li class="i"><div class="i__txt">
+    </div></li><li class="div">Lanches</li><li class="i" data-nome="Sanduíche de churrasquinho de picanha"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Sanduíche de churrasquinho de picanha</h3><span class="i__preco">R$ 55,00</span></div><p class="i__sub">Emmental, vinagrete, molho de páprica</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Sanduíche crocante de frango"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Sanduíche crocante de frango</h3><span class="i__preco">R$ 42,00</span></div><p class="i__sub">molho picante, picles, alface</p>
     </div></li></ul>
   </section>
-<section class="sec" id="drinks-casa-pro">
+<section class="sec" id="drinks-casa-pro" data-titulo="Drinks Casa Pro">
     <div class="sec__cab"><h2 class="sec__tit">Drinks Casa Pro</h2></div>
     <p class="sec__nota">cada unidade por: R$ 45,00</p>
-    <ul class="lista"><li class="i"><div class="i__txt">
+    <ul class="lista"><li class="i" data-nome="Agueixa"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Agueixa</h3><span class="i__preco">R$ 45,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Aperol Spritz"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Aperol Spritz</h3><span class="i__preco">R$ 45,00</span></div><p class="i__desc">Aperol / Espumante / Água com Gás / Laranja</p><p class="i__nota">(LEVE – CÍTRICO – REFRESCANTE)</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Arona"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Arona</h3><span class="i__preco">R$ 45,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Banana Sour"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Banana Sour</h3><span class="i__preco">R$ 45,00</span></div><p class="i__desc">Cachaça / Banana / Maracujá / Água de Coco / Limão Taiti / Mascavo</p><p class="i__nota">(SUAVE – FRUTADO – TROPICAL)</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Black Velvet"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Black Velvet</h3><span class="i__preco">R$ 45,00</span></div><p class="i__desc">Cachaça / Café / Chocolate / Gengibre / Pimenta / Limão Taiti</p><p class="i__nota">(ENCORPADO – DOCE – ENVOLVENTE)</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Carajillo"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Carajillo</h3><span class="i__preco">R$ 45,00</span></div><p class="i__desc">Premium Tequila / Licor 43 / Licor de Café / Café Espresso</p><p class="i__nota">(ENCORPADO – DOCE – DIGESTIVO)</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Fitzgerald"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Fitzgerald</h3><span class="i__preco">R$ 45,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Gin Tônica"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Gin Tônica</h3><span class="i__preco">R$ 45,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Jungle Bird"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Jungle Bird</h3><span class="i__preco">R$ 45,00</span></div><p class="i__desc">Premium Rum Envelhecido / Campari / Abacaxi / Limão Taiti</p><p class="i__nota">(ENCORPADO – AMARGO – TROPICAL)</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Lampião"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Lampião</h3><span class="i__preco">R$ 45,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Midori"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Midori</h3><span class="i__preco">R$ 45,00</span></div><p class="i__desc">Premium Vodka / Abacaxi / Yuzu / Manjericão / Kiwi / Limão Taiti</p><p class="i__nota">(REFRESCANTE – FRUTADO – EXÓTICO)</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Mojito"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Mojito</h3><span class="i__preco">R$ 45,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Moscow Mule"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Moscow Mule</h3><span class="i__preco">R$ 45,00</span></div><p class="i__desc">Premium Vodka / Limão Taiti / Gengibre</p><p class="i__nota">(REFRESCANTE – CÍTRICO – CLÁSSICO)</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Negroni"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Negroni</h3><span class="i__preco">R$ 45,00</span></div><p class="i__desc">Premium Gin / Vermute Doce / Amaro</p><p class="i__nota">(ENCORPADO – AMARGO – CLÁSSICO)</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Porn Star Martini"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Porn Star Martini</h3><span class="i__preco">R$ 45,00</span></div><p class="i__desc">Vodka de Baunilha / Maracujá / Abacaxi / Limão Siciliano</p><p class="i__nota">(SUAVE – FRUTADO – EXÓTICO)</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Ranei Duce"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Ranei Duce</h3><span class="i__preco">R$ 45,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="The Shacet"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">The Shacet</h3><span class="i__preco">R$ 45,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Valentina"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Valentina</h3><span class="i__preco">R$ 45,00</span></div><p class="i__desc">Premium Rum Branco / Melão / Maçã / Maracujá / Limão Siciliano / Baunilha / Laranja / Abacaxi</p><p class="i__nota">(REFRESCANTE – FRUTADO – EXÓTICO)</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Whiskey Business"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Whiskey Business</h3><span class="i__preco">R$ 45,00</span></div><p class="i__desc">Premium Whiskey / Canela / Limão Siciliano / Pimenta / Angostura Bitters</p><p class="i__nota">(INTENSO – PICANTE – AROMÁTICO)</p>
     </div></li></ul>
   </section>
-<section class="sec" id="cervejas">
+<section class="sec" id="cervejas" data-titulo="Cervejas">
     <div class="sec__cab"><h2 class="sec__tit">Cervejas</h2></div>
     
-    <ul class="lista"><li class="div">Chopp</li><li class="i"><div class="i__txt">
+    <ul class="lista"><li class="div">Chopp</li><li class="i" data-nome="Brahma Chopp Caldereta"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Brahma Chopp Caldereta</h3><span class="i__preco">R$ 11,00</span></div><p class="i__sub">caldereta 300ml</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Brahma Chopp Caneca"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Brahma Chopp Caneca</h3><span class="i__preco">R$ 16,00</span></div><p class="i__sub">caneca 380ml</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Cosmel Caneca"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Cosmel Caneca</h3><span class="i__preco">R$ 21,00</span></div>
-    </div></li><li class="div">Cerveja 600ml</li><li class="i"><div class="i__txt">
+    </div></li><li class="div">Cerveja 600ml</li><li class="i" data-nome="Brahma"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Brahma</h3><span class="i__preco">R$ 20,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Corona"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Corona</h3><span class="i__preco">R$ 24,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Original"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Original</h3><span class="i__preco">R$ 20,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Spaten"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Spaten</h3><span class="i__preco">R$ 24,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Stella Pure Gold"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Stella Pure Gold</h3><span class="i__preco">R$ 24,00</span></div>
-    </div></li><li class="div">Long Neck</li><li class="i"><div class="i__txt">
+    </div></li><li class="div">Long Neck</li><li class="i" data-nome="Brahma Zero"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Brahma Zero</h3><span class="i__preco">R$ 14,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Corona"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Corona</h3><span class="i__preco">R$ 16,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Corona Cero"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Corona Cero</h3><span class="i__preco">R$ 14,00</span></div><p class="i__sub">sem álcool</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Flying Fish"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Flying Fish</h3><span class="i__preco">R$ 14,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Michelob"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Michelob</h3><span class="i__preco">R$ 14,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Spaten"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Spaten</h3><span class="i__preco">R$ 16,00</span></div>
     </div></li></ul>
   </section>
-<section class="sec" id="nao-alcoolicos">
+<section class="sec" id="nao-alcoolicos" data-titulo="Não-Alcoólicos">
     <div class="sec__cab"><h2 class="sec__tit">Não-Alcoólicos</h2></div>
     
-    <ul class="lista"><li class="i"><div class="i__txt">
+    <ul class="lista"><li class="i" data-nome="Água com Gás"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Água com Gás</h3><span class="i__preco">R$ 9,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Água sem Gás"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Água sem Gás</h3><span class="i__preco">R$ 8,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Água de Coco"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Água de Coco</h3><span class="i__preco">R$ 16,00</span></div><p class="i__sub">330ml</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Guaraná"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Guaraná</h3><span class="i__preco">R$ 9,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Guaraná Zero"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Guaraná Zero</h3><span class="i__preco">R$ 9,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="H2O Limão"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">H2O Limão</h3><span class="i__preco">R$ 12,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="H2O Limoneto"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">H2O Limoneto</h3><span class="i__preco">R$ 12,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Pepsi"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Pepsi</h3><span class="i__preco">R$ 9,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Pepsi Black"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Pepsi Black</h3><span class="i__preco">R$ 9,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Tônica"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Tônica</h3><span class="i__preco">R$ 9,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Tônica Zero"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Tônica Zero</h3><span class="i__preco">R$ 9,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Red Bull"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Red Bull</h3><span class="i__preco">R$ 16,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Red Bull Sem Açúcar"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Red Bull Sem Açúcar</h3><span class="i__preco">R$ 24,90</span></div>
     </div></li></ul>
   </section>
-<section class="sec" id="drinks-kikiu">
+<section class="sec" id="drinks-kikiu" data-titulo="Drinks Kikiu">
     <div class="sec__cab"><h2 class="sec__tit">Drinks Kikiu</h2></div>
     
-    <ul class="lista"><li class="div">Caipirinhas</li><li class="i"><div class="i__txt">
+    <ul class="lista"><li class="div">Caipirinhas</li><li class="i" data-nome="Caipirinha de Abacaxi com Hortelã"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Caipirinha de Abacaxi com Hortelã</h3><span class="i__preco">R$ 34,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Caipirinha de Caju"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Caipirinha de Caju</h3><span class="i__preco">R$ 36,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Caipirinha de Limão"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Caipirinha de Limão</h3><span class="i__preco">R$ 34,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Caipirinha de Manga com Pimenta"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Caipirinha de Manga com Pimenta</h3><span class="i__preco">R$ 36,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Caipirinha de Maracujá"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Caipirinha de Maracujá</h3><span class="i__preco">R$ 36,00</span></div>
-    </div></li><li class="div">Caipiroskas</li><li class="i"><div class="i__txt">
+    </div></li><li class="div">Caipiroskas</li><li class="i" data-nome="Abacaxi com Hortelã"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Abacaxi com Hortelã</h3><span class="i__preco">R$ 42,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Caju"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Caju</h3><span class="i__preco">R$ 41,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Limão"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Limão</h3><span class="i__preco">R$ 38,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Manga com Pimenta"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Manga com Pimenta</h3><span class="i__preco">R$ 44,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Maracujá"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Maracujá</h3><span class="i__preco">R$ 39,00</span></div>
     </div></li></ul>
   </section>
-<section class="sec" id="dose-destilados">
+<section class="sec" id="dose-destilados" data-titulo="Dose / Destilados">
     <div class="sec__cab"><h2 class="sec__tit">Dose / Destilados</h2></div>
     
-    <ul class="lista"><li class="div">Cachaças</li><li class="i"><div class="i__txt">
+    <ul class="lista"><li class="div">Cachaças</li><li class="i" data-nome="Cachaça branca"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Cachaça branca</h3><span class="i__preco">R$ 20,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Cachaça envelhecida"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Cachaça envelhecida</h3><span class="i__preco">R$ 26,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Cachaça premium"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Cachaça premium</h3><span class="i__preco">R$ 30,00</span></div>
-    </div></li><li class="div">Whisky</li><li class="i"><div class="i__txt">
+    </div></li><li class="div">Whisky</li><li class="i" data-nome="Ballantine's 7 anos"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Ballantine's 7 anos</h3><span class="i__preco">R$ 28,00</span></div><p class="i__nota">R$ 320,00 a garrafa</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Buchanans 12 anos"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Buchanans 12 anos</h3><span class="i__preco">R$ 32,00</span></div><p class="i__nota">R$ 390,00 a garrafa</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Chivas Regal 12 anos"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Chivas Regal 12 anos</h3><span class="i__preco">R$ 35,00</span></div><p class="i__nota">R$ 360,00 a garrafa</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Glenfiddich 12 anos"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Glenfiddich 12 anos</h3><span class="i__preco">R$ 45,00</span></div><p class="i__nota">R$ 560,00 a garrafa</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Glenlivet 12 anos"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Glenlivet 12 anos</h3><span class="i__preco">R$ 42,00</span></div><p class="i__nota">R$ 540,00 a garrafa</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Johnnie Walker Black Label 12 anos"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Johnnie Walker Black Label 12 anos</h3><span class="i__preco">R$ 35,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Johnnie Walker Gold Label"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Johnnie Walker Gold Label</h3><span class="i__preco">R$ 38,00</span></div><p class="i__nota">R$ 450,00 a garrafa</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Johnnie Walker Red Label 7 anos"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Johnnie Walker Red Label 7 anos</h3><span class="i__preco">R$ 30,00</span></div><p class="i__nota">R$ 340,00 a garrafa</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Old Parr 12 anos"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Old Parr 12 anos</h3><span class="i__preco">R$ 35,00</span></div><p class="i__nota">R$ 380,00 a garrafa</p>
-    </div></li><li class="div">Vodka</li><li class="i"><div class="i__txt">
+    </div></li><li class="div">Vodka</li><li class="i" data-nome="Absolut"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Absolut</h3><span class="i__preco">R$ 30,00</span></div><p class="i__nota">R$ 300,00 a garrafa</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Belvedere"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Belvedere</h3><span class="i__preco">R$ 38,00</span></div><p class="i__nota">R$ 390,00 a garrafa</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Grey Goose"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Grey Goose</h3><span class="i__preco">R$ 38,00</span></div><p class="i__nota">R$ 410,00 a garrafa</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Kamai"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Kamai</h3><span class="i__preco">R$ 28,00</span></div><p class="i__nota">R$ 280,00 a garrafa</p>
-    </div></li><li class="div">Gin</li><li class="i"><div class="i__txt">
+    </div></li><li class="div">Gin</li><li class="i" data-nome="Beefeater"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Beefeater</h3><span class="i__preco">R$ 32,00</span></div><p class="i__nota">R$ 330,00 a garrafa</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Kamai"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Kamai</h3><span class="i__preco">R$ 28,00</span></div><p class="i__nota">R$ 260,00 a garrafa</p>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Tanqueray"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Tanqueray</h3><span class="i__preco">R$ 32,00</span></div><p class="i__nota">R$ 280,00 a garrafa</p>
-    </div></li><li class="div">Tequila</li><li class="i"><div class="i__txt">
+    </div></li><li class="div">Tequila</li><li class="i" data-nome="José Cuervo"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">José Cuervo</h3><span class="i__preco">R$ 26,00</span></div>
-    </div></li><li class="div">Digestivo</li><li class="i"><div class="i__txt">
+    </div></li><li class="div">Digestivo</li><li class="i" data-nome="Balena"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Balena</h3><span class="i__preco">R$ 24,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Don Cream"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Don Cream</h3><span class="i__preco">R$ 24,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Campari"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Campari</h3><span class="i__preco">R$ 46,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Licor 43"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Licor 43</h3><span class="i__preco">R$ 32,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Shot de limão"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Shot de limão</h3><span class="i__preco">R$ 4,00</span></div>
     </div></li></ul>
   </section>
-<section class="sec" id="sucos-naturais">
+<section class="sec" id="sucos-naturais" data-titulo="Sucos Naturais">
     <div class="sec__cab"><h2 class="sec__tit">Sucos Naturais</h2></div>
     
-    <ul class="lista"><li class="div">Copo 300ml</li><li class="i"><div class="i__txt">
+    <ul class="lista"><li class="div">Copo 300ml</li><li class="i" data-nome="Abacaxi"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Abacaxi</h3><span class="i__preco">R$ 14,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Abacaxi com hortelã"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Abacaxi com hortelã</h3><span class="i__preco">R$ 16,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Acerola"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Acerola</h3><span class="i__preco">R$ 14,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Laranja"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Laranja</h3><span class="i__preco">R$ 14,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Limão"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Limão</h3><span class="i__preco">R$ 14,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Maracujá"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Maracujá</h3><span class="i__preco">R$ 14,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Morango"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Morango</h3><span class="i__preco">R$ 14,00</span></div>
     </div></li></ul>
   </section>
-<section class="sec" id="sobremesas">
+<section class="sec" id="sobremesas" data-titulo="Sobremesas">
     <div class="sec__cab"><h2 class="sec__tit">Sobremesas</h2></div>
     
-    <ul class="lista"><li class="div">Sobremesas</li><li class="i"><div class="i__txt">
+    <ul class="lista"><li class="div">Sobremesas</li><li class="i" data-nome="Mousse de chocolate"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Mousse de chocolate</h3><span class="i__preco">R$ 35,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Banoffe"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Banoffe</h3><span class="i__preco">R$ 45,00</span></div>
-    </div></li><li class="i"><div class="i__txt">
+    </div></li><li class="i" data-nome="Cheesecake"><div class="i__txt">
       <div class="i__topo"><h3 class="i__nome">Cheesecake</h3><span class="i__preco">R$ 38,00</span></div>
     </div></li></ul>
   </section>
@@ -496,6 +500,7 @@ main{padding:0 16px;max-width:640px;margin:0 auto}
 <noscript><style>.i{opacity:1!important;transform:none!important}</style></noscript>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Menu","name":"Cardápio Kikiu Gastrobar","hasMenuSection":[{"@type":"MenuSection","name":"Cozinha","hasMenuItem":[{"@type":"MenuItem","name":"Iscas de frango super crocantes","offers":{"@type":"Offer","price":"66.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Picanha Angus fatiada","offers":{"@type":"Offer","price":"97.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Iscas de peixe branco crocante","offers":{"@type":"Offer","price":"83.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Cubos de filé mignon acebolado","offers":{"@type":"Offer","price":"108.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Batata frita especial","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Pastel de carne à bolonhesa","offers":{"@type":"Offer","price":"55.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Pastel cremoso de camarão","offers":{"@type":"Offer","price":"78.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Pastel de Cupim desfiado com cream cheese","offers":{"@type":"Offer","price":"63.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Pastel de calabresa","offers":{"@type":"Offer","price":"58.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Bolinho mineiro de milho, bacon","offers":{"@type":"Offer","price":"62.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Croquete de ossobuco","offers":{"@type":"Offer","price":"68.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Bolinho crocante de pintado","offers":{"@type":"Offer","price":"64.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Croquete de carne seca","offers":{"@type":"Offer","price":"61.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Escondidinho de Ragu de Costela","offers":{"@type":"Offer","price":"81.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Gratinado de Catupiry","offers":{"@type":"Offer","price":"115.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Moela e coração ao molho roti especial","offers":{"@type":"Offer","price":"55.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Carne de onça","offers":{"@type":"Offer","price":"78.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Picanha Angus","offers":{"@type":"Offer","price":"145.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Carré de cordeiro","offers":{"@type":"Offer","price":"162.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Sobrecoxa desossada na mostarda","offers":{"@type":"Offer","price":"81.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Sanduíche de churrasquinho de picanha","offers":{"@type":"Offer","price":"55.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Sanduíche crocante de frango","offers":{"@type":"Offer","price":"42.00","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Drinks Casa Pro","hasMenuItem":[{"@type":"MenuItem","name":"Agueixa","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Aperol Spritz","description":"Aperol / Espumante / Água com Gás / Laranja","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Arona","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Banana Sour","description":"Cachaça / Banana / Maracujá / Água de Coco / Limão Taiti / Mascavo","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Black Velvet","description":"Cachaça / Café / Chocolate / Gengibre / Pimenta / Limão Taiti","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Carajillo","description":"Premium Tequila / Licor 43 / Licor de Café / Café Espresso","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Fitzgerald","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Gin Tônica","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Jungle Bird","description":"Premium Rum Envelhecido / Campari / Abacaxi / Limão Taiti","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Lampião","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Midori","description":"Premium Vodka / Abacaxi / Yuzu / Manjericão / Kiwi / Limão Taiti","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Mojito","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Moscow Mule","description":"Premium Vodka / Limão Taiti / Gengibre","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Negroni","description":"Premium Gin / Vermute Doce / Amaro","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Porn Star Martini","description":"Vodka de Baunilha / Maracujá / Abacaxi / Limão Siciliano","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Ranei Duce","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"The Shacet","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Valentina","description":"Premium Rum Branco / Melão / Maçã / Maracujá / Limão Siciliano / Baunilha / Laranja / Abacaxi","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Whiskey Business","description":"Premium Whiskey / Canela / Limão Siciliano / Pimenta / Angostura Bitters","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Cervejas","hasMenuItem":[{"@type":"MenuItem","name":"Brahma Chopp Caldereta","offers":{"@type":"Offer","price":"11.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Brahma Chopp Caneca","offers":{"@type":"Offer","price":"16.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Cosmel Caneca","offers":{"@type":"Offer","price":"21.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Brahma","offers":{"@type":"Offer","price":"20.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Corona","offers":{"@type":"Offer","price":"24.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Original","offers":{"@type":"Offer","price":"20.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Spaten","offers":{"@type":"Offer","price":"24.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Stella Pure Gold","offers":{"@type":"Offer","price":"24.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Brahma Zero","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Corona","offers":{"@type":"Offer","price":"16.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Corona Cero","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Flying Fish","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Michelob","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Spaten","offers":{"@type":"Offer","price":"16.00","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Não-Alcoólicos","hasMenuItem":[{"@type":"MenuItem","name":"Água com Gás","offers":{"@type":"Offer","price":"9.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Água sem Gás","offers":{"@type":"Offer","price":"8.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Água de Coco","offers":{"@type":"Offer","price":"16.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Guaraná","offers":{"@type":"Offer","price":"9.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Guaraná Zero","offers":{"@type":"Offer","price":"9.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"H2O Limão","offers":{"@type":"Offer","price":"12.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"H2O Limoneto","offers":{"@type":"Offer","price":"12.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Pepsi","offers":{"@type":"Offer","price":"9.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Pepsi Black","offers":{"@type":"Offer","price":"9.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Tônica","offers":{"@type":"Offer","price":"9.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Tônica Zero","offers":{"@type":"Offer","price":"9.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Red Bull","offers":{"@type":"Offer","price":"16.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Red Bull Sem Açúcar","offers":{"@type":"Offer","price":"24.90","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Drinks Kikiu","hasMenuItem":[{"@type":"MenuItem","name":"Caipirinha de Abacaxi com Hortelã","offers":{"@type":"Offer","price":"34.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Caipirinha de Caju","offers":{"@type":"Offer","price":"36.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Caipirinha de Limão","offers":{"@type":"Offer","price":"34.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Caipirinha de Manga com Pimenta","offers":{"@type":"Offer","price":"36.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Caipirinha de Maracujá","offers":{"@type":"Offer","price":"36.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Abacaxi com Hortelã","offers":{"@type":"Offer","price":"42.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Caju","offers":{"@type":"Offer","price":"41.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Limão","offers":{"@type":"Offer","price":"38.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Manga com Pimenta","offers":{"@type":"Offer","price":"44.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Maracujá","offers":{"@type":"Offer","price":"39.00","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Dose / Destilados","hasMenuItem":[{"@type":"MenuItem","name":"Cachaça branca","offers":{"@type":"Offer","price":"20.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Cachaça envelhecida","offers":{"@type":"Offer","price":"26.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Cachaça premium","offers":{"@type":"Offer","price":"30.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Ballantine's 7 anos","offers":{"@type":"Offer","price":"28.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Buchanans 12 anos","offers":{"@type":"Offer","price":"32.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Chivas Regal 12 anos","offers":{"@type":"Offer","price":"35.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Glenfiddich 12 anos","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Glenlivet 12 anos","offers":{"@type":"Offer","price":"42.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Johnnie Walker Black Label 12 anos","offers":{"@type":"Offer","price":"35.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Johnnie Walker Gold Label","offers":{"@type":"Offer","price":"38.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Johnnie Walker Red Label 7 anos","offers":{"@type":"Offer","price":"30.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Old Parr 12 anos","offers":{"@type":"Offer","price":"35.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Absolut","offers":{"@type":"Offer","price":"30.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Belvedere","offers":{"@type":"Offer","price":"38.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Grey Goose","offers":{"@type":"Offer","price":"38.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Kamai","offers":{"@type":"Offer","price":"28.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Beefeater","offers":{"@type":"Offer","price":"32.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Kamai","offers":{"@type":"Offer","price":"28.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Tanqueray","offers":{"@type":"Offer","price":"32.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"José Cuervo","offers":{"@type":"Offer","price":"26.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Balena","offers":{"@type":"Offer","price":"24.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Don Cream","offers":{"@type":"Offer","price":"24.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Campari","offers":{"@type":"Offer","price":"46.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Licor 43","offers":{"@type":"Offer","price":"32.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Shot de limão","offers":{"@type":"Offer","price":"4.00","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Sucos Naturais","hasMenuItem":[{"@type":"MenuItem","name":"Abacaxi","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Abacaxi com hortelã","offers":{"@type":"Offer","price":"16.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Acerola","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Laranja","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Limão","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Maracujá","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Morango","offers":{"@type":"Offer","price":"14.00","priceCurrency":"BRL"}}]},{"@type":"MenuSection","name":"Sobremesas","hasMenuItem":[{"@type":"MenuItem","name":"Mousse de chocolate","offers":{"@type":"Offer","price":"35.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Banoffe","offers":{"@type":"Offer","price":"45.00","priceCurrency":"BRL"}},{"@type":"MenuItem","name":"Cheesecake","offers":{"@type":"Offer","price":"38.00","priceCurrency":"BRL"}}]}]}</script>
+<script type="module" src="/assets/cardapio-vivo.js" data-api="/cardapio-api/kikiu"></script>
 <script type="module" src="/assets/analytics.js"></script>
 </body>
 </html>
