@@ -10,7 +10,9 @@
      --rsv-fundo        fundo do cartão
      --rsv-tinta        texto
      --rsv-tinta-fraca  rótulos e ajuda
-     --rsv-fio          borda dos campos
+     --rsv-fio          fios e separadores (recado, divisórias)
+     --rsv-borda        borda dos campos em repouso — precisa de contraste
+                        >= 3:1 com o fundo (WCAG 1.4.11); sem o token, 55% da tinta
      --rsv-acento       cor do botão e do foco
      --rsv-acento-tinta texto SOBRE o acento
      --rsv-campo        fundo dos campos
@@ -24,6 +26,7 @@
   --_tinta:  var(--rsv-tinta, currentColor);
   --_fraca:  var(--rsv-tinta-fraca, color-mix(in srgb, var(--_tinta) 62%, transparent));
   --_fio:    var(--rsv-fio, color-mix(in srgb, var(--_tinta) 24%, transparent));
+  --_borda:  var(--rsv-borda, color-mix(in srgb, var(--_tinta) 55%, transparent));
   --_acento: var(--rsv-acento, var(--_tinta));
   --_sobre:  var(--rsv-acento-tinta, var(--_fundo));
   --_campo:  var(--rsv-campo, transparent);
@@ -61,7 +64,7 @@
 .rsv input, .rsv select, .rsv textarea {
   font: inherit; font-size: 16px;   /* 16px trava o zoom automático do iOS ao focar */
   color: var(--_tinta); background: var(--_campo);
-  border: 1px solid var(--_fio); border-radius: var(--_raio);
+  border: 1px solid var(--_borda); border-radius: var(--_raio);
   padding: 13px 14px; width: 100%; min-width: 0;
   appearance: none; -webkit-appearance: none;
   transition: border-color .18s, box-shadow .18s;
@@ -77,10 +80,14 @@
   background-repeat: no-repeat;
   padding-right: 38px;
 }
+/* Foco forte: contorno cheio de 3 px na cor de acento, afastado da borda, mais
+   a própria borda acesa. O anel antigo (box-shadow a 28% de opacidade) quase
+   não se via no fundo escuro — quem navega pelo teclado se perdia no formulário. */
 .rsv input:focus-visible, .rsv select:focus-visible, .rsv textarea:focus-visible {
-  outline: none; border-color: var(--_acento);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--_acento) 28%, transparent);
+  outline: 3px solid var(--_acento); outline-offset: 2px;
+  border-color: var(--_acento);
 }
+.rsv__enviar:focus-visible { outline: 3px solid var(--_acento); outline-offset: 3px; }
 .rsv input:disabled, .rsv select:disabled { opacity: .5; cursor: not-allowed; }
 .rsv ::placeholder { color: var(--_fraca); opacity: 1; }
 

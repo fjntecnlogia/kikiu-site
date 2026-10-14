@@ -8,7 +8,7 @@
 <link rel="icon" href="assets/img/icone/kikiu-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/img/icone/kikiu-180.png">
 <meta name="theme-color" content="#142831">
-<title>Como foi? — Kikiu Gastrobar</title>
+<title>Como foi? — Kikiu Gastro Bar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&amp;family=Karla:wght@400;500;700&amp;display=swap" rel="stylesheet">
@@ -22,6 +22,13 @@ body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--texto
   font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 [hidden]{display:none!important}
+
+/* pular para o conteúdo: some fora da tela, aparece no foco do teclado */
+.pular{position:absolute;left:12px;top:0;z-index:20;transform:translateY(-160%);
+  padding:12px 20px;border-radius:999px;background:var(--tinta);color:var(--barra);
+  font-size:14px;font-weight:700;text-decoration:none}
+.pular:focus{transform:none}
+main:focus{outline:none}
 
 .capa{background:var(--barra);color:var(--sobre-barra);text-align:center;
   padding:calc(26px + env(safe-area-inset-top)) 20px 22px}
@@ -144,15 +151,17 @@ textarea:focus-visible,input:focus-visible{outline:none;border-color:var(--marca
 </head>
 <body>
 
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
 <header class="capa">
-  <img class="capa__logo" src="assets/img/logos/web/kikiu-escuro.png" alt="Kikiu Gastrobar"
+  <img class="capa__logo" src="assets/img/logos/web/kikiu-escuro.png" alt="Kikiu Gastro Bar"
        width="180" height="58" fetchpriority="high">
   <span class="capa__mesa" id="mesa" hidden></span>
 </header>
 <div class="progresso" aria-hidden="true"><i id="barra"></i></div>
 
-<main>
-  <h1 class="soleitor">Kikiu Gastrobar — como foi sua visita</h1>
+<main id="conteudo" tabindex="-1">
+  <h1 class="soleitor">Kikiu Gastro Bar — como foi sua visita</h1>
 
   <form id="form" novalidate>
 
@@ -291,7 +300,7 @@ textarea:focus-visible,input:focus-visible{outline:none;border-color:var(--marca
   "use strict";
   var AQUI = "kikiu";
   var CURTO = "Kikiu";
-  var CASAS = [{"slug":"kikiu","curto":"Kikiu","frase":"Gastrobar · drinks e petiscos","dominio":"kikiu.com.br","img":"assets/img/casas/kikiu.png"},{"slug":"saiko","curto":"Saikō","frase":"Gastronomia oriental","dominio":"saikogastronomia.com.br","img":"assets/img/casas/saiko.png"},{"slug":"forneatto","curto":"Forneatto","frase":"Cucina italiana · pizza e massas","dominio":"forneattocucina.com.br","img":"assets/img/casas/forneatto.png"}];
+  var CASAS = [{"slug":"kikiu","curto":"Kikiu","frase":"Gastro Bar · drinks e petiscos","dominio":"kikiu.com.br","img":"assets/img/casas/kikiu.png"},{"slug":"saiko","curto":"Saikō","frase":"Gastronomia oriental","dominio":"saikogastronomia.com.br","img":"assets/img/casas/saiko.png"},{"slug":"forneatto","curto":"Forneatto","frase":"Cucina italiana · pizza e massas","dominio":"forneattocucina.com.br","img":"assets/img/casas/forneatto.png"}];
   var API = "/opiniao-api/" + AQUI;
   var q = new URLSearchParams(location.search);
 

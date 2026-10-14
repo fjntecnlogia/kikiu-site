@@ -94,7 +94,7 @@ export function paginaCardapio(d) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>${esc(d.titulo)} — ${esc(d.casa)}</title>
+<title>${esc(d.tituloPagina ?? `${d.titulo} — ${d.casa}`)}</title>
 <meta name="description" content="${esc(d.descricao)}">
 ${d.naoIndexar ? '<meta name="robots" content="noindex, nofollow">' : ''}
 <meta name="theme-color" content="${t.barra}">
@@ -103,10 +103,16 @@ ${d.naoIndexar ? '<meta name="robots" content="noindex, nofollow">' : ''}
 <meta name="apple-mobile-web-app-title" content="${esc(d.casa)}">
 <link rel="canonical" href="${esc(d.url)}">
 <meta property="og:type" content="restaurant.menu">
-<meta property="og:title" content="${esc(d.titulo)} — ${esc(d.casa)}">
+<meta property="og:site_name" content="${esc(d.casa)}">
+<meta property="og:title" content="${esc(d.tituloPagina ?? `${d.titulo} — ${d.casa}`)}">
 <meta property="og:description" content="${esc(d.descricao)}">
 <meta property="og:url" content="${esc(d.url)}">
 <meta property="og:image" content="${esc(d.ogImagem)}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(d.ogAlt ?? d.casa)}">
+<meta name="twitter:card" content="summary_large_image">
+${t.heroImg && t.heroWebp ? `<link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="${esc(t.heroWebp)}" imagesizes="100vw">` : ''}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="${d.fontes}">
@@ -125,12 +131,19 @@ body{
   padding-bottom:calc(28px + env(safe-area-inset-bottom));
 }
 img{max-width:100%;display:block}
+/* pular para o conteúdo: some fora da tela, aparece no foco do teclado */
+.pular{position:absolute;left:12px;top:0;z-index:20;transform:translateY(-160%);
+  padding:12px 20px;border-radius:999px;background:var(--realce);color:var(--barra);
+  font-size:14px;font-weight:700;text-decoration:none}
+.pular:focus{transform:none}
+main:focus{outline:none}
 
 /* ── abertura: a foto da casa, o logo e nada mais ───────────────────── */
 .capa{position:relative;isolation:isolate;overflow:hidden;color:var(--sobre-barra);
   min-height:${t.heroImg ? 'min(74svh,560px)' : 'auto'};display:flex;flex-direction:column;
   justify-content:flex-end;align-items:center;text-align:center;
   padding:calc(40px + env(safe-area-inset-top)) 22px 34px;background:var(--barra)}
+.capa picture{display:contents}
 .capa__foto{position:absolute;inset:0;z-index:-2;width:100%;height:100%;
   object-fit:cover;object-position:${t.heroPos || 'center'}}
 /* o degradê é o que faz o logo e o texto lerem em cima de qualquer foto, e
@@ -236,8 +249,15 @@ main{padding:0 16px;max-width:640px;margin:0 auto}
 </head>
 <body>
 
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
 <header class="capa">
-  ${t.heroImg ? `<img class="capa__foto" src="${esc(t.heroImg)}" alt="" fetchpriority="high" decoding="async">` : ''}
+  ${!t.heroImg ? '' : t.heroWebp
+    // <picture>: WebP em tres larguras e o JPEG original so de reserva. A capa
+    // e o LCP desta pagina, aberta no 4G do salao.
+    ? `<picture><source type="image/webp" sizes="100vw" srcset="${esc(t.heroWebp)}">
+    <img class="capa__foto" src="${esc(t.heroImg)}" sizes="100vw" alt="" width="${t.heroLargura}" height="${t.heroAltura}" fetchpriority="high" decoding="async"></picture>`
+    : `<img class="capa__foto" src="${esc(t.heroImg)}" alt="" fetchpriority="high" decoding="async">`}
   ${d.logo ? `<img class="capa__logo" src="${esc(d.logo.src)}" alt="${esc(d.logo.alt)}"
        width="${d.logo.largura}" height="${d.logo.altura}" fetchpriority="high">`
            : `<p class="capa__casa">${esc(d.casa)}</p>`}
@@ -284,7 +304,7 @@ ${d.promo ? `
 
 <nav class="fichas" aria-label="Seções do cardápio">${fichas}</nav>
 
-<main>
+<main id="conteudo" tabindex="-1">
 ${d.secoes.map(secao).join('\n')}
 
   <footer class="pe">
