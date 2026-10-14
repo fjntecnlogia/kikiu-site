@@ -86,6 +86,13 @@ body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--texto
 img{display:block;max-width:100%}
 [hidden]{display:none!important}
 
+/* pular para o conteúdo: some fora da tela, aparece no foco do teclado */
+.pular{position:absolute;left:12px;top:0;z-index:20;transform:translateY(-160%);
+  padding:12px 20px;border-radius:999px;background:var(--tinta);color:var(--barra);
+  font-size:14px;font-weight:700;text-decoration:none}
+.pular:focus{transform:none}
+main:focus{outline:none}
+
 .capa{background:var(--barra);color:var(--sobre-barra);text-align:center;
   padding:calc(26px + env(safe-area-inset-top)) 20px 22px${t.fioDaBarra ? `;border-bottom:4px solid ${t.fioDaBarra}` : ''}}
 .capa__logo{height:${t.logoAltura}px;width:auto;max-width:76%;margin:0 auto}
@@ -207,6 +214,8 @@ textarea:focus-visible,input:focus-visible{outline:none;border-color:var(--marca
 </head>
 <body>
 
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
 <header class="capa">
   <img class="capa__logo" src="${esc(c.logo.src)}" alt="${esc(c.logo.alt)}"
        width="${c.logo.largura}" height="${c.logo.altura}" fetchpriority="high">
@@ -214,7 +223,7 @@ textarea:focus-visible,input:focus-visible{outline:none;border-color:var(--marca
 </header>
 <div class="progresso" aria-hidden="true"><i id="barra"></i></div>
 
-<main>
+<main id="conteudo" tabindex="-1">
   <h1 class="soleitor">${esc(c.casa)} — como foi sua visita</h1>
 
   <form id="form" novalidate>
@@ -606,12 +615,12 @@ ${GOOGLE ? `    <a class="google" href="${esc(GOOGLE)}" target="_blank" rel="noo
 
 const CASAS = [
   {
-    pasta: 'bar', slug: 'kikiu', casa: 'Kikiu Gastrobar', curto: 'Kikiu',
-    dominio: 'kikiu.com.br', frase: 'Gastrobar · drinks e petiscos',
+    pasta: 'bar', slug: 'kikiu', casa: 'Kikiu Gastro Bar', curto: 'Kikiu',
+    dominio: 'kikiu.com.br', frase: 'Gastro Bar · drinks e petiscos',
     pergunta: 'Como foi sua noite?',
     exemplo: 'O drink da casa, o som, o atendimento… o que quiser contar.',
     aspectos: ['atendimento', 'drinks', 'comida', 'ambiente', 'musica', 'espera'],
-    logo: { src: 'assets/img/logos/web/kikiu-escuro.png', alt: 'Kikiu Gastrobar', largura: 180, altura: 58 },
+    logo: { src: 'assets/img/logos/web/kikiu-escuro.png', alt: 'Kikiu Gastro Bar', largura: 180, altura: 58 },
     icone: { aba: 'assets/img/icone/kikiu-32.png', inicio: 'assets/img/icone/kikiu-180.png' },
     fontes: 'https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&family=Karla:wght@400;500;700&display=swap',
     tema: {

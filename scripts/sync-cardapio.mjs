@@ -113,6 +113,10 @@ const CASAS = [
               vazioItem: '', nome: 'item__nome', preco: 'item__preco', desc: 'item__desc',
               etiqueta: 'base', foto: 'item__foto', comFoto: 'item--foto' },
     pega: null,                     // null = casa padrao, fica com o resto
+    // O Menu em JSON-LD da home e o mesmo de /bebidas (a home aponta para ele
+    // pelo hasMenu). Duplicado pesava ~32 KB e podia divergir do cardapio do
+    // QR. Os marcadores continuam no HTML; o conteudo fica vazio.
+    semJsonLd: true,
     regioes: [
       { marca: 'COZINHA', leva: cat => COZINHA_KIKIU.includes(cat) },
       { marca: 'BAR', leva: () => true },
@@ -352,7 +356,7 @@ for (const { casa, regioes } of mapa.values()) {
   try {
     let html = await readFile(join(RAIZ, casa.arquivo), 'utf8');
     for (const [marca, lista] of regioes) html = injetar(html, marca, emDuasColunas(lista, casa.markup));
-    html = injetar(html, 'JSONLD', renderJsonLd(casa.nome, todas));
+    html = injetar(html, 'JSONLD', casa.semJsonLd ? '' : renderJsonLd(casa.nome, todas));
     html = html.replace(/(<span id="carimbo-cardapio">)[\s\S]*?(<\/span>)/, `$1${carimbo}$2`);
     await writeFile(join(RAIZ, casa.arquivo), html);
   } catch (erro) {

@@ -8,15 +8,29 @@
 <meta name="apple-mobile-web-app-title" content="Kikiu">
 <meta name="theme-color" content="#1e3a45">
 
-<title>Kikiu Gastro Bar · Drinks e cozinha em Cuiabá — ao lado do Shopping Três Américas</title>
-<meta name="description" content="Kikiu Gastro Bar: coquetelaria autoral, chopp gelado e cozinha servindo até as onze da noite em Cuiabá. Música ao vivo de quinta a sábado, ao lado do Shopping Três Américas.">
+<title>Kikiu Gastro Bar em Cuiabá | Chopp, Drinks e Cozinha</title>
+<meta name="description" content="Kikiu Gastro Bar em Cuiabá: chopp gelado, coquetelaria autoral e cozinha. Ao lado do Shopping Três Américas, no Jardim das Américas. Reserve pelo WhatsApp.">
 <link rel="canonical" href="https://kikiu.com.br/">
 <meta property="og:url" content="https://kikiu.com.br/">
-<meta property="og:title" content="Kikiu Gastro Bar · Cuiabá">
-<meta property="og:description" content="Coquetelaria autoral, chopp gelado e cozinha até as 23h. Música ao vivo de quinta a sábado.">
+<meta property="og:site_name" content="Kikiu Gastro Bar">
+<meta property="og:title" content="Kikiu Gastro Bar em Cuiabá | Chopp, Drinks e Cozinha">
+<meta property="og:description" content="Kikiu Gastro Bar em Cuiabá: chopp gelado, coquetelaria autoral e cozinha. Ao lado do Shopping Três Américas, no Jardim das Américas. Reserve pelo WhatsApp.">
 <meta property="og:image" content="https://kikiu.com.br/assets/img/bar/og.jpg">
-<meta property="og:type" content="restaurant">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Salão do Kikiu Gastro Bar com o letreiro luminoso do Kikiu e a taça iluminada na parede">
+<meta property="og:type" content="restaurant.restaurant">
 <meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- A foto do topo e o item que decide o LCP. O preload sai com o MESMO
+     srcset/sizes do <img> do hero: o navegador escolhe o mesmo arquivo nos
+     dois e baixa uma vez so. Foi o motivo de o hero virar <img> e deixar de
+     ser background-image: image-set() so aceita densidade (1x/2x), nao
+     largura, e preload com largura + CSS com densidade escolhem arquivos
+     diferentes e baixam a foto duas vezes. -->
+<link rel="preload" as="image" type="image/webp" fetchpriority="high"
+      imagesrcset="assets/img/bar/hero-640.webp 640w, assets/img/bar/hero-1280.webp 1280w" imagesizes="100vw">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,6 +70,7 @@
   --rsv-tinta:        var(--crema);
   --rsv-tinta-fraca:  var(--crema-dim);
   --rsv-fio:          var(--filete);
+  --rsv-borda:        rgba(247,239,231,.55);   /* borda do campo: >= 3:1 sobre o fundo */
   --rsv-acento:       var(--pessego);
   --rsv-acento-tinta: var(--petrol-deep);
   --rsv-campo:        rgba(20,40,49,.55);
@@ -94,7 +109,7 @@ a { color: inherit; }
 section[id] { scroll-margin-top: 78px; }
 .deep { background: var(--petrol-deep); }
 .luz { background: var(--crema); color: var(--petrol-deep); }
-.luz .rotulo { color: #b8664a; }
+.luz .rotulo { color: #9c4e36; }
 .luz .sub { color: #5d6f76; }
 
 h1, h2, h3 { font-family: var(--display); font-weight: 700; margin: 0; line-height: 1.05; letter-spacing: -.035em; text-transform: lowercase; text-wrap: balance; }
@@ -173,34 +188,99 @@ p:last-child { margin-bottom: 0; }
 /* o seletor generico acima vence o .btn por especificidade — reforcar */
 .nav__links a.btn, .nav__links a.btn:hover { color: var(--petrol-deep); }
 .nav .btn { padding: 11px 22px; font-size: 11.5px; }
-@media (max-width: 920px) { .nav__links a:not(.btn) { display: none; } }
+.nav__dir { display: flex; align-items: center; gap: 12px; }
+/* Abaixo de 920px os links somem e sobra o "Reservar" — e o cardápio só
+   existia no menu. Quem chega do celular (a maioria) não via nem cardápio nem
+   onde ficamos. O hambúrguer é um <details>: funciona sem JavaScript, o teclado
+   abre com Enter/Espaço, e o script no fim só fecha ao tocar num link ou no Esc. */
+.menu { display: none; }
+.menu summary {
+  list-style: none; cursor: pointer; width: 44px; height: 44px;
+  display: grid; place-items: center; border-radius: 999px;
+  border: 1px solid var(--filete); background: transparent;
+}
+.menu summary::-webkit-details-marker { display: none; }
+.menu__ico, .menu__ico::before, .menu__ico::after {
+  display: block; width: 18px; height: 2px; border-radius: 2px;
+  background: var(--crema); transition: transform .2s ease, background .2s ease;
+}
+.menu__ico { position: relative; }
+.menu__ico::before, .menu__ico::after { content: ""; position: absolute; left: 0; }
+.menu__ico::before { top: -6px; }
+.menu__ico::after  { top: 6px; }
+.menu[open] .menu__ico { background: transparent; }
+.menu[open] .menu__ico::before { transform: translateY(6px) rotate(45deg); }
+.menu[open] .menu__ico::after  { transform: translateY(-6px) rotate(-45deg); }
+.menu__painel {
+  position: absolute; left: 0; right: 0; top: 100%;
+  display: flex; flex-direction: column;
+  padding: 6px var(--pad) 18px; background: var(--petrol-deep);
+  border-bottom: 1px solid var(--filete);
+  max-height: calc(100svh - 70px); overflow-y: auto;
+}
+.menu__painel a {
+  display: flex; align-items: center; min-height: 52px;
+  font-size: 17px; font-weight: 500; text-decoration: none; color: var(--crema);
+  text-transform: lowercase; border-bottom: 1px solid var(--filete-soft);
+}
+.menu__painel a:last-child { border-bottom: 0; }
+.menu__painel a.menu__cardapio { color: var(--pessego); font-weight: 700; }
+@media (max-width: 920px) {
+  .nav__links a:not(.btn) { display: none; }
+  .menu { display: block; }
+}
+
+/* pular para o conteúdo: some fora da tela, aparece no foco do teclado */
+.pular {
+  position: absolute; left: 12px; top: 0; z-index: 100;
+  transform: translateY(-160%); padding: 12px 20px; border-radius: 999px;
+  background: var(--pessego); color: var(--petrol-deep);
+  font-size: 14px; font-weight: 700; text-decoration: none;
+}
+.pular:focus { transform: none; }
+#topo:focus { outline: none; }
 
 /* ── abertura ─────────────────────────────────────────────────── */
-/* FOTO DO TOPO — trocar 'none' por url("assets/img/bar/hero.jpg").
-   Deck à noite ou o bar em movimento; o véu petróleo segura o contraste. */
-:root { --hero-img: url("assets/img/bar/hero.jpg"); }
+/* FOTO DO TOPO — um <img> (WebP 640/1280, ver scripts/gerar-webp.py) atrás de
+   um véu petróleo. Era background-image e o navegador só a descobria depois
+   de montar o CSS: LCP de 4 s no celular lento. O véu é o ::before, e o
+   texto passa por cima dele, nunca direto pela foto — por isso o véu é mais
+   escuro do que parece necessário: o neon da foto não pode competir com a
+   leitura (contraste medido >= 4,5:1, ver o PR). */
 .hero {
-  position: relative; overflow: hidden;
+  position: relative; overflow: hidden; isolation: isolate;
   padding-block: clamp(60px, 9vw, 124px);
   background-color: var(--petrol);
-  background-image:
-    radial-gradient(62% 54% at 84% 14%, rgba(242,168,130,.24), transparent 62%),
+}
+.hero__foto picture { display: contents; }
+.hero__foto img {
+  position: absolute; inset: 0; z-index: -2;
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(62% 54% at 84% 14%, rgba(242,168,130,.16), transparent 62%),
     radial-gradient(52% 46% at 6% 96%, rgba(39,80,95,.68), transparent 64%),
-    linear-gradient(180deg, rgba(20,40,49,.72) 0%, rgba(20,40,49,.90) 100%),
-    var(--hero-img);
-  background-size: cover;
-  background-position: center;
+    linear-gradient(180deg, rgba(20,40,49,.84) 0%, rgba(20,40,49,.94) 100%);
 }
 .hero__grid { display: grid; gap: clamp(40px, 6vw, 72px); align-items: center; position: relative; }
 @media (min-width: 940px) { .hero__grid { grid-template-columns: 1.25fr .75fr; } }
 .hero h1 { max-width: 12ch; }
-.hero .sub { margin-top: 26px; max-width: 44ch; }
+.hero .sub { margin-top: 26px; max-width: 44ch; color: rgba(247,239,231,.88); }
 .hero__meta {
-  display: flex; flex-wrap: wrap; gap: 8px 32px; margin-top: 44px;
+  display: flex; flex-wrap: wrap; gap: 8px 32px; margin-top: 32px;
   padding-top: 24px; border-top: 1px solid var(--filete);
   font-size: 11.5px; font-weight: 700; letter-spacing: .17em;
-  text-transform: uppercase; color: var(--crema-dim);
+  text-transform: uppercase; color: rgba(247,239,231,.85);
 }
+.ver-agenda { margin: 12px 0 0; font-size: 14.5px; }
+.ver-agenda a {
+  display: inline-block; padding: 10px 0; color: rgba(247,239,231,.88);
+  text-decoration: underline; text-decoration-color: var(--filete); text-underline-offset: 4px;
+}
+.ver-agenda a:hover { color: var(--pessego); text-decoration-color: var(--pessego); }
+body:has(#agenda[hidden]) .ver-agenda { display: none; }
 .taca { display: grid; place-items: center; }
 .taca svg { width: min(100%, 260px); height: auto; }
 
@@ -304,8 +384,8 @@ p:last-child { margin-bottom: 0; }
   padding-bottom: 12px; margin-bottom: 6px; border-bottom: 1px solid var(--pessego);
 }
 .familia__head h3 { color: var(--pessego); }
-.luz .familia__head { border-bottom-color: #b8664a; }
-.luz .familia__head h3 { color: #b8664a; }
+.luz .familia__head { border-bottom-color: #9c4e36; }
+.luz .familia__head h3 { color: #9c4e36; }
 .familia__head span { font-size: 10.5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--crema-dim); }
 .luz .familia__head span { color: #5d6f76; }
 
@@ -317,7 +397,7 @@ p:last-child { margin-bottom: 0; }
    casa fica nos títulos, que são design — não dado. */
 .item__nome { font-family: var(--display); font-size: 21px; font-weight: 500; margin: 0; letter-spacing: -.02em; }
 .item__preco { font-family: var(--display); font-size: 18px; font-weight: 700; white-space: nowrap; color: var(--pessego); font-variant-numeric: tabular-nums; }
-.luz .item__preco { color: #b8664a; }
+.luz .item__preco { color: #9c4e36; }
 .item__desc { grid-column: 1 / -1; margin: 4px 0 0; font-size: 14.5px; color: var(--crema-dim); line-height: 1.65; max-width: 50ch; }
 .luz .item__desc { color: #5d6f76; }
 /* Prato com foto vinda do Saipos (img_path). Sem foto, a linha e a de sempre. */
@@ -334,7 +414,7 @@ p:last-child { margin-bottom: 0; }
   letter-spacing: .13em; text-transform: uppercase;
   color: var(--pessego); border: 1px solid var(--filete);
 }
-.luz .base { color: #b8664a; border-color: rgba(184,102,74,.4); }
+.luz .base { color: #9c4e36; border-color: rgba(156,78,54,.45); }
 
 /* ── eventos ──────────────────────────────────────────────────── */
 .cartoes { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
@@ -357,6 +437,7 @@ p:last-child { margin-bottom: 0; }
   display: grid; gap: clamp(16px, 2vw, 26px);
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 232px), 1fr));
 }
+.destaques[hidden] { display: none; }
 .destaque { margin: 0; opacity: 0; transform: translateY(20px); }
 .destaque.visivel { opacity: 1; transform: none; transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.3,1); }
 .destaque__foto {
@@ -370,10 +451,6 @@ p:last-child { margin-bottom: 0; }
   transition: transform .9s cubic-bezier(.2,.7,.3,1);
 }
 .destaque:hover .destaque__foto img { transform: scale(1.045); }
-.destaque__foto span {
-  font-size: 9px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
-  color: rgba(247,239,231,.42); text-align: center; padding: 12px;
-}
 .destaque__nome {
   font-size: 17px; font-weight: 700; margin: 15px 0 0;
   display: flex; justify-content: space-between; align-items: baseline; gap: 14px;
@@ -392,16 +469,18 @@ p:last-child { margin-bottom: 0; }
   background: var(--petrol-lift); border: 1px solid var(--filete-soft);
   display: grid; place-items: center;
 }
-/* A foto cobre a moldura e esconde a legenda de "falta foto". Se o arquivo
-   nao existir, o onerror tira o <img> do caminho e a legenda volta sozinha —
-   da para publicar a moldura antes da foto chegar, sem icone quebrado. */
+/* A foto cobre a moldura. Se o arquivo nao existir, o onerror tira a <figure>
+   inteira: nunca fica moldura vazia nem legenda de "falta foto". */
 .foto img, .fachada img {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; display: block;
 }
 .foto--larga { aspect-ratio: 16/10; grid-column: span 2; }
 @media (max-width: 640px) { .foto--larga { grid-column: span 1; } }
-.foto span { font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(247,239,231,.42); text-align: center; padding: 14px; }
+/* uma foto só (as outras ainda não existem): sem isto o auto-fit estica a
+   única moldura 4:5 pela largura inteira da página — mil pixels de altura. */
+.fotos--uma { grid-template-columns: minmax(0, 420px); }
+.foto picture, .fachada picture { display: contents; }
 
 /* ── localização ──────────────────────────────────────────────── */
 .par { display: grid; gap: clamp(36px, 5vw, 70px); align-items: start; }
@@ -430,12 +509,13 @@ p:last-child { margin-bottom: 0; }
   border: 1px solid var(--filete-soft); background: var(--petrol-lift);
   display: grid; place-items: center;
 }
-.fachada span { font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(247,239,231,.42); text-align: center; padding: 14px; }
 
 /* ── rodapé ───────────────────────────────────────────────────── */
 .rodape { background: var(--petrol-deep); padding-block: 62px 30px; border-top: 1px solid var(--filete-soft); }
 .rodape__grid { display: grid; gap: 36px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
 .rodape a { color: var(--crema-dim); text-decoration: none; }
+/* alvo de toque >= 44 px: o link de rodapé era uma linha de texto de 25 px */
+.rodape p a, .rodape__fim a { display: inline-block; padding-block: 10px; min-height: 44px; line-height: 24px; }
 .rodape a:hover { color: var(--pessego); }
 .rodape .rotulo { margin-bottom: 14px; }
 .rodape__fim {
@@ -504,36 +584,64 @@ p:last-child { margin-bottom: 0; }
 </head>
 <body>
 
+<a class="pular" href="#topo">Pular para o conteúdo</a>
+
 <header class="nav">
   <div class="nav__in">
     <a class="logo" href="#topo" aria-label="Kikiu Gastro Bar, início">
-      <img src="assets/img/logos/web/kikiu-escuro.png" alt="Kikiu Gastrobar" width="130" height="42">
+      <img src="assets/img/logos/web/kikiu-escuro.png" alt="Kikiu Gastro Bar" width="130" height="42">
     </a>
-    <nav class="nav__links">
-      <a href="#chopp">chopp em dobro</a>
-      <a href="#agenda">agenda</a>
-      <a href="#drinks">drinks</a>
-      <a href="#cozinha">cozinha</a>
-      <a href="/cardapio">cardápio</a>
-      <a href="#onde">onde estamos</a>
-      <a class="btn" href="#reservar">Reservar</a>
-    </nav>
+    <div class="nav__dir">
+      <nav class="nav__links" aria-label="Principal">
+        <a href="#chopp">chopp em dobro</a>
+        <a href="#agenda">agenda</a>
+        <a href="#drinks">drinks</a>
+        <a href="#cozinha">cozinha</a>
+        <a href="/cardapio">cardápio</a>
+        <a href="#onde">onde estamos</a>
+        <a class="btn" href="#reservar">Reservar</a>
+      </nav>
+      <details class="menu" id="menu">
+        <summary aria-label="Menu"><span class="menu__ico" aria-hidden="true"></span></summary>
+        <nav class="menu__painel" aria-label="Menu">
+          <a class="menu__cardapio" href="/cardapio">cardápio</a>
+          <a href="#chopp">chopp em dobro</a>
+          <a href="#agenda">agenda</a>
+          <a href="#drinks">drinks</a>
+          <a href="#cozinha">cozinha</a>
+          <a href="#onde">onde estamos</a>
+        </nav>
+      </details>
+    </div>
   </div>
 </header>
 
-<main id="topo">
+<main id="topo" tabindex="-1">
 
 <!-- ═══ abertura ═══ -->
 <section class="hero">
+  <!-- decorativa (alt vazio); os atributos de largura são os da matriz 16:9 -->
+  <div class="hero__foto" aria-hidden="true">
+    <picture>
+      <source type="image/webp" sizes="100vw"
+              srcset="assets/img/bar/hero-640.webp 640w, assets/img/bar/hero-1280.webp 1280w">
+      <img src="assets/img/bar/hero-1280.jpg" sizes="100vw"
+           srcset="assets/img/bar/hero-640.jpg 640w, assets/img/bar/hero-1280.jpg 1280w"
+           alt="" width="1280" height="720" fetchpriority="high" decoding="async">
+    </picture>
+  </div>
   <div class="wrap hero__grid">
     <div>
-      <span class="rotulo sobe" style="transition-delay:60ms">Gastro bar · Cuiabá</span>
+      <span class="rotulo sobe" style="transition-delay:60ms">Kikiu Gastro Bar · Cuiabá</span>
       <h1 class="sobe" style="transition-delay:160ms">o dia acaba <em>aqui</em>.</h1>
       <p class="sub sobe" style="transition-delay:280ms">Coquetelaria autoral, chopp a zero grau e cozinha servindo até as onze. Música ao vivo de quinta a sábado, ao lado do Shopping Três Américas.</p>
       <div class="linha sobe" style="transition-delay:390ms">
-        <a class="btn" href="#agenda">ver a agenda da semana</a>
-        <a class="btn btn--fio" href="#reservar">Reservar mesa</a>
+        <a class="btn" href="#reservar">Reservar mesa</a>
+        <a class="btn btn--fio" href="/cardapio">Ver o cardápio</a>
       </div>
+      <!-- A agenda nasce escondida (só aparece com atração publicada): o link
+           some junto, para não levar a lugar nenhum. -->
+      <p class="ver-agenda sobe" style="transition-delay:440ms"><a href="#agenda">ver a agenda da semana</a></p>
       <div class="hero__meta sobe" style="transition-delay:490ms">
         <span>Ter a Sáb · 17h até fechar</span>
         <span>Cozinha até 23h</span>
@@ -598,11 +706,15 @@ p:last-child { margin-bottom: 0; }
          proporcao da moldura.
          O desenho continua logo abaixo como rede de seguranca. -->
     <figure class="chopp-copo chopp-entra" style="margin:0">
-      <img src="assets/img/bar/chopp.jpg"
-           alt="Caneca de chopp gelada erguida sob o letreiro do Kikiu Gastro Bar"
-           loading="lazy"
-           onload="var d=document.querySelector('#chopp .taca'); if (d) d.remove();"
-           onerror="this.closest('.chopp-copo').remove()">
+      <picture>
+        <source type="image/webp" sizes="(max-width: 820px) min(100vw, 420px), 300px"
+                srcset="assets/img/bar/chopp-480.webp 480w, assets/img/bar/chopp-720.webp 720w">
+        <img src="assets/img/bar/chopp.jpg" sizes="(max-width: 820px) min(100vw, 420px), 300px"
+             alt="Caneca de chopp gelada erguida sob o letreiro do Kikiu Gastro Bar"
+             width="720" height="960" loading="lazy" decoding="async"
+             onload="var d=document.querySelector('#chopp .taca'); if (d) d.remove();"
+             onerror="this.closest('.chopp-copo').remove()">
+      </picture>
     </figure>
 
     <div class="taca chopp-entra" aria-hidden="true" style="min-width:min(100%,300px)">
@@ -699,31 +811,32 @@ p:last-child { margin-bottom: 0; }
     <h2 style="margin-bottom:16px">drinks &amp; chopp</h2>
     <p class="sub" style="margin-bottom:44px">Coquetelaria autoral, feita no balcão. O cardápio inteiro — cozinha, lanches, chopp, destilados e sobremesas — está em <a href="/cardapio">Ver o cardápio</a>.</p>
 
-    <div class="destaques">
+    <!-- VITRINE EM ESPERA. Os quatro destaques estão prontos, mas as fotos de
+         drink que existiam foram tiradas do ar em 25/09 (não eram da casa) e uma
+         moldura vazia com legenda de "falta foto" é pior que nada. O `hidden` esconde o
+         bloco inteiro. Quando houver foto REAL de cada drink: ponha o <img>
+         dentro de .destaque__foto e tire o `hidden`. -->
+    <div class="destaques" hidden>
       <figure class="destaque" style="transition-delay:0ms">
         <div class="destaque__foto">
-          <span>Foto — Negroni</span>
         </div>
         <p class="destaque__nome">Negroni <span class="destaque__preco">R$ 45</span></p>
         <p class="destaque__desc">Gin premium, vermute doce e amaro. Encorpado, amargo, clássico.</p>
       </figure>
       <figure class="destaque" style="transition-delay:90ms">
         <div class="destaque__foto">
-          <span>Foto — Black Velvet</span>
         </div>
         <p class="destaque__nome">Black Velvet <span class="destaque__preco">R$ 45</span></p>
         <p class="destaque__desc">Cachaça, café, chocolate, gengibre, pimenta e limão-taiti. Encorpado e doce.</p>
       </figure>
       <figure class="destaque" style="transition-delay:180ms">
         <div class="destaque__foto">
-          <span>Foto — Moscow Mule</span>
         </div>
         <p class="destaque__nome">Moscow Mule <span class="destaque__preco">R$ 45</span></p>
         <p class="destaque__desc">Vodka premium, limão-taiti e gengibre. Refrescante e cítrico.</p>
       </figure>
       <figure class="destaque" style="transition-delay:270ms">
         <div class="destaque__foto">
-          <span>Foto — Jungle Bird</span>
         </div>
         <p class="destaque__nome">Jungle Bird <span class="destaque__preco">R$ 45</span></p>
         <p class="destaque__desc">Rum envelhecido, Campari, abacaxi e limão-taiti. Amargo e tropical.</p>
@@ -761,7 +874,7 @@ p:last-child { margin-bottom: 0; }
 <section class="block luz" id="cozinha">
   <div class="wrap">
     <span class="rotulo">Cozinha</span>
-    <h2 style="margin-bottom:18px">a cozinha serve até as <em style="color:#b8664a">onze da noite</em></h2>
+    <h2 style="margin-bottom:18px">a cozinha serve até as <em style="color:#9c4e36">onze da noite</em></h2>
     <p class="sub" style="margin-bottom:48px">Não é petisco de bar requentado: é cozinha de verdade, servindo até as onze — e o bar continua depois disso.</p>
 
     <div class="colunas">
@@ -881,18 +994,21 @@ p:last-child { margin-bottom: 0; }
   <div class="wrap">
     <span class="rotulo">Ambiente</span>
     <h2 style="margin-bottom:44px">deck, bar central e palco</h2>
-    <div class="fotos">
-      <figure class="foto foto--larga">
-        <img src="assets/img/bar/deck.jpg" alt="Deck do Kikiu à noite" loading="lazy" onerror="this.remove()">
-        <span>Foto — deck à noite</span>
-      </figure>
+    <!-- deck.jpg e palco.jpg ainda não existem. A moldura vazia com a legenda
+         "falta foto" foi para o cliente; agora só entra o que tem foto real.
+         Quando a casa fotografar o deck e o palco: volte as duas <figure
+         class="foto"> (deck com foto--larga) e tire o fotos--uma. Se o
+         arquivo sumir, o onerror leva a <figure> inteira junto. -->
+    <div class="fotos fotos--uma">
       <figure class="foto">
-        <img src="assets/img/bar/balcao.jpg" alt="Bar central do Kikiu com o bartender" loading="lazy" onerror="this.remove()">
-        <span>Foto — bar e bartender</span>
-      </figure>
-      <figure class="foto">
-        <img src="assets/img/bar/palco.jpg" alt="Palco do Kikiu" loading="lazy" onerror="this.remove()">
-        <span>Foto — palco</span>
+        <picture>
+          <source type="image/webp" sizes="(max-width: 640px) 100vw, 420px"
+                  srcset="assets/img/bar/balcao-480.webp 480w, assets/img/bar/balcao-720.webp 720w">
+          <img src="assets/img/bar/balcao.jpg" sizes="(max-width: 640px) 100vw, 420px"
+               alt="Caneca de chopp gelada no balcão do Kikiu, com o bartender ao fundo"
+               width="720" height="960" loading="lazy" decoding="async"
+               onerror="this.closest('figure').remove()">
+        </picture>
       </figure>
     </div>
   </div>
@@ -940,8 +1056,14 @@ p:last-child { margin-bottom: 0; }
            procurar. Sao tres casas na mesma calcada, e o texto ao lado ja
            explica "somos a do meio, a fachada escura" — isso e uma foto. -->
       <figure class="fachada">
-        <img src="assets/img/bar/porta.jpg" alt="A fachada do Kikiu: o letreiro com a taça iluminada" loading="lazy" onerror="this.remove()">
-        <span>Foto — fachada</span>
+        <picture>
+          <source type="image/webp" sizes="(max-width: 899px) 100vw, 540px"
+                  srcset="assets/img/bar/porta-480.webp 480w, assets/img/bar/porta-800.webp 800w">
+          <img src="assets/img/bar/porta.jpg" sizes="(max-width: 899px) 100vw, 540px"
+               alt="A fachada do Kikiu: o letreiro com a taça iluminada"
+               width="800" height="1245" loading="lazy" decoding="async"
+               onerror="this.closest('figure').remove()">
+        </picture>
       </figure>
       <!-- O MAPA E UMA IMAGEM, E A IMAGEM E O LINK. Duas razoes, as duas medidas:
            1. O embed do Google NAO NOMEIA o lugar. Pedir o alfinete com rotulo
@@ -957,8 +1079,14 @@ p:last-child { margin-bottom: 0; }
            Os ladrilhos sao do OpenStreetMap e o credito esta gravado na imagem,
            que e o que a licenca pede. -->
       <a class="mapa" href="https://www.google.com/maps/search/?api=1&amp;query=-15.61167%2C-56.07355" target="_blank" rel="noopener"
-         aria-label="Abrir a localização do Kikiu Gastrobar no Google Maps">
-        <img src="assets/img/bar/mapa.jpg" alt="Mapa: Kikiu Gastrobar na Av. Brasília, 177, Jardim das Américas, Cuiabá — ao lado do Shopping Três Américas" loading="lazy">
+         aria-label="Abrir a localização do Kikiu Gastro Bar no Google Maps">
+        <picture>
+          <source type="image/webp" sizes="(max-width: 899px) 100vw, 540px"
+                  srcset="assets/img/bar/mapa-640.webp 640w, assets/img/bar/mapa-1000.webp 1000w">
+          <img src="assets/img/bar/mapa.jpg" sizes="(max-width: 899px) 100vw, 540px"
+               alt="Mapa: Kikiu Gastro Bar na Av. Brasília, 177, Jardim das Américas, Cuiabá — ao lado do Shopping Três Américas"
+               width="1000" height="750" loading="lazy" decoding="async">
+        </picture>
         <span class="mapa__abrir">Abrir no Google Maps</span>
       </a>
     </div>
@@ -971,7 +1099,7 @@ p:last-child { margin-bottom: 0; }
   <div class="wrap">
     <div class="rodape__grid">
       <div>
-        <img src="assets/img/logos/web/kikiu-escuro.png" alt="Kikiu Gastrobar"
+        <img src="assets/img/logos/web/kikiu-escuro.png" alt="Kikiu Gastro Bar"
              width="136" height="44" loading="lazy">
         <p class="min" style="margin-top:12px">Jardim das Américas · Cuiabá/MT</p>
       </div>
@@ -981,7 +1109,7 @@ p:last-child { margin-bottom: 0; }
       </div>
       <div>
         <span class="rotulo">Siga</span>
-        <p style="font-size:14.5px"><a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a><br><a href="https://facebook.com/" target="_blank" rel="noopener">Facebook</a></p>
+        <p style="font-size:14.5px"><a href="https://www.instagram.com/kikiu.gastrobar/" target="_blank" rel="noopener">Instagram</a></p>
       </div>
       <div>
         <span class="rotulo">Nossas casas</span>
@@ -1029,6 +1157,7 @@ p:last-child { margin-bottom: 0; }
     "longitude": -56.07355
   },
   "hasMap": "https://www.google.com/maps/search/?api=1&query=-15.61167%2C-56.07355",
+  "sameAs": ["https://www.instagram.com/kikiu.gastrobar/"],
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday"], "opens": "17:00", "closes": "23:59" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "17:00", "closes": "02:00" }
@@ -1052,1404 +1181,12 @@ p:last-child { margin-bottom: 0; }
 }
 </script>
 
+<!-- O Menu em JSON-LD (~32 KB, com os preços da cozinha) morava aqui E em
+     /bebidas, e a home já aponta para ele pelo `hasMenu`. Duplicado, pesava
+     mais que o resto da página e podia divergir do cardápio do QR. Os
+     marcadores ficam (o sync-cardapio.mjs os exige) e o conteúdo fica vazio. -->
 <!-- SAIPOS:JSONLD:INICIO -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Menu",
-  "name": "Cardapio do Kikiu Gastro Bar",
-  "inLanguage": "pt-BR",
-  "hasMenuSection": [
-    {
-      "@type": "MenuSection",
-      "name": "Petiscos & botecaria — pastéis",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Pastel de carne à bolonhesa + parmesão",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "55.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Pastel cremoso de camarão + Catupiry",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "78.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Pastel de Cupim desfiado com cream cheese",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "63.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Pastel de calabresa + mussarela",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "58.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Petiscos & botecaria — croquetes",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Bolinho mineiro de milho, bacon + queijo meia cura",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "62.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Croquete de ossobuco + provolone defumado",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "68.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Bolinho crocante de pintado + ervas finas",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "64.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Croquete de carne seca + abóbora cremosa",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "61.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Petiscos",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Iscas de frango super crocantes + mostarda Dijon",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "66.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Picanha Angus fatiada + batata frita + molho da casa",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "97.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Iscas de peixe branco crocante + molho cítrico",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "83.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Cubos de filé mignon acebolado + Grana Padano",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "108.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Batata frita especial, azeite trufado, queijo + ervas",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "45.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Especiais",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Escondidinho de Ragu de Costela",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "81.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Gratinado de Catupiry + cubos de filé mignon",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "115.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Moela e coração ao molho roti especial",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "55.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Carne de onça — especialidade da casa",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "78.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Steaks & chapas",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Carré de cordeiro",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "162.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Picanha Angus",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "145.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Sobrecoxa desossada na mostarda",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "81.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Linguiça cuiabana gratinada",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "52.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Drinks Casa Pro",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Aperol Spritz",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "45.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Black Velvet",
-          "description": "Cachaça/ Café/Chocolate/Gengibre/Pimenta/Limão Taiti (Encorpado-Doce- Envolvente)",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "45.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Carajillo",
-          "description": "Premium Tequila/Licor 43/Licor de Café/Café Expresso. (Encorpado- Doce - Digestivo",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "45.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Espresso Martini",
-          "description": "Premium Vodka/Licor de café/ Café Expresso. (Encorpado-Doce_Clássico)",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "45.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Jungle Bird",
-          "description": "Premium Rum Envelhecido/Campari/Abacaxi/Limão-Taiti (Encorpado-Amargo-Tropical.",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "45.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Midori",
-          "description": "Premium Vodka/Abacaxi/Yuzu/Manjericão/Kiwi/Limão-Taiti. (Refrencante-Frutado-Exótico)",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "45.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "MoscoW Mule",
-          "description": "Premium vodka/Limão-Taiti/Gengibre (Refrescante-Citrico-Clássico)",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "45.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Negroni",
-          "description": "Premiun Gin /Vermute Doce/ Amaro ( Encorpado -Amargo_Clássico)",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "45.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Paçoka",
-          "description": "Premium Vodka/Paçoca/Licor/Baileys/Caramelo Salgado/Leite de aveia (cremoso-Doce_Brasileiro)",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "45.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Porn Star Martine",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "45.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Wiskey Business",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "45.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Wiskey Sour",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "45.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Caipirinhas",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Caipinha de Limão",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "34.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Caipirinha de Abacaxi com Hortelã",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "34.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Caipirinha de Manga com pimenta",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "36.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Caipirinha de Maracujá",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "36.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Caipiroska",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Caipiroska de Abacaxi com Hotelã",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "34.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Caipiroska de Limão",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "34.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Caipiroska de Manga com Pimenta",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "36.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Caipiroska de Maracujá",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "36.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Vodkas/Gin",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Absolut Dose",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "30.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Belvedere Dose",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "32.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Gin Beefeater Dose",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "24.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Gin Kamai Dose",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "28.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Gin Tanqueray Dose",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "34.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Grey Goose Dose",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "32.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Kamai Dose",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "28.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Digestivos/Doses",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Balena chocolate Dose",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "24.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Ballantine s 7 anos Dose",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "28.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Buchanans 12 anos ( Dose )",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "32.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Cachaça Branca Dose/Sagatiba",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "20.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Cachaça Envelhecida Weber Amburana Dose",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "26.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Cachaça Premium Dose 7 Madeiras",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "30.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Campari (Dose)",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "46.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Cdb",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "8.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Chivas Regal (12 anos) dose",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "30.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Don Cream Dose",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "24.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Glenliddich 12 anos Dose",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "32.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Glenlivet 12 Anos Dose",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "32.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Jhonnie Walker Gold Label ( Dose )",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "38.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Jhonnie Walker Red Label ( Dose )",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "30.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Licor 43 Dose",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "32.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Old parr Dose ( 12anos)",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "32.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Shot de Limão",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "4.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Tequila",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "José Cuervo Dose",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "26.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Combos/Bar",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Ballantine`s 7 anos",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "320.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Buchanans 12 anos",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "390.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Campari Garrafa",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "220.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Chivas Regal 12 anos",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "360.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Combo Grey Groose",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "410.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Glenfiddich 12 anos",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "560.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Glenlivet 12 Anos",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "540.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Jhonnie Walker Gold Label",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "450.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Johnnie Walker Red Label",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "340.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Old Parr 12 Anos combo",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "380.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Cerveja 600ml",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Brahma 600 ml",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "20.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Corona 600 ml",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "24.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Original 600 ml",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "20.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Spaten 600 ml",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "24.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Stella Gold 600ml",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "24.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Long Neck",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Brahma Zero Long neck",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "14.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Corona Long Neck",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "16.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Corona Zero Long Neck",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "14.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Flying Fish",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "14.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Michelob Long neck",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "14.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Spaten Long neck",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "16.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Sucos Especiais",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Abacaxi com Hotelã e Gengibre (copo)",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "18.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Caju com Limão (Copo)",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "16.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Frutas Vermelhas (Copo)",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "16.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Manga com Maracujá (copo)",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "18.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Maracujá com Laranja (Copo)",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "18.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Sucos",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Abacaxi",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "14.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Abacaxi com Hortelã",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "16.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Acerola",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "14.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Caju",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "14.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Laranja",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "14.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Limão",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "14.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Bebidas",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Água com gás",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "9.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Àgua de coco 1litro",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "30.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Água de coco 200 ML",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "12.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Àgua de coco 330ml",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "16.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Água sem gas",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "8.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Água Tônica lata",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "9.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Água Tônica Zero lata",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "9.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Guaraná Lata",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "9.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Guaraná Zero lata",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "9.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "H2O Limão",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "12.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "H2O Limoneto",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "12.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Pepsi Black lata",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "9.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Pepsi Lata",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "9.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Red Bull Lata",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "16.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Red Bull Zero Lata",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "16.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Chopp",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Double Chopp Brahma Happy Hour",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "14.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "@type": "MenuSection",
-      "name": "Couvert artistico",
-      "hasMenuItem": [
-        {
-          "@type": "MenuItem",
-          "name": "Couvert artistico",
-          "offers": [
-            {
-              "@type": "Offer",
-              "price": "15.00",
-              "priceCurrency": "BRL"
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-</script>
+
       <!-- SAIPOS:JSONLD:FIM -->
 <script src="assets/reserva/reserva.js" defer></script>
 <script src="assets/agenda/agenda.js" defer></script>
@@ -2478,6 +1215,31 @@ p:last-child { margin-bottom: 0; }
     // rootMargin negativo comeca a entrada um pouco antes de encostar.
   }, { threshold: 0, rootMargin: '0px 0px -6% 0px' });
   alvos.forEach(function (e) { obs.observe(e); });
+})();
+</script>
+<script>
+// Menu do celular (<details id="menu">). Sem este script ele já abre e fecha
+// no toque; aqui só se acrescenta o que o <details> não faz sozinho: fechar
+// ao tocar num link, ao tocar fora, no Esc (devolvendo o foco ao botão) e ao
+// virar tela larga.
+(function () {
+  var m = document.getElementById('menu');
+  if (!m) return;
+  var botao = m.querySelector('summary');
+  m.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('.menu__painel a')) m.open = false;
+  });
+  document.addEventListener('click', function (e) {
+    if (m.open && !m.contains(e.target)) m.open = false;
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && m.open) { m.open = false; botao.focus(); }
+  });
+  if (window.matchMedia) {
+    var larga = matchMedia('(min-width: 921px)');
+    var fechar = function () { if (larga.matches) m.open = false; };
+    if (larga.addEventListener) larga.addEventListener('change', fechar);
+  }
 })();
 </script>
 <script type="module" src="assets/analytics.js"></script>

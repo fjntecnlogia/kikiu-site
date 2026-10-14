@@ -126,7 +126,7 @@ const capa = `<section class="pagina capa">
   <div class="capa__foto"></div>
   <div class="capa__rodape">
     <img class="capa__logo" src="../assets/img/logos/kikiu-fundo-claro.png"
-         alt="Kikiu Gastrobar">
+         alt="Kikiu Gastro Bar">
     <p class="capa__casa">Casa<small>pro coquetéis</small></p>
   </div>
 </section>`;
@@ -250,7 +250,7 @@ await writeFile(join(RAIZ, 'cardapios/kikiu-bebidas-impressao.html'),
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<title>Cardápio — Kikiu Gastrobar — impressão</title>
+<title>Cardápio — Kikiu Gastro Bar — impressão</title>
 <!-- GERADO por scripts/build-cardapio-bebidas.mjs a partir de
      cardapios/kikiu-bebidas.json. Não editar à mão: a próxima execução
      sobrescreve. Layout em cardapios/_bebidas.css; conteúdo no JSON. -->
@@ -300,7 +300,11 @@ const BASE = `https://${casa.dominio}`;
 await writeFile(join(RAIZ, 'bebidas.html'), paginaCardapio({
   url: `${BASE}/${casa.cardapio}`,
   ogImagem: `${BASE}/assets/img/${casa.imagens}/og.jpg`,
-  casa: 'Kikiu Gastrobar', titulo: 'Cardápio', endereco: dados.endereco,
+  casa: 'Kikiu Gastro Bar', titulo: 'Cardápio', endereco: dados.endereco,
+  // O <title> do Google corta em ~60 caracteres: o nome da casa e o que ela
+  // serve vêm primeiro, "Cuiabá" fecha. É o mesmo texto do og:title.
+  tituloPagina: 'Cardápio Kikiu — Chopp, Drinks, Cozinha e Sobremesas | Cuiabá',
+  ogAlt: 'Salão do Kikiu Gastro Bar com o letreiro luminoso do Kikiu e a taça iluminada na parede',
   // Chopp em dobro e SEGUNDA E TERCA, e so. O Double Chopp existe no PDV mas
   // nao entra como linha fixa do cardapio: item fixo diz "sempre", e nos
   // outros cinco dias o cliente cobraria na mesa. Aqui a promocao aparece
@@ -314,31 +318,40 @@ await writeFile(join(RAIZ, 'bebidas.html'), paginaCardapio({
   // a marca abre e fecha a pagina: a mesma taca da fachada e do impresso
   logo: {
     src: '/assets/img/logos/web/kikiu-escuro.png',
-    alt: 'Kikiu Gastrobar', largura: 180, altura: 58,
+    alt: 'Kikiu Gastro Bar', largura: 180, altura: 58,
   },
   icone: { aba: '/assets/img/icone/kikiu-32.png', inicio: '/assets/img/icone/kikiu-180.png' },
-  descricao: 'Cardápio do Kikiu Gastrobar — cozinha, lanches, coquetelaria autoral da Casa Pro, cervejas, destilados, sucos e sobremesas, no Shopping Três Américas, Cuiabá.',
+  descricao: 'Cardápio do Kikiu Gastro Bar — cozinha, lanches, coquetelaria autoral da Casa Pro, cervejas, destilados, sucos e sobremesas. Ao lado do Shopping Três Américas, em Cuiabá.',
   // O cardapio acompanha o painel ao vivo (preco, foto, item que acabou) e a
   // carta de vinhos e uma pagina so, igual nas tres casas.
   apiSlug: casa.id,
   extras: [{ texto: 'Vinhos', href: '/vinhos' }],
   gerador: 'scripts/build-cardapio-bebidas.mjs',
-  fontes: 'https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@400;600;700&display=swap',
+  // As MESMAS fontes da home (Outfit nos títulos, Karla no texto): quem sai do
+  // site para o cardápio do QR não muda de voz. Antes eram Abril Fatface e
+  // Poppins — quatro arquivos a mais, que a home nunca baixou.
+  fontes: 'https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Karla:wght@400;500;700&display=swap',
   rodape: 'Preços sujeitos a alteração. Venda de bebida alcoólica proibida para menores de 18 anos.',
   tema: {
     papel: '#14100e', cartao: '#201a17', tinta: '#f7f1ea', suave: '#b3a89e',
-    marca: '#e0402c', realce: '#f2a882', fio: '#322a25',
+    // marca #c93a28 (era #e0402c): branco sobre #e0402c dava 4,25:1 na ficha
+    // ativa; sobre #c93a28 dá 5,1:1 (WCAG AA pede 4,5).
+    marca: '#c93a28', realce: '#f2a882', fio: '#322a25',
     barra: '#14100e', sobreBarra: '#f7f1ea',
+    // a capa e o LCP da pagina: WebP em 3 larguras, o JPEG (1200x1600, 280 KB)
+    // fica so de reserva para navegador sem WebP. Gerado por scripts/gerar-webp.py
     heroImg: '/assets/img/bar/chopp.jpg', heroPos: 'center 30%',
-    display: '"Abril Fatface", Georgia, serif',
-    texto: '"Poppins", -apple-system, sans-serif',
-    pesoDisplay: 400,
+    heroWebp: '/assets/img/bar/chopp-480.webp 480w, /assets/img/bar/chopp-720.webp 720w, /assets/img/bar/chopp-1200.webp 1200w',
+    heroLargura: 1200, heroAltura: 1600,
+    display: '"Outfit", -apple-system, BlinkMacSystemFont, sans-serif',
+    texto: '"Karla", -apple-system, BlinkMacSystemFont, sans-serif',
+    pesoDisplay: 700,
     arco: '50% 50% 4px 4px / 34% 34% 4px 4px',
     logoAltura: 58,
   },
   secoes: secoesQR,
   jsonld: {
-    '@context': 'https://schema.org', '@type': 'Menu', name: 'Cardápio Kikiu Gastrobar',
+    '@context': 'https://schema.org', '@type': 'Menu', name: 'Cardápio Kikiu Gastro Bar',
     hasMenuSection: dados.blocos.map(b => ({
       '@type': 'MenuSection', name: b.titulo,
       hasMenuItem: b.grupos.flatMap(g => g.itens.map(it => ({

@@ -23,19 +23,19 @@ const FONTE = 'https://api-painel.fjntecnologia.com.br/public/menu/forneatto';
 const MINIMO = 10;   // piso de sanidade: menos que isso e resposta pela metade
 
 const CASA = {
-  nome: 'Kikiu Gastrobar', dominio: 'kikiu.com.br', imagens: 'bar',
+  nome: 'Kikiu Gastro Bar', dominio: 'kikiu.com.br', imagens: 'bar',
   endereco: 'Shopping Três Américas · Cuiabá — MT',
-  logo: { src: '/assets/img/logos/web/kikiu-escuro.png', alt: 'Kikiu Gastrobar', largura: 180, altura: 58 },
+  logo: { src: '/assets/img/logos/web/kikiu-escuro.png', alt: 'Kikiu Gastro Bar', largura: 180, altura: 58 },
   icone: { aba: '/assets/img/icone/kikiu-32.png', inicio: '/assets/img/icone/kikiu-180.png' },
-  fontes: 'https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@400;600;700&display=swap',
+  fontes: 'https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Karla:wght@400;500;700&display=swap',   // as mesmas da home
   extras: [{ texto: 'Cardápio', href: '/cardapio' }],
   tema: {
     papel: '#14100e', cartao: '#201a17', tinta: '#f7f1ea', suave: '#b3a89e',
-    marca: '#e0402c', realce: '#f2a882', fio: '#322a25',
+    marca: '#c93a28', realce: '#f2a882', fio: '#322a25',   // branco sobre ela: 5,1:1 (era 4,25:1)
     barra: '#14100e', sobreBarra: '#f7f1ea',
-    display: '"Abril Fatface", Georgia, serif',
-    texto: '"Poppins", -apple-system, sans-serif',
-    pesoDisplay: 400, arco: '50% 50% 4px 4px / 34% 34% 4px 4px', logoAltura: 58,
+    display: '"Outfit", -apple-system, BlinkMacSystemFont, sans-serif',
+    texto: '"Karla", -apple-system, BlinkMacSystemFont, sans-serif',
+    pesoDisplay: 700, arco: '50% 50% 4px 4px / 34% 34% 4px 4px', logoAltura: 58,
   },
 };
 
@@ -86,6 +86,7 @@ await writeFile(join(RAIZ, 'vinhos.html'), paginaCardapio({
   url: `${BASE}/vinhos`,
   ogImagem: `${BASE}/assets/img/${CASA.imagens}/og.jpg`,
   casa: CASA.nome, titulo: 'Carta de vinhos', endereco: CASA.endereco,
+  ogAlt: 'Salão do Kikiu Gastro Bar com o letreiro luminoso do Kikiu e a taça iluminada na parede',
   logo: CASA.logo, icone: CASA.icone,
   descricao: `Carta de vinhos e espumantes — ${total} rótulos, de ${secoes.map(s => s.titulo.toLowerCase()).join(', ')}. ${CASA.nome}, Cuiabá.`,
   gerador: 'scripts/build-vinhos.mjs',
