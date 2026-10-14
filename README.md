@@ -36,6 +36,19 @@ Isso reescreve canonical, Open Graph, JSON-LD, `sitemap.xml`, `robots.txt` e
 o `vercel.json` inteiro. Editar o `vercel.json` a mao e perder a edicao na
 proxima vez que alguem rodar o script.
 
+## Trocou uma foto?
+
+As fotos em `assets/img/bar/` (`hero.jpg`, `chopp.jpg`, `balcao.jpg`, `porta.jpg`,
+`mapa.jpg`) sao as **matrizes**: o site serve as copias leves em WebP
+(`hero-640.webp`, `chopp-720.webp`...). Depois de trocar uma matriz,
+**no seu PC (PowerShell):**
+
+```
+python3 scripts/gerar-webp.py
+```
+
+e commite as copias junto. Sem isso o site continua mostrando a foto velha.
+
 ## QR codes das mesas
 
 **no seu PC (PowerShell):**
