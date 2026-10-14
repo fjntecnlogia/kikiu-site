@@ -182,9 +182,19 @@ const vercel = {
     { source: '/cardapio-api/:caminho*',  destination: `${SISTEMA}/menu/:caminho*` },
   ],
 
+  // Nada em /assets tem hash no nome (hero-1280.webp, chopp.jpg...): quando a
+  // casa trocar uma foto, o arquivo muda NO MESMO endereco. `immutable` por um
+  // ano diria ao navegador para nunca perguntar de novo — a foto nova so
+  // chegaria a quem limpasse o cache. E a regra casa com TUDO sob /assets,
+  // inclusive o que nao existe: o 404 de /assets/img/bar/deck.jpg saiu da
+  // Vercel como `immutable` (verificado ao vivo), e um 404 imutavel segue
+  // negando o arquivo no dia em que ele for publicado.
+  // Um dia de cache fresco + uma semana servindo o velho enquanto revalida em
+  // segundo plano: a segunda visita continua instantanea e a foto nova aparece
+  // em ate 24 h. `immutable` so volta se os arquivos ganharem hash.
   headers: [
     { source: '/assets/(.*)',
-      headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }] },
+      headers: [{ key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' }] },
   ],
 };
 
