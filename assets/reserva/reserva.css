@@ -135,3 +135,7 @@
 @media (prefers-reduced-motion: reduce) {
   .rsv input, .rsv select, .rsv textarea, .rsv__enviar { transition: none; }
 }
+
+/* aviso de privacidade, abaixo do botão */
+.rsv__priv { margin: 14px 0 0; font-size: 13px; line-height: 1.5; color: var(--rsv-tinta-fraca); }
+.rsv__priv a { color: inherit; text-underline-offset: 3px; }
