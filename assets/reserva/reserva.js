@@ -147,6 +147,12 @@
     forma.appendChild(caixaArmadilha);
     forma.appendChild(el("div", { class: "rsv__acoes" }, [enviar, ajuda]));
     forma.appendChild(recado);
+    /* LGPD: quem informa nome e telefone precisa saber para quê, ali, na
+       hora — e onde ler o resto. */
+    forma.appendChild(el("p", { class: "rsv__priv" }, [
+      document.createTextNode("Usamos seu nome e telefone só para confirmar a reserva. "),
+      el("a", { href: "/privacidade", text: "Política de Privacidade" }),
+    ]));
 
     function dizer(texto, tipo) {
       recado.textContent = "";

@@ -115,7 +115,9 @@ if (rota) {
 const paginas = [{ rota: '/', prio: '1.0' }]
   .concat(rota ? [{ rota: `/${rota}`, prio: '0.9' }] : [])
   // a carta de vinhos e igual nas tres casas e nasce do build-vinhos.mjs
-  .concat(existsSync(join(RAIZ, 'vinhos.html')) && casa.vinhosPublicos !== false ? [{ rota: '/vinhos', prio: '0.7' }] : []);
+  .concat(existsSync(join(RAIZ, 'vinhos.html')) && casa.vinhosPublicos !== false ? [{ rota: '/vinhos', prio: '0.7' }] : [])
+  // a politica de privacidade: Google Ads e Google Cloud pedem uma URL publica
+  .concat(existsSync(join(RAIZ, 'privacidade.html')) ? [{ rota: '/privacidade', prio: '0.3' }] : []);
 
 await writeFile(join(RAIZ, 'sitemap.xml'),
 `<?xml version="1.0" encoding="UTF-8"?>
