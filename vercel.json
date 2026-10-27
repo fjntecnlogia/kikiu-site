@@ -50,7 +50,17 @@
   "rewrites": [
     {
       "source": "/cardapio",
+      "has": [
+        {
+          "type": "query",
+          "key": "mesa"
+        }
+      ],
       "destination": "/bebidas"
+    },
+    {
+      "source": "/cardapio",
+      "destination": "/cardapios"
     },
     {
       "source": "/reservas-api/:caminho*",

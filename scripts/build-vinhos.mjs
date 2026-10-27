@@ -28,7 +28,7 @@ const CASA = {
   logo: { src: '/assets/img/logos/web/kikiu-escuro.png', alt: 'Kikiu Gastro Bar', largura: 180, altura: 58 },
   icone: { aba: '/assets/img/icone/kikiu-32.png', inicio: '/assets/img/icone/kikiu-180.png' },
   fontes: 'https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Karla:wght@400;500;700&display=swap',   // as mesmas da home
-  extras: [{ texto: 'Cardápio', href: '/cardapio' }],
+  extras: [{ texto: 'Cardápio', href: '/bebidas' }],
   tema: {
     papel: '#14100e', cartao: '#201a17', tinta: '#f7f1ea', suave: '#b3a89e',
     marca: '#c93a28', realce: '#f2a882', fio: '#322a25',   // branco sobre ela: 5,1:1 (era 4,25:1)

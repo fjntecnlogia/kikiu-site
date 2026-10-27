@@ -10,6 +10,8 @@
       "kikiugastrobar.com.br"
     ],
     "cardapio": "bebidas",
+    "_cardapioGeral": "Pagina que /cardapio abre quando NAO ha ?mesa= (QR geral impresso). Com ?mesa=N vai direto ao cardapio da casa.",
+    "cardapioGeral": "cardapios",
     "_googleAvaliar": "Link de 'Escrever uma avaliacao' do Google desta casa. Google Maps > a casa > Avaliacoes > Escrever uma avaliacao > compartilhar. Vazio = o convite nao aparece na pagina de opiniao.",
     "googleAvaliar": "",
     "ga4": "",
