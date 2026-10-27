@@ -2,108 +2,154 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<title>QR dos cardápios — Saikō · Kikiu · Forneatto</title>
-<!-- Cartão do QR único dos cardápios (kikiu.com.br/cardapios). 4 por folha A4, para cortar.
-     Fica em cardapios/, que o .vercelignore NÃO publica. O QR vem de assets/img/qrcode/cardapios.svg. -->
+<title>Arte do QR dos cardápios — Saikō · Kikiu · Forneatto</title>
+<!-- Arte para imprimir do QR único dos cardápios (kikiu.com.br/cardapios).
+     Página 1: cartaz A4 (parede, balcão, porta). Página 2: 4 cartões A6 por folha A4, para as mesas.
+     Fica em cardapios/, que o .vercelignore NÃO publica. O QR vem de assets/img/qrcode/cardapios.svg.
+     PDF: node com playwright, ver README ("Arte do QR dos três cardápios"). -->
+<link rel="stylesheet" href="_fontes-tres-casas.css">
 <style>
 @page { size: A4; margin: 0; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { width: 210mm; height: 297mm; }
-body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: #17140f; background: #fff;
+html, body { background: #100e0b; }
+body { font-family: "Karla", Helvetica, Arial, sans-serif; color: #f4efe6;
   -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-.folha { display: grid; grid-template-columns: 105mm 105mm; grid-template-rows: 148.5mm 148.5mm; width: 210mm; height: 297mm; }
-.cartao { position: relative; width: 105mm; height: 148.5mm; display: flex; flex-direction: column; overflow: hidden;
+img { display: block; }
+.pagina { width: 210mm; height: 297mm; page-break-after: always; break-after: page; overflow: hidden; position: relative; }
+.pagina:last-child { page-break-after: auto; break-after: auto; }
+
+/* ── cartaz A4 ───────────────────────────────────────── */
+.cartaz { background: #100e0b radial-gradient(120% 55% at 50% -8%, rgba(217,180,90,.30), transparent 62%);
+  display: flex; flex-direction: column; align-items: center; padding: 15mm 12mm 0; }
+.cartaz .end { font-size: 3.6mm; letter-spacing: .32em; text-transform: uppercase; color: #d9b45a; font-weight: 700; }
+.cartaz h1 { margin-top: 4mm; font-family: "Outfit", sans-serif; font-weight: 800; font-size: 21mm; line-height: 1; letter-spacing: -.015em; text-align: center; }
+.cartaz .sub { margin-top: 3.5mm; font-size: 5.2mm; color: rgba(244,239,230,.78); }
+.cartaz .fio { width: 18mm; height: .9mm; background: #d9b45a; margin: 6mm auto 0; border-radius: 1mm; }
+.qrbox { margin-top: 8mm; background: #fff; border-radius: 7mm; padding: 7mm; box-shadow: 0 2mm 8mm rgba(0,0,0,.5); position: relative; }
+.qrbox img { width: 100mm; height: 100mm; }
+.qrbox::before, .qrbox::after { content: ""; position: absolute; width: 11mm; height: 11mm; border: 1.1mm solid #d9b45a; }
+.qrbox::before { top: -3mm; left: -3mm; border-right: 0; border-bottom: 0; border-radius: 4mm 0 0 0; }
+.qrbox::after { bottom: -3mm; right: -3mm; border-left: 0; border-top: 0; border-radius: 0 0 4mm 0; }
+.chamada { margin-top: 8mm; font-family: "Outfit", sans-serif; font-weight: 600; font-size: 8mm; text-align: center; }
+.chamada small { display: block; margin-top: 1.5mm; font-family: "Karla", sans-serif; font-weight: 400; font-size: 4.6mm; color: rgba(244,239,230,.78); }
+.casas { margin-top: 8mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; width: 100%; }
+.casa { position: relative; border-radius: 4mm; overflow: hidden; background: #1a1713; border: .3mm solid rgba(244,239,230,.16);
+  height: 50mm; text-align: center; }
+.casa::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1.6mm; background: var(--cor); z-index: 3; }
+.foto { height: 27mm; background-size: cover; background-position: center; }
+.casa .selo { position: absolute; left: 50%; top: 18mm; transform: translateX(-50%); width: 17mm; height: 17mm; border-radius: 50%;
+  overflow: hidden; border: .9mm solid var(--cor); background: #000; z-index: 2; }
+.casa .selo img { width: 100%; height: 100%; object-fit: cover; }
+.casa .nome { margin-top: 9mm; font-family: "Outfit", sans-serif; font-weight: 800; font-size: 6.4mm; line-height: 1.1; }
+.casa .tipo { margin-top: .8mm; font-size: 3.7mm; color: rgba(244,239,230,.78); }
+.url { margin-top: auto; padding-bottom: 9mm; font-family: "Outfit", sans-serif; font-weight: 600; font-size: 5.4mm; letter-spacing: .04em; color: #d9b45a; }
+
+/* ── cartões A6 (4 por folha) ────────────────────────── */
+.folha { display: grid; grid-template-columns: 105mm 105mm; grid-template-rows: 148.5mm 148.5mm; background: #fff; }
+.cartao { position: relative; width: 105mm; height: 148.5mm; display: flex; flex-direction: column; overflow: hidden; background: #fff; color: #17140f;
   outline: .2mm dashed #bdb6a8; outline-offset: -.2mm; }
-.topo { background: #100e0b; color: #f4efe6; text-align: center; padding: 9mm 6mm 7mm; }
-.end { font-size: 6.6pt; letter-spacing: .24em; text-transform: uppercase; color: #d9b45a; font-weight: 700; }
-h1 { margin-top: 3mm; font-size: 21pt; line-height: 1.05; font-weight: 800; letter-spacing: -.01em; }
-.sub { margin-top: 2.4mm; font-size: 8.6pt; color: rgba(244,239,230,.78); }
-.fio { width: 12mm; height: .6mm; background: #d9b45a; margin: 4mm auto 0; }
-.miolo { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4mm; padding: 4mm 6mm; }
-.qr { width: 58mm; height: 58mm; }
-.instrucao { font-size: 10.5pt; font-weight: 700; text-align: center; }
-.instrucao small { display: block; margin-top: 1mm; font-size: 8pt; font-weight: 400; color: #6a6156; }
-.casas { display: flex; justify-content: center; gap: 4mm; }
-.casas span { display: inline-flex; align-items: center; gap: 1.6mm; font-size: 8.4pt; font-weight: 700; }
-.casas i { width: 2.2mm; height: 2.2mm; border-radius: 50%; display: inline-block; }
-.pe { text-align: center; padding: 0 6mm 6mm; font-size: 8pt; color: #6a6156; }
-.pe b { color: #17140f; }
+.cartao .topo { background: #100e0b radial-gradient(130% 90% at 50% -20%, rgba(217,180,90,.28), transparent 65%); color: #f4efe6; text-align: center; padding: 8mm 6mm 6mm; }
+.cartao .end { font-size: 2.2mm; letter-spacing: .28em; text-transform: uppercase; color: #d9b45a; font-weight: 700; }
+.cartao h2 { margin-top: 2.6mm; font-family: "Outfit", sans-serif; font-weight: 800; font-size: 9.2mm; line-height: 1.02; letter-spacing: -.01em; }
+.cartao .sub { margin-top: 2mm; font-size: 3.2mm; color: rgba(244,239,230,.8); }
+.faixa { display: flex; height: 1.8mm; } .faixa i { flex: 1; }
+.miolo { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3.6mm; padding: 3mm 6mm; }
+.cartao .qr { width: 56mm; height: 56mm; }
+.instrucao { font-family: "Outfit", sans-serif; font-weight: 600; font-size: 4.4mm; text-align: center; }
+.instrucao small { display: block; margin-top: .8mm; font-family: "Karla", sans-serif; font-weight: 400; font-size: 3.2mm; color: #6a6156; }
+.legenda { display: flex; justify-content: center; gap: 4mm; }
+.legenda span { display: inline-flex; align-items: center; gap: 1.4mm; font-size: 3.2mm; font-weight: 700; }
+.legenda img { width: 6mm; height: 6mm; border-radius: 50%; border: .5mm solid; background: #000; object-fit: cover; }
+.cartao .pe { text-align: center; padding: 0 6mm 5mm; font-family: "Outfit", sans-serif; font-weight: 600; font-size: 3.4mm; letter-spacing: .03em; color: #17140f; }
 </style>
 </head>
 <body>
-<div class="folha">
+
+<div class="pagina cartaz">
+  <div class="end">Av. Brasília, 177 · Cuiabá</div>
+  <h1>Escolha o cardápio</h1>
+  <div class="sub">Três casas, um endereço</div>
+  <div class="fio"></div>
+  <div class="qrbox"><img src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios"></div>
+  <div class="chamada">Aponte a câmera do celular<small>e toque na casa onde você está</small></div>
+  <div class="casas">
+      <div class="casa" style="--cor:#d21f27">
+        <div class="foto" style="background-image:url(../assets/img/casas/saiko-foto.webp)"></div>
+        <div class="selo"><img src="../assets/img/casas/saiko.png" alt=""></div>
+        <div class="nome">Saikō</div><div class="tipo">Gastronomia oriental</div>
+      </div>
+      <div class="casa" style="--cor:#f2a882">
+        <div class="foto" style="background-image:url(../assets/img/casas/kikiu-foto.webp)"></div>
+        <div class="selo"><img src="../assets/img/casas/kikiu.png" alt=""></div>
+        <div class="nome">Kikiu</div><div class="tipo">Gastro bar</div>
+      </div>
+      <div class="casa" style="--cor:#5aa871">
+        <div class="foto" style="background-image:url(../assets/img/casas/forneatto-foto.webp)"></div>
+        <div class="selo"><img src="../assets/img/casas/forneatto.png" alt=""></div>
+        <div class="nome">Forneatto</div><div class="tipo">Cozinha italiana</div>
+      </div>
+  </div>
+  <div class="url">kikiu.com.br/cardapios</div>
+</div>
+
+<div class="pagina folha">
   <section class="cartao">
     <div class="topo">
       <div class="end">Av. Brasília, 177 · Cuiabá</div>
-      <h1>Escolha o<br>cardápio</h1>
+      <h2>Escolha o<br>cardápio</h2>
       <div class="sub">Três casas, um endereço</div>
-      <div class="fio"></div>
     </div>
+    <div class="faixa"><i style="background:#d21f27"></i><i style="background:#f2a882"></i><i style="background:#5aa871"></i></div>
     <div class="miolo">
       <img class="qr" src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios">
-      <div class="instrucao">Aponte a câmera do celular<small>e escolha o cardápio da casa onde você está</small></div>
-      <div class="casas">
-        <span><i style="background:#d21f27"></i>Saikō</span>
-        <span><i style="background:#f2a882"></i>Kikiu</span>
-        <span><i style="background:#5aa871"></i>Forneatto</span>
-      </div>
+      <div class="instrucao">Aponte a câmera do celular<small>e escolha a casa onde você está</small></div>
+      <div class="legenda"><span><img src="../assets/img/casas/saiko.png" alt="" style="border-color:#d21f27">Saikō</span><span><img src="../assets/img/casas/kikiu.png" alt="" style="border-color:#f2a882">Kikiu</span><span><img src="../assets/img/casas/forneatto.png" alt="" style="border-color:#5aa871">Forneatto</span></div>
     </div>
-    <div class="pe"><b>kikiu.com.br/cardapios</b></div>
+    <div class="pe">kikiu.com.br/cardapios</div>
   </section>
   <section class="cartao">
     <div class="topo">
       <div class="end">Av. Brasília, 177 · Cuiabá</div>
-      <h1>Escolha o<br>cardápio</h1>
+      <h2>Escolha o<br>cardápio</h2>
       <div class="sub">Três casas, um endereço</div>
-      <div class="fio"></div>
     </div>
+    <div class="faixa"><i style="background:#d21f27"></i><i style="background:#f2a882"></i><i style="background:#5aa871"></i></div>
     <div class="miolo">
       <img class="qr" src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios">
-      <div class="instrucao">Aponte a câmera do celular<small>e escolha o cardápio da casa onde você está</small></div>
-      <div class="casas">
-        <span><i style="background:#d21f27"></i>Saikō</span>
-        <span><i style="background:#f2a882"></i>Kikiu</span>
-        <span><i style="background:#5aa871"></i>Forneatto</span>
-      </div>
+      <div class="instrucao">Aponte a câmera do celular<small>e escolha a casa onde você está</small></div>
+      <div class="legenda"><span><img src="../assets/img/casas/saiko.png" alt="" style="border-color:#d21f27">Saikō</span><span><img src="../assets/img/casas/kikiu.png" alt="" style="border-color:#f2a882">Kikiu</span><span><img src="../assets/img/casas/forneatto.png" alt="" style="border-color:#5aa871">Forneatto</span></div>
     </div>
-    <div class="pe"><b>kikiu.com.br/cardapios</b></div>
+    <div class="pe">kikiu.com.br/cardapios</div>
   </section>
   <section class="cartao">
     <div class="topo">
       <div class="end">Av. Brasília, 177 · Cuiabá</div>
-      <h1>Escolha o<br>cardápio</h1>
+      <h2>Escolha o<br>cardápio</h2>
       <div class="sub">Três casas, um endereço</div>
-      <div class="fio"></div>
     </div>
+    <div class="faixa"><i style="background:#d21f27"></i><i style="background:#f2a882"></i><i style="background:#5aa871"></i></div>
     <div class="miolo">
       <img class="qr" src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios">
-      <div class="instrucao">Aponte a câmera do celular<small>e escolha o cardápio da casa onde você está</small></div>
-      <div class="casas">
-        <span><i style="background:#d21f27"></i>Saikō</span>
-        <span><i style="background:#f2a882"></i>Kikiu</span>
-        <span><i style="background:#5aa871"></i>Forneatto</span>
-      </div>
+      <div class="instrucao">Aponte a câmera do celular<small>e escolha a casa onde você está</small></div>
+      <div class="legenda"><span><img src="../assets/img/casas/saiko.png" alt="" style="border-color:#d21f27">Saikō</span><span><img src="../assets/img/casas/kikiu.png" alt="" style="border-color:#f2a882">Kikiu</span><span><img src="../assets/img/casas/forneatto.png" alt="" style="border-color:#5aa871">Forneatto</span></div>
     </div>
-    <div class="pe"><b>kikiu.com.br/cardapios</b></div>
+    <div class="pe">kikiu.com.br/cardapios</div>
   </section>
   <section class="cartao">
     <div class="topo">
       <div class="end">Av. Brasília, 177 · Cuiabá</div>
-      <h1>Escolha o<br>cardápio</h1>
+      <h2>Escolha o<br>cardápio</h2>
       <div class="sub">Três casas, um endereço</div>
-      <div class="fio"></div>
     </div>
+    <div class="faixa"><i style="background:#d21f27"></i><i style="background:#f2a882"></i><i style="background:#5aa871"></i></div>
     <div class="miolo">
       <img class="qr" src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios">
-      <div class="instrucao">Aponte a câmera do celular<small>e escolha o cardápio da casa onde você está</small></div>
-      <div class="casas">
-        <span><i style="background:#d21f27"></i>Saikō</span>
-        <span><i style="background:#f2a882"></i>Kikiu</span>
-        <span><i style="background:#5aa871"></i>Forneatto</span>
-      </div>
+      <div class="instrucao">Aponte a câmera do celular<small>e escolha a casa onde você está</small></div>
+      <div class="legenda"><span><img src="../assets/img/casas/saiko.png" alt="" style="border-color:#d21f27">Saikō</span><span><img src="../assets/img/casas/kikiu.png" alt="" style="border-color:#f2a882">Kikiu</span><span><img src="../assets/img/casas/forneatto.png" alt="" style="border-color:#5aa871">Forneatto</span></div>
     </div>
-    <div class="pe"><b>kikiu.com.br/cardapios</b></div>
+    <div class="pe">kikiu.com.br/cardapios</div>
   </section>
 </div>
+
 </body>
 </html>
