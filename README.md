@@ -11,6 +11,7 @@ nada com as outras casas do grupo nem com a FJN — cada uma tem o seu.
 |---|---|
 | `index.html` | a home
 | `bebidas.html` | o cardapio que o QR code da mesa abre
+| `cardapios.html` | a tela "Escolha o cardápio" (`/cardapios`): um QR só, e a pessoa escolhe Saikō, Kikiu ou Forneatto. O QR é `assets/img/qrcode/cardapios.svg`; o cartão para imprimir é `cardapios/qrcode-tres-casas.html` (não vai para produção) |
 | `opiniao.html` | a pagina de "como foi?" do QR da mesa (gerada por `scripts/build-opiniao.mjs`) |
 | `assets/` | imagens, CSS e JS **so desta casa** |
 | `casa.json` | o dominio, os alternativos e o numero de mesas — **fonte unica** |
