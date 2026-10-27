@@ -1,3 +1,7 @@
+# DESLIGADO em 27/10/2026. A casa trocou o PDV do Saipos para o Tacto e este
+# robo ainda le o Saipos (que segue respondendo, com dados antigos): rodar
+# sobrescreveria o cardapio, ja conferido item a item com o Tacto, com preco e
+# prato velhos. Reativar so depois de trocar a fonte para o Tacto no script.
 name: Sincronizar preços do PDV
 
 # A casa muda o preço no balcão; o cardápio do QR precisa acompanhar sozinho.
@@ -8,9 +12,7 @@ name: Sincronizar preços do PDV
 # inexistente sai com erro e derruba o passo. Resultado: nenhum preço do
 # Kikiu acompanhou o PDV desde a separação dos repositórios.
 on:
-  schedule:
-    - cron: '0 */6 * * *'   # a cada 6 horas
-  workflow_dispatch:         # e sob demanda, pelo botão na aba Actions
+  workflow_dispatch:         # so sob demanda; o agendamento foi desligado (ver aviso acima)
 
 permissions:
   contents: write
@@ -21,6 +23,7 @@ concurrency:
 
 jobs:
   sincronizar:
+    if: ${{ false }}   # desligado: ver aviso no topo
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

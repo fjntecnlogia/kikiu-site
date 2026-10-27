@@ -4,7 +4,7 @@
   "titulo": "Cardápio",
   "assinatura": "Casa Pro Coquetéis",
   "endereco": "Shopping Três Américas · Cuiabá — MT",
-  "fonte": "Transcrito do menu impresso do Kikiu, com os preços corrigidos à mão pela casa. Os 8 itens de letra dúbia foram CONFERIDOS E APROVADOS pela casa em 11/09/2026 — nenhuma pendência. Item novo entra sem marca: quem cadastrar confere antes.",
+  "fonte": "Preço e itens conferidos com o cardápio público do Tacto (webgula.com.br/cba-forneatto/cardapio) em 27/10/2026. Item sem marca é o que o Tacto tem; `ativo: false` = não está no Tacto (fica guardado, não vai ao ar).",
   "blocos": [
     {
       "id": "cozinha",
@@ -93,22 +93,26 @@
           "titulo": "Especiais",
           "itens": [
             {
-              "nome": "Escondidinho de Ragu de Costela",
+              "nome": "Escondidinho de Mandioca",
               "preco": 81
             },
             {
-              "nome": "Gratinado de Catupiry",
+              "nome": "Gratinado de filé mignon",
               "preco": 115,
-              "sub": "cubos de filé mignon"
+              "sub": "grana padano"
             },
             {
-              "nome": "Moela e coração ao molho roti especial",
+              "nome": "Moela e coração",
               "preco": 55
             },
             {
               "nome": "Carne de onça",
               "preco": 78,
               "sub": "especialidade da casa"
+            },
+            {
+              "nome": "Couvert artístico",
+              "preco": 20
             }
           ]
         },
@@ -124,13 +128,17 @@
               "preco": 162
             },
             {
-              "nome": "Sobrecoxa desossada na mostarda",
+              "nome": "Sobrecoxa desossada",
               "preco": 81
             },
             {
               "nome": "Linguiça cuiabana gratinada",
               "preco": 52,
               "ativo": false
+            },
+            {
+              "nome": "Bife ancho grelhado",
+              "preco": 146
             }
           ]
         },
@@ -149,8 +157,8 @@
               "sub": "Emmental, vinagrete, molho de páprica"
             },
             {
-              "nome": "Sanduíche crocante de frango",
-              "preco": 42,
+              "nome": "Sanduíche de frango",
+              "preco": 48,
               "sub": "molho picante, picles, alface"
             }
           ]
@@ -183,19 +191,22 @@
               "nome": "Banana Sour",
               "ingredientes": "Cachaça / Banana / Maracujá / Água de Coco / Limão Taiti / Mascavo",
               "perfil": "SUAVE – FRUTADO – TROPICAL",
-              "foto": "banana-sour.jpg"
+              "foto": "banana-sour.jpg",
+              "ativo": false
             },
             {
               "nome": "Black Velvet",
               "ingredientes": "Cachaça / Café / Chocolate / Gengibre / Pimenta / Limão Taiti",
               "perfil": "ENCORPADO – DOCE – ENVOLVENTE",
-              "foto": "black-velvet.jpg"
+              "foto": "black-velvet.jpg",
+              "ativo": false
             },
             {
               "nome": "Carajillo",
               "ingredientes": "Premium Tequila / Licor 43 / Licor de Café / Café Espresso",
               "perfil": "ENCORPADO – DOCE – DIGESTIVO",
-              "foto": "carajillo.jpg"
+              "foto": "carajillo.jpg",
+              "ativo": false
             },
             {
               "nome": "Espresso Martini",
@@ -220,7 +231,8 @@
               "nome": "Jungle Bird",
               "ingredientes": "Premium Rum Envelhecido / Campari / Abacaxi / Limão Taiti",
               "perfil": "ENCORPADO – AMARGO – TROPICAL",
-              "foto": "jungle-bird.jpg"
+              "foto": "jungle-bird.jpg",
+              "ativo": false
             },
             {
               "nome": "Lampião"
@@ -229,7 +241,8 @@
               "nome": "Midori",
               "ingredientes": "Premium Vodka / Abacaxi / Yuzu / Manjericão / Kiwi / Limão Taiti",
               "perfil": "REFRESCANTE – FRUTADO – EXÓTICO",
-              "foto": "midori.jpg"
+              "foto": "midori.jpg",
+              "ativo": false
             },
             {
               "nome": "Mojito"
@@ -269,7 +282,8 @@
               "preco": 45
             },
             {
-              "nome": "Ranei Duce"
+              "nome": "Ranei Duce",
+              "ativo": false
             },
             {
               "nome": "The Shacet"
@@ -292,6 +306,18 @@
               "ingredientes": "Premium Bourbon / Limão Siciliano / Xarope Simples / Angostura Bitters",
               "perfil": "REFRESCANTE – CÍTRICO – CLÁSSICO",
               "ativo": false
+            },
+            {
+              "nome": "Bloody Mary",
+              "ingredientes": "Suco de tomate, blod mix, vodka, limão, pimenta e sal na borda do copo"
+            },
+            {
+              "nome": "Honeidoce",
+              "ingredientes": "Maracujá / Tangerina / Açúcar / Cachaça Bananinha"
+            },
+            {
+              "nome": "Limacelon",
+              "ingredientes": "Licor de limão siciliano / Espuma de limão siciliano / Espumante"
             }
           ]
         }
@@ -312,11 +338,16 @@
             {
               "nome": "Brahma Chopp Caneca",
               "sub": "caneca 380ml",
-              "preco": 16
+              "preco": 14
             },
             {
-              "nome": "Cosmel Caneca",
-              "preco": 21
+              "nome": "Cozumel Caneca",
+              "preco": 20,
+              "sub": "caneca 380ml"
+            },
+            {
+              "nome": "Caneca suja Cozumel",
+              "preco": 8.9
             }
           ]
         },
@@ -380,8 +411,7 @@
             },
             {
               "nome": "Stella Pure Gold",
-              "preco": 17,
-              "ativo": false
+              "preco": 17
             }
           ],
           "quebraAntes": true
@@ -456,8 +486,20 @@
               "preco": 16
             },
             {
-              "nome": "Red Bull Sem Açúcar",
-              "preco": 24.9
+              "nome": "Red Bull Zero",
+              "preco": 16
+            },
+            {
+              "nome": "Red Bull Melancia",
+              "preco": 16
+            },
+            {
+              "nome": "Red Bull Tropical",
+              "preco": 16
+            },
+            {
+              "nome": "CDB",
+              "preco": 8
             }
           ]
         }
@@ -489,6 +531,11 @@
             {
               "nome": "Caipirinha de Maracujá",
               "preco": 36
+            },
+            {
+              "nome": "Caipirinha de 3 Limões",
+              "preco": 38,
+              "sub": "cachaça, limão, açúcar de especiarias"
             }
           ],
           "quebraAntes": true
@@ -515,6 +562,10 @@
             {
               "nome": "Maracujá",
               "preco": 39
+            },
+            {
+              "nome": "Caipiroska de 3 Limões",
+              "preco": 38
             }
           ]
         }
@@ -547,46 +598,47 @@
             {
               "nome": "Ballantine's 7 anos",
               "preco": 28,
-              "garrafa": 320
+              "garrafa": 300
             },
             {
               "nome": "Buchanans 12 anos",
-              "preco": 32,
-              "garrafa": 390
+              "preco": 35,
+              "garrafa": 420
             },
             {
               "nome": "Chivas Regal 12 anos",
               "preco": 35,
-              "garrafa": 360
+              "garrafa": 420
             },
             {
               "nome": "Glenfiddich 12 anos",
               "preco": 45,
-              "garrafa": 560
+              "garrafa": 830
             },
             {
               "nome": "Glenlivet 12 anos",
               "preco": 42,
-              "garrafa": 540
+              "garrafa": 780
             },
             {
               "nome": "Johnnie Walker Black Label 12 anos",
-              "preco": 35
+              "preco": 35,
+              "garrafa": 420
             },
             {
               "nome": "Johnnie Walker Gold Label",
               "preco": 38,
-              "garrafa": 450
+              "garrafa": 540
             },
             {
               "nome": "Johnnie Walker Red Label 7 anos",
               "preco": 30,
-              "garrafa": 340
+              "garrafa": 320
             },
             {
               "nome": "Old Parr 12 anos",
               "preco": 35,
-              "garrafa": 380
+              "garrafa": 410
             }
           ],
           "quebraAntes": true
@@ -597,22 +649,22 @@
             {
               "nome": "Absolut",
               "preco": 30,
-              "garrafa": 300
+              "garrafa": 320
             },
             {
               "nome": "Belvedere",
               "preco": 38,
-              "garrafa": 390
+              "garrafa": 410
             },
             {
               "nome": "Grey Goose",
               "preco": 38,
-              "garrafa": 410
+              "garrafa": 450
             },
             {
               "nome": "Kamai",
               "preco": 28,
-              "garrafa": 280
+              "garrafa": 240
             }
           ]
         },
@@ -622,17 +674,17 @@
             {
               "nome": "Beefeater",
               "preco": 32,
-              "garrafa": 330
+              "garrafa": 360
             },
             {
               "nome": "Kamai",
               "preco": 28,
-              "garrafa": 260
+              "garrafa": 290
             },
             {
               "nome": "Tanqueray",
               "preco": 32,
-              "garrafa": 280
+              "garrafa": 340
             }
           ]
         },
@@ -659,7 +711,8 @@
             },
             {
               "nome": "Campari",
-              "preco": 46
+              "preco": 46,
+              "garrafa": 220
             },
             {
               "nome": "Aperol",
@@ -672,8 +725,7 @@
             },
             {
               "nome": "Licor 43 Chocolate",
-              "preco": 25,
-              "ativo": false
+              "preco": 36
             },
             {
               "nome": "Shot de limão",
@@ -764,6 +816,49 @@
       ]
     },
     {
+      "id": "combos",
+      "titulo": "Combos",
+      "grupos": [
+        {
+          "titulo": "Combos",
+          "itens": [
+            {
+              "nome": "Kamai Gin com Red Bull Tropical",
+              "preco": 320
+            },
+            {
+              "nome": "Kamai Gin com água de coco",
+              "preco": 320
+            },
+            {
+              "nome": "Kamai Gin com Red Bull Zero",
+              "preco": 320
+            },
+            {
+              "nome": "Kamai Gin com Red Bull",
+              "preco": 320
+            },
+            {
+              "nome": "Old Parr com água de coco",
+              "preco": 450
+            },
+            {
+              "nome": "Old Parr com Red Bull",
+              "preco": 450
+            },
+            {
+              "nome": "Vodka Kamai com água de coco",
+              "preco": 300
+            },
+            {
+              "nome": "Vodka Kamai com Red Bull",
+              "preco": 300
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "sobremesas",
       "titulo": "Sobremesas",
       "grupos": [
@@ -771,16 +866,24 @@
           "titulo": "Sobremesas",
           "itens": [
             {
-              "nome": "Mousse de chocolate",
+              "nome": "Mousse de chocolate meio amargo",
               "preco": 35
             },
             {
-              "nome": "Banoffe",
+              "nome": "Banoffe tradicional da casa",
               "preco": 45
             },
             {
-              "nome": "Cheesecake",
+              "nome": "Cheesecake de frutas vermelhas",
               "preco": 38
+            },
+            {
+              "nome": "Brownie com sorvete de limão siciliano",
+              "preco": 42
+            },
+            {
+              "nome": "Tiramisu",
+              "preco": 35
             }
           ]
         }
