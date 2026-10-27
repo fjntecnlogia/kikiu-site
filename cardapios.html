@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cardápios — Saikō, Kikiu e Forneatto</title>
+<meta name="description" content="Escolha o cardápio: Saikō (gastronomia oriental), Kikiu (gastro bar) ou Forneatto (cozinha italiana). Três casas na Av. Brasília, 177, em Cuiabá.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://kikiu.com.br/cardapios">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Saikō · Kikiu · Forneatto">
+<meta property="og:title" content="Cardápios — Saikō, Kikiu e Forneatto">
+<meta property="og:description" content="Três casas, um endereço. Escolha o cardápio.">
+<meta property="og:url" content="https://kikiu.com.br/cardapios">
+<meta property="og:image" content="https://kikiu.com.br/assets/img/bar/og.jpg">
+<meta name="theme-color" content="#100e0b">
+<link rel="icon" href="assets/img/icone/kikiu-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/img/icone/kikiu-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&amp;family=Karla:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --fundo:#100e0b; --carta:#1a1713; --tinta:#f4efe6; --suave:rgba(244,239,230,.74);
+  --ouro:#d9b45a; --fio:rgba(244,239,230,.16);
+  --display:"Outfit", system-ui, sans-serif; --texto:"Karla", system-ui, sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;min-height:100dvh;background:var(--fundo);color:var(--tinta);
+  font-family:var(--texto);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(120% 60% at 50% -10%, rgba(217,180,90,.14), transparent 60%)}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ouro);outline-offset:3px;border-radius:6px}
+
+.pagina{max-width:1080px;margin:0 auto;
+  padding:calc(34px + env(safe-area-inset-top)) 18px calc(36px + env(safe-area-inset-bottom))}
+
+.topo{text-align:center;margin:0 auto 26px;max-width:560px}
+.end{margin:0 0 10px;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ouro);font-weight:700}
+h1{margin:0;font-family:var(--display);font-weight:800;line-height:1.08;letter-spacing:-.01em;
+  font-size:clamp(34px,9vw,54px);text-wrap:balance}
+.sub{margin:12px 0 0;color:var(--suave);font-size:clamp(16px,4.2vw,19px)}
+.fio{width:56px;height:2px;background:var(--ouro);margin:20px auto 0;border-radius:2px;opacity:.9}
+
+.casas{display:grid;gap:16px;grid-template-columns:1fr}
+.casa{position:relative;display:block;overflow:hidden;border-radius:22px;background:var(--carta);
+  min-height:208px;text-decoration:none;isolation:isolate;
+  border:1px solid var(--fio);
+  box-shadow:0 14px 34px rgba(0,0,0,.35);
+  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  animation:entra .5s ease both}
+.casa:nth-child(2){animation-delay:.07s}
+.casa:nth-child(3){animation-delay:.14s}
+.casa::before{content:"";position:absolute;inset:0 auto 0 0;width:5px;background:var(--cor);z-index:3}
+.foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
+  transition:transform .5s ease}
+.casa::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg, rgba(16,14,11,.10) 0%, rgba(16,14,11,.55) 52%, rgba(16,14,11,.93) 100%)}
+.conteudo{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;
+  min-height:208px;padding:18px 18px 18px 24px;gap:12px}
+.id{display:flex;align-items:center;gap:14px}
+.selo{flex:none;width:58px;height:58px;border-radius:50%;overflow:hidden;
+  background:#000;border:2px solid var(--cor);box-shadow:0 4px 14px rgba(0,0,0,.45)}
+.selo img{width:100%;height:100%;object-fit:cover}
+.nome{display:block;font-family:var(--display);font-weight:800;font-size:clamp(26px,7vw,32px);line-height:1.05}
+.tipo{display:block;margin-top:3px;color:var(--suave);font-size:15.5px}
+.ver{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;
+  padding:11px 18px;border-radius:999px;background:var(--tinta);color:#14110d;
+  font-family:var(--display);font-weight:600;font-size:15.5px;min-height:44px}
+.ver i{font-style:normal;transition:transform .2s ease}
+
+@media (hover:hover){
+  .casa:hover{transform:translateY(-4px);border-color:var(--cor);box-shadow:0 20px 42px rgba(0,0,0,.5)}
+  .casa:hover .foto{transform:scale(1.05)}
+  .casa:hover .ver i{transform:translateX(4px)}
+}
+.casa:active{transform:scale(.99)}
+
+.rodape{margin:26px 0 0;text-align:center;color:var(--suave);font-size:14.5px}
+.rodape b{color:var(--tinta);font-weight:700}
+
+@media (min-width:820px){
+  .pagina{padding-top:calc(56px + env(safe-area-inset-top))}
+  .casas{grid-template-columns:repeat(3,1fr);gap:20px}
+  .casa{min-height:430px}
+  .conteudo{min-height:430px;padding:24px 22px 24px 28px}
+  .selo{width:64px;height:64px}
+}
+@keyframes entra{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .casa{animation:none;transition:none}.foto,.ver i{transition:none}
+}
+</style>
+</head>
+<body>
+<main class="pagina">
+  <header class="topo">
+    <p class="end">Av. Brasília, 177 · Cuiabá</p>
+    <h1>Escolha o cardápio</h1>
+    <p class="sub">Três casas, um endereço. Toque na casa onde você está.</p>
+    <div class="fio" aria-hidden="true"></div>
+  </header>
+
+  <nav class="casas" aria-label="Cardápios das três casas">
+    <a class="casa" style="--cor:#d21f27" href="https://saikogastronomia.com.br/cardapio">
+      <img class="foto" src="assets/img/casas/saiko-foto.webp" alt="" width="720" height="378" loading="eager" decoding="async">
+      <span class="conteudo">
+        <span class="id">
+          <span class="selo"><img src="assets/img/casas/saiko.png" alt="" width="180" height="180"></span>
+          <span><span class="nome">Saikō</span><span class="tipo">Gastronomia oriental</span></span>
+        </span>
+        <span class="ver">Ver cardápio <i aria-hidden="true">→</i></span>
+      </span>
+    </a>
+
+    <a class="casa" style="--cor:#f2a882" href="https://kikiu.com.br/bebidas">
+      <img class="foto" src="assets/img/casas/kikiu-foto.webp" alt="" width="720" height="378" loading="eager" decoding="async">
+      <span class="conteudo">
+        <span class="id">
+          <span class="selo"><img src="assets/img/casas/kikiu.png" alt="" width="180" height="180"></span>
+          <span><span class="nome">Kikiu</span><span class="tipo">Gastro bar</span></span>
+        </span>
+        <span class="ver">Ver cardápio <i aria-hidden="true">→</i></span>
+      </span>
+    </a>
+
+    <a class="casa" style="--cor:#5aa871" href="https://forneattocucina.com.br/cardapio">
+      <img class="foto" src="assets/img/casas/forneatto-foto.webp" alt="" width="720" height="378" loading="eager" decoding="async">
+      <span class="conteudo">
+        <span class="id">
+          <span class="selo"><img src="assets/img/casas/forneatto.png" alt="" width="180" height="180"></span>
+          <span><span class="nome">Forneatto</span><span class="tipo">Cozinha italiana</span></span>
+        </span>
+        <span class="ver">Ver cardápio <i aria-hidden="true">→</i></span>
+      </span>
+    </a>
+  </nav>
+
+  <p class="rodape"><b>Saikō</b> Sala A · <b>Kikiu</b> Sala B · <b>Forneatto</b> Sala C</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>QR dos cardápios — Saikō · Kikiu · Forneatto</title>
+<!-- Cartão do QR único dos cardápios (kikiu.com.br/cardapios). 4 por folha A4, para cortar.
+     Fica em cardapios/, que o .vercelignore NÃO publica. O QR vem de assets/img/qrcode/cardapios.svg. -->
+<style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 210mm; height: 297mm; }
+body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: #17140f; background: #fff;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.folha { display: grid; grid-template-columns: 105mm 105mm; grid-template-rows: 148.5mm 148.5mm; width: 210mm; height: 297mm; }
+.cartao { position: relative; width: 105mm; height: 148.5mm; display: flex; flex-direction: column; overflow: hidden;
+  outline: .2mm dashed #bdb6a8; outline-offset: -.2mm; }
+.topo { background: #100e0b; color: #f4efe6; text-align: center; padding: 9mm 6mm 7mm; }
+.end { font-size: 6.6pt; letter-spacing: .24em; text-transform: uppercase; color: #d9b45a; font-weight: 700; }
+h1 { margin-top: 3mm; font-size: 21pt; line-height: 1.05; font-weight: 800; letter-spacing: -.01em; }
+.sub { margin-top: 2.4mm; font-size: 8.6pt; color: rgba(244,239,230,.78); }
+.fio { width: 12mm; height: .6mm; background: #d9b45a; margin: 4mm auto 0; }
+.miolo { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4mm; padding: 4mm 6mm; }
+.qr { width: 58mm; height: 58mm; }
+.instrucao { font-size: 10.5pt; font-weight: 700; text-align: center; }
+.instrucao small { display: block; margin-top: 1mm; font-size: 8pt; font-weight: 400; color: #6a6156; }
+.casas { display: flex; justify-content: center; gap: 4mm; }
+.casas span { display: inline-flex; align-items: center; gap: 1.6mm; font-size: 8.4pt; font-weight: 700; }
+.casas i { width: 2.2mm; height: 2.2mm; border-radius: 50%; display: inline-block; }
+.pe { text-align: center; padding: 0 6mm 6mm; font-size: 8pt; color: #6a6156; }
+.pe b { color: #17140f; }
+</style>
+</head>
+<body>
+<div class="folha">
+  <section class="cartao">
+    <div class="topo">
+      <div class="end">Av. Brasília, 177 · Cuiabá</div>
+      <h1>Escolha o<br>cardápio</h1>
+      <div class="sub">Três casas, um endereço</div>
+      <div class="fio"></div>
+    </div>
+    <div class="miolo">
+      <img class="qr" src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios">
+      <div class="instrucao">Aponte a câmera do celular<small>e escolha o cardápio da casa onde você está</small></div>
+      <div class="casas">
+        <span><i style="background:#d21f27"></i>Saikō</span>
+        <span><i style="background:#f2a882"></i>Kikiu</span>
+        <span><i style="background:#5aa871"></i>Forneatto</span>
+      </div>
+    </div>
+    <div class="pe"><b>kikiu.com.br/cardapios</b></div>
+  </section>
+  <section class="cartao">
+    <div class="topo">
+      <div class="end">Av. Brasília, 177 · Cuiabá</div>
+      <h1>Escolha o<br>cardápio</h1>
+      <div class="sub">Três casas, um endereço</div>
+      <div class="fio"></div>
+    </div>
+    <div class="miolo">
+      <img class="qr" src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios">
+      <div class="instrucao">Aponte a câmera do celular<small>e escolha o cardápio da casa onde você está</small></div>
+      <div class="casas">
+        <span><i style="background:#d21f27"></i>Saikō</span>
+        <span><i style="background:#f2a882"></i>Kikiu</span>
+        <span><i style="background:#5aa871"></i>Forneatto</span>
+      </div>
+    </div>
+    <div class="pe"><b>kikiu.com.br/cardapios</b></div>
+  </section>
+  <section class="cartao">
+    <div class="topo">
+      <div class="end">Av. Brasília, 177 · Cuiabá</div>
+      <h1>Escolha o<br>cardápio</h1>
+      <div class="sub">Três casas, um endereço</div>
+      <div class="fio"></div>
+    </div>
+    <div class="miolo">
+      <img class="qr" src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios">
+      <div class="instrucao">Aponte a câmera do celular<small>e escolha o cardápio da casa onde você está</small></div>
+      <div class="casas">
+        <span><i style="background:#d21f27"></i>Saikō</span>
+        <span><i style="background:#f2a882"></i>Kikiu</span>
+        <span><i style="background:#5aa871"></i>Forneatto</span>
+      </div>
+    </div>
+    <div class="pe"><b>kikiu.com.br/cardapios</b></div>
+  </section>
+  <section class="cartao">
+    <div class="topo">
+      <div class="end">Av. Brasília, 177 · Cuiabá</div>
+      <h1>Escolha o<br>cardápio</h1>
+      <div class="sub">Três casas, um endereço</div>
+      <div class="fio"></div>
+    </div>
+    <div class="miolo">
+      <img class="qr" src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios">
+      <div class="instrucao">Aponte a câmera do celular<small>e escolha o cardápio da casa onde você está</small></div>
+      <div class="casas">
+        <span><i style="background:#d21f27"></i>Saikō</span>
+        <span><i style="background:#f2a882"></i>Kikiu</span>
+        <span><i style="background:#5aa871"></i>Forneatto</span>
+      </div>
+    </div>
+    <div class="pe"><b>kikiu.com.br/cardapios</b></div>
+  </section>
+</div>
+</body>
+</html>
