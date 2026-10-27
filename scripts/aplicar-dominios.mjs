@@ -174,9 +174,17 @@ const vercel = {
     // Isto estava escrito A MAO no vercel.json e o gerador o APAGAVA a cada
     // rodada — o caso que o CLAUDE.md descreve ("o vercel.json nao se edita a
     // mao"). O nome real ja vem do casa.json; agora sai daqui.
-    ...(casa.cardapio && casa.cardapio !== 'cardapio'
-      ? [{ source: '/cardapio', destination: `/${casa.cardapio}` }]
-      : []),
+    // QR geral (sem numero de mesa): /cardapio abre a tela "Escolha o cardapio"
+    // das tres casas. Com ?mesa=N continua direto no cardapio da casa. So vale
+    // em /cardapio — a pagina real (/bebidas) nunca vira a tela de escolha,
+    // senao o Google e os links do proprio site cairiam nela.
+    // A ordem importa: a Vercel usa a primeira regra que casa.
+    ...(casa.cardapio && casa.cardapio !== 'cardapio' && casa.cardapioGeral
+      ? [{ source: '/cardapio', has: [{ type: 'query', key: 'mesa' }], destination: `/${casa.cardapio}` },
+         { source: '/cardapio', destination: `/${casa.cardapioGeral}` }]
+      : casa.cardapio && casa.cardapio !== 'cardapio'
+        ? [{ source: '/cardapio', destination: `/${casa.cardapio}` }]
+        : []),
     { source: '/reservas-api/:caminho*', destination: `${SISTEMA}/reservas/:caminho*` },
     { source: '/agenda-api/:caminho*',   destination: `${SISTEMA}/eventos/:caminho*` },
     { source: '/opiniao-api/:caminho*',  destination: `${SISTEMA}/opiniao/:caminho*` },
