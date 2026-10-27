@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Arte do QR portal — um QR para cada casa — Saikō · Kikiu · Forneatto</title>
+<!-- Cartaz A4 "portal": as três casas, cada uma com o QR que abre direto o seu cardápio.
+     Os QR vêm de cardapios/qr-casas/ (segno, correção H): saiko -> saikogastronomia.com.br/cardapio,
+     kikiu -> kikiu.com.br/bebidas, forneatto -> forneattocucina.com.br/cardapio.
+     Fica em cardapios/, que o .vercelignore NÃO publica. -->
+<link rel="stylesheet" href="_fontes-tres-casas.css">
+<style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #100e0b; }
+body { font-family: "Karla", Helvetica, Arial, sans-serif; color: #f4efe6; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+img { display: block; }
+.pagina { width: 210mm; height: 297mm; overflow: hidden; display: flex; flex-direction: column; padding: 13mm 12mm 0;
+  background: #100e0b radial-gradient(120% 40% at 50% -6%, rgba(217,180,90,.30), transparent 62%); }
+.topo { text-align: center; }
+.end { font-size: 3.4mm; letter-spacing: .32em; text-transform: uppercase; color: #d9b45a; font-weight: 700; }
+h1 { margin-top: 3.5mm; font-family: "Outfit", sans-serif; font-weight: 800; font-size: 17mm; line-height: 1; letter-spacing: -.015em; }
+.sub { margin-top: 3mm; font-size: 4.8mm; color: rgba(244,239,230,.8); }
+.fio { width: 16mm; height: .9mm; background: #d9b45a; margin: 4.5mm auto 0; border-radius: 1mm; }
+.casas { margin-top: 6mm; display: flex; flex-direction: column; gap: 4.5mm; }
+.casa { position: relative; display: grid; grid-template-columns: 58mm 1fr 52mm; gap: 6mm; align-items: center; height: 66mm; padding: 4mm 5mm;
+  border-radius: 6mm; background: #1a1713; border: .3mm solid rgba(244,239,230,.16); overflow: hidden; }
+.casa::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2.4mm; background: var(--cor); }
+.foto { position: relative; height: 58mm; border-radius: 4mm; background-size: cover; background-position: center; margin-left: 1.5mm; }
+.selo { position: absolute; left: 3mm; bottom: 3mm; width: 17mm; height: 17mm; border-radius: 50%; overflow: hidden; border: .9mm solid var(--cor); background: #000; }
+.selo img { width: 100%; height: 100%; object-fit: cover; }
+.nome { font-family: "Outfit", sans-serif; font-weight: 800; font-size: 11mm; line-height: 1; }
+.tipo { margin-top: 2mm; font-size: 4.6mm; font-weight: 700; color: var(--cor); text-transform: uppercase; letter-spacing: .12em; }
+.desc { margin-top: 3.5mm; font-size: 4.3mm; line-height: 1.35; color: rgba(244,239,230,.8); }
+.ver { margin-top: 5mm; display: inline-flex; align-items: center; gap: 2mm; padding: 2.4mm 5mm; border-radius: 99mm; background: #f4efe6; color: #14110d;
+  font-family: "Outfit", sans-serif; font-weight: 600; font-size: 4.4mm; }
+.ver i { font-style: normal; }
+.qr { text-align: center; }
+.tile { background: #fff; border-radius: 4mm; padding: 4mm; width: 46mm; height: 46mm; margin: 0 auto; }
+.tile img { width: 100%; height: 100%; }
+.url { margin-top: 2.4mm; font-size: 2.9mm; color: rgba(244,239,230,.78); font-weight: 700; letter-spacing: .02em; }
+.pe { margin-top: auto; padding-bottom: 7mm; padding-top: 3mm; text-align: center; font-family: "Outfit", sans-serif; font-weight: 600; font-size: 5mm; color: #d9b45a; }
+.pe small { display: block; margin-top: 1mm; font-family: "Karla", sans-serif; font-weight: 400; font-size: 3.8mm; color: rgba(244,239,230,.72); }
+</style>
+</head>
+<body>
+<div class="pagina">
+  <div class="topo">
+    <div class="end">Av. Brasília, 177 · Cuiabá</div>
+    <h1>Escolha o cardápio</h1>
+    <div class="sub">Aponte a câmera do celular para o QR da casa onde você está</div>
+    <div class="fio"></div>
+  </div>
+  <div class="casas">
+  <section class="casa" style="--cor:#d21f27">
+    <div class="foto" style="background-image:url(../assets/img/casas/saiko-foto.webp)"><div class="selo"><img src="../assets/img/casas/saiko.png" alt=""></div></div>
+    <div class="texto">
+      <div class="nome">Saikō</div>
+      <div class="tipo">Gastronomia oriental</div>
+      <div class="desc">Sushi, sashimi, pratos quentes e drinks</div>
+      <div class="ver">Ver cardápio <i>→</i></div>
+    </div>
+    <div class="qr"><div class="tile"><img src="qr-casas/saiko.svg" alt="QR code do cardápio do Saikō"></div><div class="url">saikogastronomia.com.br/cardapio</div></div>
+  </section>
+  <section class="casa" style="--cor:#f2a882">
+    <div class="foto" style="background-image:url(../assets/img/casas/kikiu-foto.webp)"><div class="selo"><img src="../assets/img/casas/kikiu.png" alt=""></div></div>
+    <div class="texto">
+      <div class="nome">Kikiu</div>
+      <div class="tipo">Gastro bar</div>
+      <div class="desc">Petiscos, chopp, coquetelaria e destilados</div>
+      <div class="ver">Ver cardápio <i>→</i></div>
+    </div>
+    <div class="qr"><div class="tile"><img src="qr-casas/kikiu.svg" alt="QR code do cardápio do Kikiu"></div><div class="url">kikiu.com.br/bebidas</div></div>
+  </section>
+  <section class="casa" style="--cor:#5aa871">
+    <div class="foto" style="background-image:url(../assets/img/casas/forneatto-foto.webp)"><div class="selo"><img src="../assets/img/casas/forneatto.png" alt=""></div></div>
+    <div class="texto">
+      <div class="nome">Forneatto</div>
+      <div class="tipo">Cozinha italiana</div>
+      <div class="desc">Massas frescas, risotos, antipasti e vinhos</div>
+      <div class="ver">Ver cardápio <i>→</i></div>
+    </div>
+    <div class="qr"><div class="tile"><img src="qr-casas/forneatto.svg" alt="QR code do cardápio do Forneatto"></div><div class="url">forneattocucina.com.br/cardapio</div></div>
+  </section>
+  </div>
+  <div class="pe">Saikō Sala A · Kikiu Sala B · Forneatto Sala C<small>Cada QR abre direto o cardápio da casa</small></div>
+</div>
+</body>
+</html>
