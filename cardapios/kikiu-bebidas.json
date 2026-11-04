@@ -14,23 +14,23 @@
           "titulo": "Almoço",
           "itens": [
             {
-              "nome": "Salada simples",
+              "nome": "Salada Simples",
               "preco": 15
             },
             {
-              "nome": "File à parmegiana",
+              "nome": "File a Permegiana",
               "preco": 49
             },
             {
-              "nome": "Estrogonoff de filé mignon",
+              "nome": "Estrogonoff de File Mignon",
               "preco": 45
             },
             {
-              "nome": "Estrogonoff de filé de frango",
+              "nome": "Estrogonoff de File de Frango",
               "preco": 39
             },
             {
-              "nome": "Sobrecoxa desossada com creme de milho",
+              "nome": "Sobrecoxa desossado com creme de milho",
               "preco": 42
             },
             {
