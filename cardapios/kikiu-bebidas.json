@@ -11,6 +11,39 @@
       "titulo": "Cozinha",
       "grupos": [
         {
+          "titulo": "Almoço",
+          "itens": [
+            {
+              "nome": "Salada simples",
+              "preco": 15
+            },
+            {
+              "nome": "File à parmegiana",
+              "preco": 49
+            },
+            {
+              "nome": "Estrogonoff de filé mignon",
+              "preco": 45
+            },
+            {
+              "nome": "Estrogonoff de filé de frango",
+              "preco": 39
+            },
+            {
+              "nome": "Sobrecoxa desossada com creme de milho",
+              "preco": 42
+            },
+            {
+              "nome": "Filé de tilápia com purê cítrico",
+              "preco": 44
+            },
+            {
+              "nome": "Bife a cavalo",
+              "preco": 49
+            }
+          ]
+        },
+        {
           "titulo": "Petiscos",
           "itens": [
             {
