@@ -1,0 +1,13 @@
+{
+  "_": "Nomes que o site escreve de um jeito e o Tacto de outro (erro de digitação ou abreviação no Tacto). Chave = nome no site, valor = nome no Tacto. O robô usa só para casar os itens; não troca nome.",
+  "apelidos": {
+    "Tanqueray": "Tanquerai",
+    "Aperol Spritz": "Aperol Slit",
+    "The Shacet": "The Shact",
+    "Flying Fish": "Cerv Flyng Fish LN",
+    "Corona Cero": "Cerv Corona Zero LN",
+    "Cozumel Caneca": "Chopp cozumel 380ml",
+    "Iscas de peixe branco crocante": "Isca de Peixe",
+    "Abacaxi com Hortelã|42": "Caipiroska de Abacaxi com Hotela"
+  }
+}
