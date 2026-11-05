@@ -1,4 +1,4 @@
-# Robô do cardápio: lê o cardápio público do Tacto e, se algo mudou (preço,
+# Robô do cardápio e da carta de vinhos: lê o cardápio público do Tacto e, se algo mudou (preço,
 # prato novo, item em falta ou fora do ar), abre UM pull request com a mudança.
 # Nunca escreve na main: quem mergeia é o dono. Sem mudança, não abre nada.
 #
@@ -45,6 +45,17 @@ jobs:
         run: |
           if grep -q '^MUDOU=1' /tmp/saida.txt; then $BUILD; fi
 
+      - name: Reconstruir a carta de vinhos a partir do Tacto
+        run: node scripts/build-vinhos.mjs
+
+      - name: Montar o texto do PR
+        run: |
+          : > /tmp/corpo.md
+          if grep -q '^MUDOU=1' /tmp/saida.txt; then cat /tmp/relatorio.md >> /tmp/corpo.md; fi
+          node scripts/relatorio-vinhos.mjs /tmp/relatorio-vinhos.md
+          cat /tmp/relatorio-vinhos.md >> /tmp/corpo.md
+          [ -s /tmp/corpo.md ] || echo "Atualização automática a partir do Tacto." > /tmp/corpo.md
+
       - name: Abrir ou atualizar o PR
         run: |
           git config user.name "robo-cardapio"
@@ -71,10 +82,10 @@ jobs:
           git push --force origin "$RAMO"
 
           if [ -n "$N" ]; then
-            gh pr edit "$N" --body-file /tmp/relatorio.md
+            gh pr edit "$N" --body-file /tmp/corpo.md
           else
             gh pr create --base main --head "$RAMO" \
               --title "Cardápio: atualização automática do Tacto ($CASA)" \
-              --body-file /tmp/relatorio.md \
+              --body-file /tmp/corpo.md \
             || { echo "::error::Não consegui abrir o PR. Ligue: Settings → Actions → General → 'Allow GitHub Actions to create and approve pull requests'."; exit 1; }
           fi
