@@ -4,7 +4,7 @@
   "titulo": "Cardápio",
   "assinatura": "Casa Pro Coquetéis",
   "endereco": "Shopping Três Américas · Cuiabá — MT",
-  "fonte": "Preço e itens conferidos com o cardápio público do Tacto (webgula.com.br/cba-forneatto/cardapio) em 27/10/2026. Item sem marca é o que o Tacto tem; `ativo: false` = não está no Tacto (fica guardado, não vai ao ar).",
+  "fonte": "Preço e itens conferidos com o cardápio público do Tacto (webgula.com.br/cba-forneatto/cardapio) em 05/11/2026. Item sem marca é o que o Tacto tem; `ativo: false` = não está no Tacto (fica guardado, não vai ao ar).",
   "blocos": [
     {
       "id": "cozinha",
@@ -40,6 +40,10 @@
             {
               "nome": "Bife a cavalo",
               "preco": 49
+            },
+            {
+              "nome": "Feijoada",
+              "preco": 59
             }
           ]
         },
