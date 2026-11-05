@@ -171,7 +171,8 @@
             },
             {
               "nome": "Bife ancho grelhado",
-              "preco": 146
+              "preco": 146,
+              "ativo": false
             }
           ]
         },
