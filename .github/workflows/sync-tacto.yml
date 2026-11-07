@@ -1,0 +1,91 @@
+# Robô do cardápio e da carta de vinhos: lê o cardápio público do Tacto e, se algo mudou (preço,
+# prato novo, item em falta ou fora do ar), abre UM pull request com a mudança.
+# Nunca escreve na main: quem mergeia é o dono. Sem mudança, não abre nada.
+#
+# Para rodar na hora: aba Actions → "Robô do cardápio (Tacto)" → Run workflow.
+# Precisa de: Settings → Actions → General → "Allow GitHub Actions to create and
+# approve pull requests" ligado.
+name: Robô do cardápio (Tacto)
+
+on:
+  schedule:
+    - cron: '23 */2 * * *'   # de 2 em 2 horas (UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-tacto
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CASA: kikiu
+      BUILD: node scripts/build-cardapio-bebidas.mjs
+      RAMO: robo/tacto-kikiu
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Conferir com o Tacto
+        run: node scripts/sync-tacto.mjs --casa="$CASA" --relatorio=/tmp/relatorio.md | tee /tmp/saida.txt
+
+      - name: Reconstruir as páginas
+        run: |
+          if grep -q '^MUDOU=1' /tmp/saida.txt; then $BUILD; fi
+
+      - name: Reconstruir a carta de vinhos a partir do Tacto
+        run: node scripts/build-vinhos.mjs
+
+      - name: Montar o texto do PR
+        run: |
+          : > /tmp/corpo.md
+          if grep -q '^MUDOU=1' /tmp/saida.txt; then cat /tmp/relatorio.md >> /tmp/corpo.md; fi
+          node scripts/relatorio-vinhos.mjs /tmp/relatorio-vinhos.md
+          cat /tmp/relatorio-vinhos.md >> /tmp/corpo.md
+          [ -s /tmp/corpo.md ] || echo "Atualização automática a partir do Tacto." > /tmp/corpo.md
+
+      - name: Abrir ou atualizar o PR
+        run: |
+          git config user.name "robo-cardapio"
+          git config user.email "robo-cardapio@users.noreply.github.com"
+          N=$(gh pr list --head "$RAMO" --state open --json number -q '.[0].number')
+
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Cardápio já bate com o Tacto."
+            if [ -n "$N" ]; then
+              gh pr close "$N" --delete-branch --comment "O cardápio já bate com o Tacto (alguém atualizou, ou o Tacto voltou atrás). Fechado pelo robô."
+            fi
+            exit 0
+          fi
+
+          git checkout -B "$RAMO"
+          git add -A
+          git commit -q -m "Cardápio: sincroniza com o Tacto"
+
+          git fetch -q origin "$RAMO" || true
+          if git rev-parse -q --verify "origin/$RAMO" >/dev/null && git diff --quiet "origin/$RAMO" HEAD; then
+            echo "O PR aberto já está igual. Nada a fazer."
+            exit 0
+          fi
+          git push --force origin "$RAMO"
+
+          if [ -n "$N" ]; then
+            gh pr edit "$N" --body-file /tmp/corpo.md
+          else
+            gh pr create --base main --head "$RAMO" \
+              --title "Cardápio: atualização automática do Tacto ($CASA)" \
+              --body-file /tmp/corpo.md \
+            || { echo "::error::Não consegui abrir o PR. Ligue: Settings → Actions → General → 'Allow GitHub Actions to create and approve pull requests'."; exit 1; }
+          fi

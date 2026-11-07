@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Cartão de mesa pequeno — QR que abre o portal dos três cardápios</title>
+<!-- Cartão de mesa PEQUENO (60 x 90 mm), 9 por folha A4, para cortar. Um QR só: abre o portal
+     kikiu.com.br/cardapios, onde a pessoa escolhe Saikō, Kikiu ou Forneatto.
+     O QR vem de assets/img/qrcode/cardapios.svg. Fica em cardapios/, que o .vercelignore NÃO publica. -->
+<link rel="stylesheet" href="_fontes-tres-casas.css">
+<style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #fff; }
+body { font-family: "Karla", Helvetica, Arial, sans-serif; color: #17140f; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+img { display: block; }
+.folha { width: 210mm; height: 297mm; padding: 13.5mm 15mm; display: grid; grid-template-columns: repeat(3, 60mm); grid-template-rows: repeat(3, 90mm); gap: 0; justify-content: center; align-content: center; }
+.cartao { position: relative; width: 60mm; height: 90mm; display: flex; flex-direction: column; overflow: hidden; background: #fff;
+  outline: .2mm dashed #bdb6a8; outline-offset: -.2mm; }
+.topo { background: #100e0b radial-gradient(130% 90% at 50% -20%, rgba(217,180,90,.30), transparent 65%); color: #f4efe6; text-align: center; padding: 4.5mm 4mm 3.6mm; flex-shrink: 0; }
+.end { font-size: 1.9mm; letter-spacing: .24em; text-transform: uppercase; color: #d9b45a; font-weight: 700; }
+h2 { margin-top: 2mm; font-family: "Outfit", sans-serif; font-weight: 800; font-size: 5.8mm; line-height: 1.04; letter-spacing: -.01em; }
+.faixa { display: flex; height: 1.4mm; flex-shrink: 0; } .faixa i { flex: 1; }
+.miolo { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.2mm; padding: 1.5mm 3mm; min-height: 0; }
+.qr { width: 34mm; height: 34mm; }
+.instrucao { font-family: "Outfit", sans-serif; font-weight: 600; font-size: 3.3mm; text-align: center; }
+.legenda { display: flex; justify-content: center; gap: 2.4mm; }
+.legenda span { display: flex; flex-direction: column; align-items: center; gap: .8mm; font-size: 2.3mm; }
+.legenda b { font-weight: 700; }
+.legenda img { width: 6.4mm; height: 6.4mm; border-radius: 50%; border: .5mm solid; background: #000; object-fit: cover; }
+.pe { text-align: center; padding: 0 3mm 3mm; flex-shrink: 0; font-family: "Outfit", sans-serif; font-weight: 600; font-size: 2.7mm; letter-spacing: .03em; }
+</style>
+</head>
+<body>
+<div class="folha">
+  <section class="cartao">
+    <div class="topo">
+      <div class="end">Av. Brasília, 177 · Cuiabá</div>
+      <h2>Escolha o cardápio</h2>
+    </div>
+    <div class="faixa"><i style="background:#d21f27"></i><i style="background:#f2a882"></i><i style="background:#5aa871"></i></div>
+    <div class="miolo">
+      <img class="qr" src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios">
+      <div class="instrucao">Aponte a câmera do celular</div>
+      <div class="legenda"><span><img src="../assets/img/casas/saiko.png" alt="" style="border-color:#d21f27"><b>Saikō</b></span><span><img src="../assets/img/casas/kikiu.png" alt="" style="border-color:#f2a882"><b>Kikiu</b></span><span><img src="../assets/img/casas/forneatto.png" alt="" style="border-color:#5aa871"><b>Forneatto</b></span></div>
+    </div>
+    <div class="pe">kikiu.com.br/cardapios</div>
+  </section>
+  <section class="cartao">
+    <div class="topo">
+      <div class="end">Av. Brasília, 177 · Cuiabá</div>
+      <h2>Escolha o cardápio</h2>
+    </div>
+    <div class="faixa"><i style="background:#d21f27"></i><i style="background:#f2a882"></i><i style="background:#5aa871"></i></div>
+    <div class="miolo">
+      <img class="qr" src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios">
+      <div class="instrucao">Aponte a câmera do celular</div>
+      <div class="legenda"><span><img src="../assets/img/casas/saiko.png" alt="" style="border-color:#d21f27"><b>Saikō</b></span><span><img src="../assets/img/casas/kikiu.png" alt="" style="border-color:#f2a882"><b>Kikiu</b></span><span><img src="../assets/img/casas/forneatto.png" alt="" style="border-color:#5aa871"><b>Forneatto</b></span></div>
+    </div>
+    <div class="pe">kikiu.com.br/cardapios</div>
+  </section>
+  <section class="cartao">
+    <div class="topo">
+      <div class="end">Av. Brasília, 177 · Cuiabá</div>
+      <h2>Escolha o cardápio</h2>
+    </div>
+    <div class="faixa"><i style="background:#d21f27"></i><i style="background:#f2a882"></i><i style="background:#5aa871"></i></div>
+    <div class="miolo">
+      <img class="qr" src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios">
+      <div class="instrucao">Aponte a câmera do celular</div>
+      <div class="legenda"><span><img src="../assets/img/casas/saiko.png" alt="" style="border-color:#d21f27"><b>Saikō</b></span><span><img src="../assets/img/casas/kikiu.png" alt="" style="border-color:#f2a882"><b>Kikiu</b></span><span><img src="../assets/img/casas/forneatto.png" alt="" style="border-color:#5aa871"><b>Forneatto</b></span></div>
+    </div>
+    <div class="pe">kikiu.com.br/cardapios</div>
+  </section>
+  <section class="cartao">
+    <div class="topo">
+      <div class="end">Av. Brasília, 177 · Cuiabá</div>
+      <h2>Escolha o cardápio</h2>
+    </div>
+    <div class="faixa"><i style="background:#d21f27"></i><i style="background:#f2a882"></i><i style="background:#5aa871"></i></div>
+    <div class="miolo">
+      <img class="qr" src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios">
+      <div class="instrucao">Aponte a câmera do celular</div>
+      <div class="legenda"><span><img src="../assets/img/casas/saiko.png" alt="" style="border-color:#d21f27"><b>Saikō</b></span><span><img src="../assets/img/casas/kikiu.png" alt="" style="border-color:#f2a882"><b>Kikiu</b></span><span><img src="../assets/img/casas/forneatto.png" alt="" style="border-color:#5aa871"><b>Forneatto</b></span></div>
+    </div>
+    <div class="pe">kikiu.com.br/cardapios</div>
+  </section>
+  <section class="cartao">
+    <div class="topo">
+      <div class="end">Av. Brasília, 177 · Cuiabá</div>
+      <h2>Escolha o cardápio</h2>
+    </div>
+    <div class="faixa"><i style="background:#d21f27"></i><i style="background:#f2a882"></i><i style="background:#5aa871"></i></div>
+    <div class="miolo">
+      <img class="qr" src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios">
+      <div class="instrucao">Aponte a câmera do celular</div>
+      <div class="legenda"><span><img src="../assets/img/casas/saiko.png" alt="" style="border-color:#d21f27"><b>Saikō</b></span><span><img src="../assets/img/casas/kikiu.png" alt="" style="border-color:#f2a882"><b>Kikiu</b></span><span><img src="../assets/img/casas/forneatto.png" alt="" style="border-color:#5aa871"><b>Forneatto</b></span></div>
+    </div>
+    <div class="pe">kikiu.com.br/cardapios</div>
+  </section>
+  <section class="cartao">
+    <div class="topo">
+      <div class="end">Av. Brasília, 177 · Cuiabá</div>
+      <h2>Escolha o cardápio</h2>
+    </div>
+    <div class="faixa"><i style="background:#d21f27"></i><i style="background:#f2a882"></i><i style="background:#5aa871"></i></div>
+    <div class="miolo">
+      <img class="qr" src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios">
+      <div class="instrucao">Aponte a câmera do celular</div>
+      <div class="legenda"><span><img src="../assets/img/casas/saiko.png" alt="" style="border-color:#d21f27"><b>Saikō</b></span><span><img src="../assets/img/casas/kikiu.png" alt="" style="border-color:#f2a882"><b>Kikiu</b></span><span><img src="../assets/img/casas/forneatto.png" alt="" style="border-color:#5aa871"><b>Forneatto</b></span></div>
+    </div>
+    <div class="pe">kikiu.com.br/cardapios</div>
+  </section>
+  <section class="cartao">
+    <div class="topo">
+      <div class="end">Av. Brasília, 177 · Cuiabá</div>
+      <h2>Escolha o cardápio</h2>
+    </div>
+    <div class="faixa"><i style="background:#d21f27"></i><i style="background:#f2a882"></i><i style="background:#5aa871"></i></div>
+    <div class="miolo">
+      <img class="qr" src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios">
+      <div class="instrucao">Aponte a câmera do celular</div>
+      <div class="legenda"><span><img src="../assets/img/casas/saiko.png" alt="" style="border-color:#d21f27"><b>Saikō</b></span><span><img src="../assets/img/casas/kikiu.png" alt="" style="border-color:#f2a882"><b>Kikiu</b></span><span><img src="../assets/img/casas/forneatto.png" alt="" style="border-color:#5aa871"><b>Forneatto</b></span></div>
+    </div>
+    <div class="pe">kikiu.com.br/cardapios</div>
+  </section>
+  <section class="cartao">
+    <div class="topo">
+      <div class="end">Av. Brasília, 177 · Cuiabá</div>
+      <h2>Escolha o cardápio</h2>
+    </div>
+    <div class="faixa"><i style="background:#d21f27"></i><i style="background:#f2a882"></i><i style="background:#5aa871"></i></div>
+    <div class="miolo">
+      <img class="qr" src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios">
+      <div class="instrucao">Aponte a câmera do celular</div>
+      <div class="legenda"><span><img src="../assets/img/casas/saiko.png" alt="" style="border-color:#d21f27"><b>Saikō</b></span><span><img src="../assets/img/casas/kikiu.png" alt="" style="border-color:#f2a882"><b>Kikiu</b></span><span><img src="../assets/img/casas/forneatto.png" alt="" style="border-color:#5aa871"><b>Forneatto</b></span></div>
+    </div>
+    <div class="pe">kikiu.com.br/cardapios</div>
+  </section>
+  <section class="cartao">
+    <div class="topo">
+      <div class="end">Av. Brasília, 177 · Cuiabá</div>
+      <h2>Escolha o cardápio</h2>
+    </div>
+    <div class="faixa"><i style="background:#d21f27"></i><i style="background:#f2a882"></i><i style="background:#5aa871"></i></div>
+    <div class="miolo">
+      <img class="qr" src="../assets/img/qrcode/cardapios.svg" alt="QR code dos cardápios">
+      <div class="instrucao">Aponte a câmera do celular</div>
+      <div class="legenda"><span><img src="../assets/img/casas/saiko.png" alt="" style="border-color:#d21f27"><b>Saikō</b></span><span><img src="../assets/img/casas/kikiu.png" alt="" style="border-color:#f2a882"><b>Kikiu</b></span><span><img src="../assets/img/casas/forneatto.png" alt="" style="border-color:#5aa871"><b>Forneatto</b></span></div>
+    </div>
+    <div class="pe">kikiu.com.br/cardapios</div>
+  </section>
+</div>
+</body>
+</html>

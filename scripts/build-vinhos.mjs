@@ -16,6 +16,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { paginaCardapio, idDe } from './pagina-cardapio.mjs';
+import { lerTacto } from './tacto.mjs';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 // Build-time, nunca no navegador: o visitante so ve /cardapio-api (rewrite).
@@ -49,14 +50,14 @@ const SECOES = [
 ];
 const ehVinho = c => /vinho|espumante|champagne/i.test(c);
 
-const r = await fetch(FONTE, { headers: { Accept: 'application/json' } });
-if (!r.ok) throw new Error(`o painel respondeu ${r.status} — carta mantida como esta`);
-const painel = await r.json();
+// A fonte é o Tacto (o painel espelhava o Tacto e podia ficar para trás). Tacto fora do ar:
+// o throw deixa a carta que já está no ar como está.
+const painel = await lerTacto();
 
 const cats = (painel.categories ?? []).filter(c => ehVinho(c.category));
 const total = cats.reduce((n, c) => n + c.items.length, 0);
 if (total < MINIMO) {
-  throw new Error(`o painel devolveu so ${total} rotulos (piso ${MINIMO}) — NAO escrevi nada`);
+  throw new Error(`o Tacto devolveu so ${total} rotulos (piso ${MINIMO}) — NAO escrevi nada`);
 }
 
 const rank = c => { const i = SECOES.findIndex(s => s.chave.test(c)); return i < 0 ? 99 : i; };
