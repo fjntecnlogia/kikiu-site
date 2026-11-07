@@ -4,7 +4,7 @@
   "titulo": "Cardápio",
   "assinatura": "Casa Pro Coquetéis",
   "endereco": "Shopping Três Américas · Cuiabá — MT",
-  "fonte": "Preço e itens conferidos com o cardápio público do Tacto (webgula.com.br/cba-forneatto/cardapio) em 05/11/2026. Item sem marca é o que o Tacto tem; `ativo: false` = não está no Tacto (fica guardado, não vai ao ar).",
+  "fonte": "Preço e itens conferidos com o cardápio público do Tacto (webgula.com.br/cba-forneatto/cardapio) em 06/11/2026. Item sem marca é o que o Tacto tem; `ativo: false` = não está no Tacto (fica guardado, não vai ao ar).",
   "blocos": [
     {
       "id": "cozinha",
@@ -44,6 +44,14 @@
             {
               "nome": "Feijoada",
               "preco": 59
+            },
+            {
+              "nome": "Prato Kids",
+              "preco": 35
+            },
+            {
+              "nome": "Sobrecoxa Desossada",
+              "preco": 42
             }
           ]
         },
@@ -52,22 +60,24 @@
           "itens": [
             {
               "nome": "Iscas de frango super crocantes",
-              "preco": 66,
+              "preco": 69,
               "sub": "mostarda Dijon"
             },
             {
               "nome": "Picanha Angus fatiada",
-              "preco": 97,
+              "preco": 107,
               "sub": "batata frita, molho da casa"
             },
             {
               "nome": "Iscas de peixe branco crocante",
               "preco": 83,
-              "sub": "molho cítrico"
+              "sub": "molho cítrico",
+              "ativo": false,
+              "tactoFalta": true
             },
             {
               "nome": "Cubos de filé mignon acebolado",
-              "preco": 108,
+              "preco": 118,
               "sub": "Grana Padano"
             },
             {
@@ -82,12 +92,12 @@
           "itens": [
             {
               "nome": "Pastel de carne à bolonhesa",
-              "preco": 55,
+              "preco": 59,
               "sub": "parmesão"
             },
             {
               "nome": "Pastel cremoso de camarão",
-              "preco": 78,
+              "preco": 88,
               "sub": "Catupiry"
             },
             {
@@ -96,7 +106,7 @@
             },
             {
               "nome": "Pastel de calabresa",
-              "preco": 58,
+              "preco": 65,
               "sub": "mussarela"
             }
           ]
@@ -106,23 +116,29 @@
           "itens": [
             {
               "nome": "Bolinho mineiro de milho, bacon",
-              "preco": 62,
+              "preco": 66,
               "sub": "queijo meia cura"
             },
             {
               "nome": "Croquete de ossobuco",
-              "preco": 68,
+              "preco": 75,
               "sub": "provolone defumado"
             },
             {
               "nome": "Bolinho crocante de pintado",
               "preco": 64,
-              "sub": "ervas finas"
+              "sub": "ervas finas",
+              "ativo": false,
+              "tactoFalta": true
             },
             {
               "nome": "Croquete de carne seca",
-              "preco": 61,
+              "preco": 71,
               "sub": "abóbora cremosa"
+            },
+            {
+              "nome": "Croquete bolinho de Bacalhau com ervas finas (6 Und)",
+              "preco": 94
             }
           ]
         },
@@ -131,11 +147,13 @@
           "itens": [
             {
               "nome": "Escondidinho de Mandioca",
-              "preco": 81
+              "preco": 81,
+              "ativo": false,
+              "tactoFalta": true
             },
             {
               "nome": "Gratinado de filé mignon",
-              "preco": 115,
+              "preco": 125,
               "sub": "grana padano"
             },
             {
@@ -144,7 +162,7 @@
             },
             {
               "nome": "Carne de onça",
-              "preco": 78,
+              "preco": 88,
               "sub": "especialidade da casa"
             },
             {
@@ -177,6 +195,10 @@
               "nome": "Bife ancho grelhado",
               "preco": 146,
               "ativo": false
+            },
+            {
+              "nome": "Medalhão de Filé Mognon",
+              "preco": 156
             }
           ]
         },
@@ -342,8 +364,7 @@
             {
               "nome": "Whiskey Sour",
               "ingredientes": "Premium Bourbon / Limão Siciliano / Xarope Simples / Angostura Bitters",
-              "perfil": "REFRESCANTE – CÍTRICO – CLÁSSICO",
-              "ativo": false
+              "perfil": "REFRESCANTE – CÍTRICO – CLÁSSICO"
             },
             {
               "nome": "Bloody Mary",
@@ -356,6 +377,10 @@
             {
               "nome": "Limacelon",
               "ingredientes": "Licor de limão siciliano / Espuma de limão siciliano / Espumante"
+            },
+            {
+              "nome": "Clericot",
+              "preco": 45
             }
           ]
         }
@@ -917,11 +942,11 @@
             },
             {
               "nome": "Brownie com sorvete de limão siciliano",
-              "preco": 42
+              "preco": 49
             },
             {
               "nome": "Tiramisu",
-              "preco": 35
+              "preco": 45
             }
           ]
         }
