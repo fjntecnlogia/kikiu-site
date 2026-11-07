@@ -105,7 +105,7 @@ const dados = JSON.parse(textoOriginal);
 
 const { produtos, grupos } = await lerTacto();
 const catDoGrupo = new Map(grupos.map(g => [g.id, g.categoriaNome]));
-const nomeDoGrupo = new Map(grupos.map(g => [g.id, g.nome]));
+const nomeDoGrupo = new Map(grupos.map(g => [g.id, String(g.nome).replace(/^\s*\d+\s*[.)-]\s*/, '').trim()]));   // "26. Hossomaki" → "Hossomaki"
 // preço de lojista (restaurantes do shopping) é outro produto no Tacto e não vai ao cardápio do cliente
 const RE_IGNORAR = /\blojista\b/i;
 const noEscopo = p => !cfg.ignorarGrupos.includes(p.grupoId) && !RE_IGNORAR.test(p.nomeCompleto)
@@ -118,12 +118,13 @@ const entradas = produtos.filter(noEscopo).map((p, i) => {
 });
 
 // percorre todos os arrays de itens do JSON, guardando onde estão
-function achar(x, path = '', out = [], bloco = null) {
+function achar(x, path = '', out = [], bloco = null, titulo = null) {
   if (Array.isArray(x)) {
-    if (x.length && x.every(i => i && typeof i === 'object' && 'nome' in i)) out.push({ path, itens: x, bloco });
-    else x.forEach((v, n) => achar(v, `${path}/${n}`, out, /^\/blocos\/\d+$/.test(`${path}/${n}`) ? v : bloco));
+    if (x.length && x.every(i => i && typeof i === 'object' && 'nome' in i)) out.push({ path, itens: x, bloco, titulo });
+    else x.forEach((v, n) => achar(v, `${path}/${n}`, out, /^\/blocos\/\d+$/.test(`${path}/${n}`) ? v : bloco, titulo));
   } else if (x && typeof x === 'object') {
-    for (const [k, v] of Object.entries(x)) achar(v, `${path}/${k}`, out, /^\/blocos\/\d+$/.test(`${path}/${k}`) ? v : bloco);
+    const t = typeof x.titulo === 'string' ? x.titulo : titulo;   // a seção que contém estes itens
+    for (const [k, v] of Object.entries(x)) achar(v, `${path}/${k}`, out, /^\/blocos\/\d+$/.test(`${path}/${k}`) ? v : bloco, t);
   }
   return out;
 }
@@ -160,9 +161,55 @@ for (const { s, e } of pares) {
   casados.set(s, e); e.usado = true;
 }
 
+// ── 2ª passada: mesmo grupo, preço mudou ──────────────────────────────────
+// O site chama de "Salmão" (seção Sashimi) o que o Tacto chama de "Sashimi Salmao". Com o preço
+// igual a 1ª passada acha; com o preço NOVO ela perde o item, e o robô desativaria o antigo (com foto
+// e descrição) e criaria um duplicado pelado. Aqui o GRUPO faz o papel do preço: só casa dentro dos
+// grupos do Tacto que a seção do site já provou ser dela (pelos casamentos exatos da 1ª passada),
+// sem contar as palavras do nome do grupo ("Sashimi", "Temaki"...).
+const gruposDaSecao = new Map();
+for (const [s, e] of casados) {
+  const m = gruposDaSecao.get(s.a.path) ?? new Set(); m.add(e.grupoId); gruposDaSecao.set(s.a.path, m);
+}
+// seção sem nenhum casamento exato (ex.: Hossomaki, só com nomes curtos): vale o grupo do Tacto com o MESMO nome dela
+for (const a of arrays) {
+  if (!a.titulo) continue;
+  for (const [gid, nome] of nomeDoGrupo) {
+    if (norm(nome) === norm(a.titulo) && entradas.some(e => e.grupoId === gid)) {
+      const m = gruposDaSecao.get(a.path) ?? new Set(); m.add(gid); gruposDaSecao.set(a.path, m);
+    }
+  }
+}
+const semPalavrasDoGrupo = (txt, gid) => {
+  const g = toks(nomeDoGrupo.get(gid) ?? ''); const t = toks(txt);
+  const r = new Set([...t].filter(x => !g.has(x)));
+  return r.size ? r : t;
+};
+const pares2 = [];
+for (const s of itensSite) {
+  if (casados.has(s) || s.kind === 'garrafa') continue;
+  const gruposOk = gruposDaSecao.get(s.a.path);
+  if (!gruposOk) continue;
+  for (const e of entradas) {
+    if (e.usado || e.kind === 'garrafa' || !gruposOk.has(e.grupoId)) continue;
+    const A = semPalavrasDoGrupo(s.base, e.grupoId), B = semPalavrasDoGrupo(e.base, e.grupoId);
+    const inter = [...A].filter(x => B.has(x)).length;
+    if (!inter) continue;
+    const j = inter / (A.size + B.size - inter);
+    const subconjunto = inter === A.size || inter === B.size;   // "Iscas de frango" ⊂ "Iscas de frango super crocantes"
+    if (subconjunto || j >= 0.5) pares2.push({ s, e, rank: j + (precoDoSite(s) === e.preco ? 0.1 : 0) });
+  }
+}
+pares2.sort((x, y) => y.rank - x.rank);
+for (const { s, e } of pares2) {
+  if (casados.has(s) || e.usado) continue;
+  casados.set(s, e); e.usado = true;
+}
+
 // ── aplica ───────────────────────────────────────────────────────────────
 const rel = { preco: [], garrafa: [], novo: [], semLugar: [], falta: [], voltou: [], saiu: [], saiuSuspeito: [], precoUnico: [] };
 const mapa = new Map(); // grupo do Tacto → { pathDoSite: contagem }
+for (const [path, gids] of gruposDaSecao) for (const gid of gids) { const m = mapa.get(gid) ?? {}; m[path] = (m[path] || 0) + 0.5; mapa.set(gid, m); }
 
 for (const [s, e] of casados) {
   const m = mapa.get(e.grupoId) || {}; m[s.a.path] = (m[s.a.path] || 0) + 1; mapa.set(e.grupoId, m);
